@@ -12,6 +12,7 @@ public class Conexion {
     private static final String USUARIO="root";
     private static final String CONTRASENA="";
     private static Connection conexion;
+    
     private Conexion(){        
         
     }
