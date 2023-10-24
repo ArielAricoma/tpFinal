@@ -3,6 +3,7 @@ package AccesoADatos;
 
 import Dominio.Proveedor;
 import java.sql.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -12,7 +13,7 @@ public class ProveedorData {
     private Proveedor proveedor = null;
     private Connection conexion = null;
     
-    public void ProveedorData(){
+    public ProveedorData(){
         conexion = Conexion.conectar();
     }
     
@@ -65,8 +66,38 @@ public class ProveedorData {
  
  }
  
+ public void eliminarProveedor(int id){
+     String sql ="UPDATE proveedor SET estado = 0 WHERE idProveedor = ?";
+     
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            
+            
+            ps.setInt(1, id);
+            ps.executeUpdate();
+           
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor","Error de Conexion.", 0);
+        }
+     
+ }
  
+ 
+public List<Proveedor> listarProveedores(){
+
+
     
     
     
+return null;
+}
+    
+public Proveedor obtenerProveedorMasComprado(){
+    
+    
+    
+    
+return null;
+}
 }
