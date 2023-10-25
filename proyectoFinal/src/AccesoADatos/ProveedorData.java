@@ -3,6 +3,7 @@ package AccesoADatos;
 
 import Dominio.Proveedor;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,26 +79,44 @@ public class ProveedorData {
            
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor","Error de Conexion.", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.","Error de Conexion.", 0);
         }
      
  }
  
  
-public List<Proveedor> listarProveedores(){
+public List<Proveedor> listarProveedores() throws SQLException{
+    String sql = "SELECT * FROM proveedor ";
+    List<Proveedor> listaProveedor = new ArrayList();
 
+    //idProveedor, razonSocial, domicilio, telefono, estado
+        try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        ResultSet rs = ps.executeQuery();
 
+        while (rs.next()) {
+            Proveedor proveedor = new Proveedor();
+            proveedor.setIdProveedor(rs.getInt("idProveedor"));
+            proveedor.setRazonSocial(rs.getString("razonSocial"));
+            proveedor.setDomicilio(rs.getString("domicilio"));
+            proveedor.setTelefono(rs.getString("telefono"));
+            proveedor.setEstado(rs.getBoolean("estado"));
+
+            listaProveedor.add(proveedor);
+            
+            rs.close();
+            ps.close();
+         }  
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.","Error de Conexion.", 0);
+        }
+        
     
     
-    
-return null;
+  return listaProveedor;
 }
     
-public Proveedor obtenerProveedorMasComprado(){
-    
-    
-    
-    
-return null;
+
 }
-}
+
