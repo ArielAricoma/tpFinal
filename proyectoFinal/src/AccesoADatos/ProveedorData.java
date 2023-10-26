@@ -19,7 +19,7 @@ public class ProveedorData {
     }
     
     
- public void registrarProveedor(Proveedor prove) {
+ public void agregarProveedor(Proveedor prove) {
      String sql = "INSERT INTO proveedor (razonSocial, domicilio, telefono, estado) VALUES (?, ?, ?, ?)";
      proveedor = new Proveedor();
         try {
@@ -84,9 +84,8 @@ public class ProveedorData {
      
  }
  
- 
-public List<Proveedor> listarProveedores() throws SQLException{
-    String sql = "SELECT * FROM proveedor ";
+ public List<Proveedor> listarProveedores() throws SQLException{
+    String sql = "SELECT * FROM proveedor WHERE estado = 1";
     List<Proveedor> listaProveedor = new ArrayList();
 
     //idProveedor, razonSocial, domicilio, telefono, estado
@@ -104,19 +103,18 @@ public List<Proveedor> listarProveedores() throws SQLException{
             proveedor.setEstado(rs.getBoolean("estado"));
 
             listaProveedor.add(proveedor);
-            
-            rs.close();
+
             ps.close();
          }  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.","Error de Conexion.", 0);
-        }
-        
-    
-    
+        }  
   return listaProveedor;
 }
-    
+
+
+
+ 
 
 }
 
