@@ -4,7 +4,6 @@ package AccesoADatos;
 import Dominio.Compra;
 import Dominio.DetalleCompra;
 import Dominio.Producto;
-import com.sun.jdi.connect.spi.Connection;
 import java.sql.*;
 
 public class DetalleCompraData {
