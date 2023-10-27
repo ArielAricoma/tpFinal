@@ -6,21 +6,24 @@ import java.time.LocalDate;
 
 public class Compra {
     private int idCompra;
-    private Proveedor provedor;
+    private Proveedor proveedor;
     private LocalDate fecha;
+    private boolean estado;
 
     public Compra() {
     }
 
-    public Compra(Proveedor provedor, LocalDate fecha) {
-        this.provedor = provedor;
+    public Compra(Proveedor proveedor, LocalDate fecha, boolean estado) {
+        this.proveedor = proveedor;
         this.fecha = fecha;
+        this.estado = estado;
     }
 
-    public Compra(int idCompra, Proveedor provedor, LocalDate fecha) {
+    public Compra(int idCompra, Proveedor proveedor, LocalDate fecha, boolean estado) {
         this.idCompra = idCompra;
-        this.provedor = provedor;
+        this.proveedor = proveedor;
         this.fecha = fecha;
+        this.estado = estado;
     }
 
     public int getIdCompra() {
@@ -31,12 +34,12 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public Proveedor getProvedor() {
-        return provedor;
+    public Proveedor getProveedor() {
+        return proveedor;
     }
 
-    public void setProvedor(Proveedor provedor) {
-        this.provedor = provedor;
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     public LocalDate getFecha() {
@@ -47,11 +50,17 @@ public class Compra {
         this.fecha = fecha;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Compra{" + "idCompra=" + idCompra + ", provedor=" + provedor + ", fecha=" + fecha + '}';
-    }
-    
-    
+        return "Compra{" + "idCompra=" + idCompra + ", proveedor=" + proveedor + ", fecha=" + fecha + ", estado=" + estado + '}';
+    }   
 
 }
