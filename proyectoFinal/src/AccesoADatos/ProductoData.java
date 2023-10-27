@@ -27,9 +27,13 @@ public class ProductoData {
     
     public Producto consultaProductoPorID(int idProducto){
     
+        return null;
+    
     }
     
     public List<Producto> listarProductos(){
+    
+        return null;
     
     }
 }
