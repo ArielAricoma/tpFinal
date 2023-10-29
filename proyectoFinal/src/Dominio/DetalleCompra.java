@@ -9,23 +9,26 @@ public class DetalleCompra {
     private Producto idProducto;
     private double precioCosto;
     private int cantidad;
+    private boolean estado;
 
     public DetalleCompra() {
     }
 
-    public DetalleCompra(int idDetalle, Compra idCompra, Producto idProducto, double precioCosto, int cantidad) {
+    public DetalleCompra(int idDetalle, Compra idCompra, Producto idProducto, double precioCosto, int cantidad, boolean estado) {
         this.idDetalle = idDetalle;
         this.idCompra = idCompra;
         this.idProducto = idProducto;
         this.precioCosto = precioCosto;
         this.cantidad = cantidad;
+        this.estado = estado;
     }
 
-    public DetalleCompra(Compra idCompra, Producto idProducto, double precioCosto, int cantidad) {
+    public DetalleCompra(Compra idCompra, Producto idProducto, double precioCosto, int cantidad, boolean estado) {
         this.idCompra = idCompra;
         this.idProducto = idProducto;
         this.precioCosto = precioCosto;
         this.cantidad = cantidad;
+        this.estado = estado;
     }
 
     public int getIdDetalle() {
