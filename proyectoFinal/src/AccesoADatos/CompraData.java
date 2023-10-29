@@ -108,9 +108,9 @@ public class CompraData {
                 int idProveedor=lista.getInt("idProveedor");                                
                 LocalDate fecha=lista.getDate("fecha").toLocalDate();
                 boolean estado=lista.getBoolean("estado");
-                //Proveedor prov=proveedorData.eliminarProveedor(idProveedor);
+                Proveedor prov=proveedorData.buscarProveedor(idProveedor);
                 
-                //compra=new Compra(idCompra,prov,fecha,estado);
+                compra=new Compra(idCompra,prov,fecha,estado);
             }
             obtener.close();
         } catch (SQLException ex) {
