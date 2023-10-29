@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 
 public class CompraData {
     private Connection conexion;
+    private ProveedorData proveedorData;
 
     public CompraData() {
        conexion= Conexion.conectar();
@@ -70,16 +71,22 @@ public class CompraData {
     
     public List<Compra> entreFechas(LocalDate inicio, LocalDate fin){
         String sql="SELECT * FROM compra WHERE fecha between ? and ?";
-        ArrayList<Compra> compras=new ArrayList<>();
-        
+        ArrayList<Compra> compras=new ArrayList<>();  
+                
         try {
             PreparedStatement lista=conexion.prepareStatement(sql);
-            //lista.setDate(1,inicio);
-            //lista.setDate(2, fin);
+            lista.setDate(1,Date.valueOf(inicio));
+            lista.setDate(2, Date.valueOf(fin));
             ResultSet rs=lista.executeQuery();
             while(rs.next()){
-                
+                Compra compra=new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.getProveedor().setIdProveedor(rs.getInt("idProveedro"));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setEstado(rs.getBoolean("estado"));
+                compras.add(compra);
             }
+            lista.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error con Lista Compra");
         }
@@ -98,13 +105,14 @@ public class CompraData {
             ResultSet lista=obtener.executeQuery();
             
             while(lista.next()){
-                
-                int Proveedor=lista.getInt("idProveedor");
+                int idProveedor=lista.getInt("idProveedor");                                
                 LocalDate fecha=lista.getDate("fecha").toLocalDate();
                 boolean estado=lista.getBoolean("estado");
+                //Proveedor prov=proveedorData.eliminarProveedor(idProveedor);
                 
-               // compra=new Compra(idCompra,Proveedor,fecha,estado);
+                //compra=new Compra(idCompra,prov,fecha,estado);
             }
+            obtener.close();
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"Error al Obtener Compras");
         }
