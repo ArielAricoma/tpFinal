@@ -1,16 +1,15 @@
-
 package Dominio;
 
-
 public class Producto {
+
     private int idProducto;
     private String nombre;
     private String descripcion;
-    private int precio;
-    private int descuento;
-    private int estado;
+    private double precio;
+    private double descuento;
+    private boolean estado;
 
-    public Producto(int idProducto, String nombre, String descripcion, int precio, int descuento, int estado) {
+    public Producto(int idProducto, String nombre, String descripcion, double precio, double descuento, boolean estado) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -18,7 +17,9 @@ public class Producto {
         this.descuento = descuento;
         this.estado = estado;
     }
-    public Producto(){}
+
+    public Producto() {
+    }
 
     public int getIdProducto() {
         return idProducto;
@@ -44,28 +45,28 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public int getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(int descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
-    public int getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+
 }
