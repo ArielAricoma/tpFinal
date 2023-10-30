@@ -107,38 +107,33 @@ public class ProveedorData {
     }
     
     
-    public List<Proveedor> buscarProveedor(int id){
-        ////idProveedor, razonSocial, domicilio, telefono, estado
-    
-        String sql = "SELECT * proveedor WHERE idProveedor = ? AND estado = 1";
-        List<Proveedor> listaProveedor = new ArrayList<>();
-        try {
-            
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                Proveedor prove = new Proveedor();
- 
-                prove.setIdProveedor(rs.getInt("idProveedor"));
-                prove.setRazonSocial(rs.getString("razonSocial"));
-                prove.setDomicilio(rs.getString("domicilio"));
-                prove.setTelefono(rs.getString("telefono"));
-                
-                listaProveedor.add(prove);
-                
-                ps.close();
-                
-            
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+  public Proveedor obtenerProveedorPorId(int id) {
+    String sql = "SELECT * FROM proveedor WHERE idProveedor = ? AND estado = 1";
+    Proveedor prove = null; 
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            prove = new Proveedor();
+
+            prove.setIdProveedor(rs.getInt("idProveedor"));
+            prove.setRazonSocial(rs.getString("razonSocial"));
+            prove.setDomicilio(rs.getString("domicilio"));
+            prove.setTelefono(rs.getString("telefono"));
         }
+
         
         
-        return null;
+        ps.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    return prove;
+}
     
 }
