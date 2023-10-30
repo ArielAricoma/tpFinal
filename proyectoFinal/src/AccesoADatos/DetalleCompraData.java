@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class DetalleCompraData {
 
     private Connection conexion = null;
-    private ProductoData productoData = null;
+    private ProductoData productoData = new ProductoData();
     private CompraData compraData = null;
      public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
@@ -48,6 +48,7 @@ public class DetalleCompraData {
      /*
     public List<DetalleCompra>(int idCompra){
         
+     
         String  sql = "SELECT idDetalle, idProducto, precioCosto, cantidad FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
         List<DetalleCompra> detalles = new ArrayList<>();
        try{
@@ -57,6 +58,7 @@ public class DetalleCompraData {
         ResultSet rs = ps.executeQuery();
      
         while(rs.next()){
+            
             DetalleCompra detalle = new DetalleCompra();
             detalle.setIdDetalle(rs.getInt("idDetalle"));
             detalle.setIdProducto(rs.getInt.("idProducto"));

@@ -3,7 +3,9 @@ package AccesoADatos;
 import Dominio.Proveedor;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -37,7 +39,7 @@ public class ProveedorData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor", "Error de Conexion.", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -56,7 +58,7 @@ public class ProveedorData {
 
             ps.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor", "Error de Conexion.", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -71,7 +73,7 @@ public class ProveedorData {
             ps.executeUpdate();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -99,9 +101,44 @@ public class ProveedorData {
                 ps.close();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
         return listaProveedor;
     }
-
+    
+    
+    public List<Proveedor> buscarProveedor(int id){
+        ////idProveedor, razonSocial, domicilio, telefono, estado
+    
+        String sql = "SELECT * proveedor WHERE idProveedor = ? AND estado = 1";
+        List<Proveedor> listaProveedor = new ArrayList<>();
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Proveedor prove = new Proveedor();
+ 
+                prove.setIdProveedor(rs.getInt("idProveedor"));
+                prove.setRazonSocial(rs.getString("razonSocial"));
+                prove.setDomicilio(rs.getString("domicilio"));
+                prove.setTelefono(rs.getString("telefono"));
+                
+                listaProveedor.add(prove);
+                
+                ps.close();
+                
+            
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        return null;
+    }
+    
 }
