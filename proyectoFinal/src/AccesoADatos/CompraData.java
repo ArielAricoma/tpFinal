@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 public class CompraData {
     private Connection conexion;
-    private ProveedorData proveedorData;
+    private ProveedorData proveedorData = new ProveedorData();
 
     public CompraData() {
        conexion= Conexion.conectar();
@@ -98,7 +98,7 @@ public class CompraData {
     public Compra obtenerCompraPorID(int idCompra){
         String sql="SELECT * FROM compra WHERE idCompra=? AND estado=1";
         Compra compra=null;
-        
+        Proveedor proveedor = new Proveedor();
         try {
             PreparedStatement obtener= conexion.prepareStatement(sql);
             obtener.setInt(1, idCompra);
@@ -108,9 +108,9 @@ public class CompraData {
                 int idProveedor=lista.getInt("idProveedor");                                
                 LocalDate fecha=lista.getDate("fecha").toLocalDate();
                 boolean estado=lista.getBoolean("estado");
-                Proveedor prov=proveedorData.buscarProveedor(idProveedor);
+                proveedor = proveedorData.buscarProveedor(idProveedor);
                 
-                compra=new Compra(idCompra,prov,fecha,estado);
+                compra=new Compra(idCompra,proveedor,fecha,estado);
             }
             obtener.close();
         } catch (SQLException ex) {

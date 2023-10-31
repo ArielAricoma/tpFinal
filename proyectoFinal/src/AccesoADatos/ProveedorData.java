@@ -107,7 +107,7 @@ public class ProveedorData {
     }
     
     
-  public Proveedor obtenerProveedorPorId(int id) {
+  public Proveedor buscarProveedor(int id) {
     String sql = "SELECT * FROM proveedor WHERE idProveedor = ? AND estado = 1";
     Proveedor prove = null; 
 
