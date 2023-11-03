@@ -19,7 +19,7 @@ public class UsuarioData {
     
 //idUsuario, nombreCuenta, contrasena, correoElec, estado
     public Usuario buscarUsuario(String nombre){
-        String sql = "SELEECT * FROM usuario WHERE nombreUsuario = ?"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
+        String sql = "SELEECT * FROM usuario WHERE nombreUsuario = ?%"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
         Usuario user = null;
         try {
             
