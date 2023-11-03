@@ -6,6 +6,8 @@ import Dominio.DetalleCompra;
 import Dominio.Producto;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class DetalleCompraData {
@@ -13,6 +15,7 @@ public class DetalleCompraData {
     private Connection conexion = null;
     private ProductoData productoData = new ProductoData();
     private CompraData compraData = null;
+    private DetalleCompra compra = null;
      public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
     }
@@ -78,10 +81,34 @@ public class DetalleCompraData {
      }
      */
      
-     public List<DetalleCompra>(int idProducto){
+     public List<DetalleCompra> listarDetalleDelProducto (int idProducto){
+         String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE idProducto = ?";
          
-         List<DetalleCompra> list = null;
-     
+        List<DetalleCompra> list = new ArrayList<>();
+            
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1,idProducto);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                 compra = new DetalleCompra();
+                 compra.getIdProducto().setNombre(rs.getString("nombre"));
+                 compra.getIdProducto().setDescripcion(rs.getString("descripcion"));
+                 compra.setCantidad(rs.getInt("cantidad"));
+                 
+                 
+
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
          return list;
      }
      /*

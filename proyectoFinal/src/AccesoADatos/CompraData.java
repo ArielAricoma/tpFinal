@@ -120,13 +120,13 @@ public class CompraData {
         
     }
     
-    public List<Producto> listarCompraporProducto(int idProducto){
+    public List<Producto> listarCompraporProducto(int idProveedor){
         String sql="SELECT * FROM producto WHERE idPeoducto=? AND estado=1";
         ArrayList<Producto> listado=new ArrayList<>();
         
         try {
             PreparedStatement lista=conexion.prepareStatement(sql);
-            lista.setInt(1,idProducto);
+            lista.setInt(1,idProveedor);
             ResultSet rs=lista.executeQuery();
             while(rs.next()){
                 int idProduc=rs.getInt("idProducto");

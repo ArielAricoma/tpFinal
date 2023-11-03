@@ -43,7 +43,7 @@ public class ProductoData {
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
             ps.setDouble(4, produ.getDescuento());
-            ps.setBoolean(5, produ.getEstado());
+            ps.setBoolean(5, produ.isEstado());
             ps.setInt(6, produ.getIdProducto());
             
             ps.executeUpdate();
@@ -52,14 +52,16 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null,"Producto no encontrado","error de conexion",0);
         }
     }
+    
     public void eliminarProducto(int idProducto){
         String sql="UPDATE producto SET estado = 0 WHERE idProducto = ?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1,idProducto);
             ps.executeUpdate();
+            
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Producto no encontrado");
+            JOptionPane.showMessageDialog(null,"Error al conectar con Producto");
         }
     }
     
@@ -88,20 +90,22 @@ public class ProductoData {
    
     }
     
-    public List<Producto> listarProductos(){
-        String sql="SELECT * FROM producto WHERE estado = 1";
-        List<Producto>listaProducto = new ArrayList();
+    public List<Producto> listarProductos(int idProveedor){
+        String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCoompra.cantidad" +
+                " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallcompra.idCompra )" + 
+                " JOIN producto ON (detallecompra.idProducto = producto.idProducto)WHERE proveedor.idProveedor = ? AND producto.estado = 1"; 
+        
+        List<Producto>listaProducto = new ArrayList(); 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idProveedor);
+            
             ResultSet rs = ps.executeQuery();
+            //nombre, precio, cantidad
             while(rs.next()){
-                Producto producto= new Producto();
-                producto.setIdProducto(rs.getInt("idProducto"));
+                producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
-                producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-                producto.setDescuento(rs.getDouble("descuento"));
-                producto.setEstado(rs.getBoolean("estado"));
+                
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"No hay Productos");
