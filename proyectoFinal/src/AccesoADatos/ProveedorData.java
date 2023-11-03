@@ -19,6 +19,10 @@ public class ProveedorData {
         conexion = Conexion.conectar();
     }
 
+    
+    
+       //        METODO AGREGAR PROVEEDOR 
+    
     public void agregarProveedor(Proveedor prove) {
         String sql = "INSERT INTO proveedor (razonSocial, domicilio, telefono, estado) VALUES (?, ?, ?, ?)";
         proveedor = new Proveedor();
@@ -43,6 +47,10 @@ public class ProveedorData {
         }
     }
 
+    
+    
+    //           METODO MODIFICAR PROVEEDOR
+    
     public void modificarProveedor(Proveedor prove) {
         String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ?, estado = ? WHERE idProveedor = ?";
 
@@ -62,7 +70,11 @@ public class ProveedorData {
         }
 
     }
-
+    
+    
+    
+    //           METODO ELIMINAR PROVEEDOR
+    
     public void eliminarProveedor(int id) {
         String sql = "UPDATE proveedor SET estado = 0 WHERE idProveedor = ?";
 
@@ -77,7 +89,11 @@ public class ProveedorData {
         }
 
     }
-
+    
+    
+    
+    //           METODO LISTAR PROVEEDORES.
+    
     public List<Proveedor> listarProveedores() throws SQLException {
         String sql = "SELECT * FROM proveedor WHERE estado = 1";
         List<Proveedor> listaProveedor = new ArrayList();
@@ -107,6 +123,9 @@ public class ProveedorData {
     }
     
     
+    
+    //          METODO PARA BUSCAR PROVEEDOR POR ID
+    //sacar prove y colocar proveedor
   public Proveedor buscarProveedor(int id) {
     String sql = "SELECT * FROM proveedor WHERE idProveedor = ? AND estado = 1";
     Proveedor prove = null; 
@@ -135,5 +154,37 @@ public class ProveedorData {
 
     return prove;
 }
+  
+  //                  METODO PARA BUSCAR PROVEEDOR POR NOMBRE
+  
+  public Proveedor buscarProveedorNombre(String razonSocial){
+      String sql = "SELECT * FROM proveedor WHERE nombre = ? AND estado = 1";
+      
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, razonSocial);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                proveedor = new Proveedor();
+                
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                
+                rs.close();
+                
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+      
+  
+  
+      return proveedor;
+  }
     
 }
