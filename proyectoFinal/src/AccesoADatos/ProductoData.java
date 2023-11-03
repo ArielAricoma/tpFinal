@@ -59,7 +59,7 @@ public class ProductoData {
     }
     
     public Producto consultaProductoPorID(int idProducto){
-        String sql="SELECT * FROM producto WHERE idProducto = ?";
+        String sql="SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
         Producto producto = null;
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
