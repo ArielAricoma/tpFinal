@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2023 a las 00:03:07
+-- Tiempo de generación: 03-11-2023 a las 00:28:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -45,7 +45,8 @@ CREATE TABLE `detallecompra` (
   `idCompra` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `precioCosto` double NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,8 +60,8 @@ CREATE TABLE `producto` (
   `nombre` varchar(40) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `precio` int(11) NOT NULL,
-  `descuento` int(4) NOT NULL,
-  `estado` int(11) NOT NULL
+  `descuento` double NOT NULL,
+  `estado` tinyint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -75,6 +76,20 @@ CREATE TABLE `proveedor` (
   `domicilio` varchar(40) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idUsuario` int(11) NOT NULL,
+  `nombreCuenta` varchar(20) NOT NULL,
+  `contrasena` varchar(20) NOT NULL,
+  `correoElec` varchar(40) NOT NULL,
+  `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -92,6 +107,7 @@ ALTER TABLE `compra`
 -- Indices de la tabla `detallecompra`
 --
 ALTER TABLE `detallecompra`
+  ADD PRIMARY KEY (`idDetalle`),
   ADD KEY `idCompra` (`idCompra`),
   ADD KEY `idProducto` (`idProducto`);
 
@@ -107,6 +123,13 @@ ALTER TABLE `producto`
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`idProveedor`),
   ADD UNIQUE KEY `razonSocial` (`razonSocial`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD UNIQUE KEY `nombreCuenta` (`nombreCuenta`,`correoElec`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -129,6 +152,12 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `proveedor`
   MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

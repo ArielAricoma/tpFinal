@@ -2,6 +2,7 @@
 package AccesoADatos;
 
 import Dominio.Compra;
+import Dominio.Producto;
 import Dominio.Proveedor;
 import java.sql.Connection;
 import java.sql.Date;
@@ -93,8 +94,7 @@ public class CompraData {
         
         return compras;
     }
-    
-    // sacar idProveedor
+        
     public Compra obtenerCompraPorID(int idCompra){
         String sql="SELECT * FROM compra WHERE idCompra=? AND estado=1";
         Compra compra=null;
@@ -120,14 +120,30 @@ public class CompraData {
         
     }
     
-    //public List<Producto> listarCompraporProducto(){
+    public List<Producto> listarCompraporProducto(int idProducto){
+        String sql="SELECT * FROM producto WHERE idPeoducto=? AND estado=1";
+        ArrayList<Producto> listado=new ArrayList<>();
         
-    //}
-    
-    
-    
-    
-    
-    
+        try {
+            PreparedStatement lista=conexion.prepareStatement(sql);
+            lista.setInt(1,idProducto);
+            ResultSet rs=lista.executeQuery();
+            while(rs.next()){
+                int idProduc=rs.getInt("idProducto");
+                String nombre=rs.getString("nombre");
+                String descripcion=rs.getString("descripcion");
+                double precio=rs.getDouble("precio");
+                double descuento=rs.getDouble("descuento");
+                boolean estado=rs.getBoolean("estado");
+                Producto nuevo=new Producto(idProduc,nombre,descripcion,precio,descuento,estado);
+                listado.add(nuevo);
+            }
+            lista.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"Error con Listar Productos");
+        }
+        return listado;
+        
+    }    
 
 }

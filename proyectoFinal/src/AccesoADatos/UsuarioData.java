@@ -12,11 +12,7 @@ public class UsuarioData {
 
     public UsuarioData(){
         conexion = Conexion.conectar();
-    }
-    
-    
-   
-    
+    }      
 //idUsuario, nombreCuenta, contrasena, correoElec, estado
     public Usuario buscarUsuario(String nombre){
         String sql = "SELEECT * FROM usuario WHERE nombreUsuario = ?%"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
@@ -49,15 +45,15 @@ public class UsuarioData {
     public void listarUsuarios(){}
     
     public void crearUsuario(Usuario user){
-
-    
+        String sql="INSERT usuario";    
     }
     
-    public void cambiarContasena(){
-    
+    public void cambiarContasena(){    
     }
     
-    public void darDeBaja(){}
+    public void darDeBaja(){
+    
+    }
     
     
     
