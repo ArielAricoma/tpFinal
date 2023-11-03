@@ -17,7 +17,7 @@ public class ProductoData {
     }
     
     public void registroProducto(Producto produ){
-        String sql="INSER INTO producto(nombre,descripcion,precio, descuento,estado) VALUES(?, ?, ?, ?, ?)";
+        String sql="INSERT INTO producto(nombre,descripcion,precio, descuento) VALUES(?, ?, ?, ?)";
         producto= new Producto();
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -26,7 +26,7 @@ public class ProductoData {
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
             ps.setDouble(4, produ.getDescuento());
-            ps.setBoolean(5, produ.isEstado());
+            
             
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"producto incorrecto");
@@ -38,11 +38,16 @@ public class ProductoData {
         String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE idProducto=?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
+            
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
             ps.setDouble(4, produ.getDescuento());
-            ps.setBoolean(5, true);
+            ps.setBoolean(5, produ.getEstado());
+            ps.setInt(6, produ.getIdProducto());
+            
+            ps.executeUpdate();
+            
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado","error de conexion",0);
         }

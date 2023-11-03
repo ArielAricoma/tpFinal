@@ -45,7 +45,7 @@ public class DetalleCompraData {
      
      
      
-     /*
+    /*
     public List<DetalleCompra>(int idCompra){
         
      
@@ -76,9 +76,15 @@ public class DetalleCompraData {
      
          return detalles;
      }
+     */
      
-     public List<DetalleCompra>(int idProducto){}
+     public List<DetalleCompra>(int idProducto){
+         
+         List<DetalleCompra> list = null;
      
+         return list;
+     }
+     /*
      public void modificarDetalleCompra(){
          String sql = "UPDATE * FROM detallecompra";
          

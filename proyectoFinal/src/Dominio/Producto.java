@@ -18,6 +18,15 @@ public class Producto {
         this.estado = estado;
     }
 
+    public Producto(String nombre, String descripcion, double precio, double descuento, boolean estado) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.estado = estado;
+    }
+    
+    
     public Producto() {
     }
 
