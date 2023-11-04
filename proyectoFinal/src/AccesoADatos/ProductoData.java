@@ -89,7 +89,7 @@ public class ProductoData {
         return null;
    
     }
-    
+    //TERMINAR PRODUCTO
     public List<Producto> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCoompra.cantidad" +
                 " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallcompra.idCompra )" + 

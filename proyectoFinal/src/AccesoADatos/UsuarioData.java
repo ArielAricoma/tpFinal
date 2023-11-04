@@ -89,12 +89,43 @@ public class UsuarioData {
         }
     }
     
-    public void cambiarContasena(){  
+    public void cambiarContasena(String nombreUsuario, String newContrasena){  
+        String sql= "UPDATE  usuario SET contrasena = ? WHERE nombreCuenta = ? AND estado = 1";
         
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, newContrasena);
+            ps.setString(2, nombreUsuario);
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
     }
     
-    public void darDeBaja(){
-    
+    public void darDeBaja(String nombreCuenta){
+        String sql = "UPDATE usuario SET estado = 0 WHERE nombreCuenta = ? AND estado = 1";
+        
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, nombreCuenta);
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        
+        
     }
     
     
