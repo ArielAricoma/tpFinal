@@ -48,7 +48,7 @@ public class DetalleCompraData {
      
      
      
-    /*
+    
     public List<DetalleCompra>(int idCompra){
         
      
@@ -79,7 +79,7 @@ public class DetalleCompraData {
      
          return detalles;
      }
-     */
+     
      
      public List<DetalleCompra> listarDetalleDelProducto (int idProducto){
          String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE idProducto = ?";
@@ -100,12 +100,12 @@ public class DetalleCompraData {
                  compra.setCantidad(rs.getInt("cantidad"));
                  
                  
-
+              list.add(compra);
             }
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
         }
          
          
@@ -116,9 +116,26 @@ public class DetalleCompraData {
          String sql = "UPDATE * FROM detallecompra";
          
      }
+      */
+     public void eliminarDetalleCompra(int idDetalle){
+        String sql = "UPDATE detallecompra SET estado = 0 WHERE idDetalle = ? AND estado = 1";
      
-     public void eliminarDetalleCompra(int idDetalle){}
-     */
+        PreparedStatement ps;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idDetalle);
+     
+            ps.executeUpdate();
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+     
+     }
+    
      
       
 }
