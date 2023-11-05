@@ -160,6 +160,7 @@ public class ProyectoFinal {
         
         
                                      //METODO REGISTRAR
+        /*                             
         compra = new Compra();
         compra = compraData.obtenerCompraPorID(2);
         producto = new Producto();
@@ -168,6 +169,43 @@ public class ProyectoFinal {
         dCompra = new DetalleCompra(compra,producto,900.2,100,true);
         
         dCompraData.registrarDetalleCompra(dCompra);
+        */
+        
+                                     //METODO LISTAR DETALLE COMPRA POR ID
+        /*
+        List<DetalleCompra> lis=new ArrayList<>();
+        lis=dCompraData.listarDetalleCOmpra(2);
+        
+        for(DetalleCompra dc:lis){
+            System.out.println("Nombre: "+dc.getIdProducto().getNombre());
+        }
+        */
+        
+                                     //METODO LISTAR DETALLE DEL PRODUCTO
+        /* no funca-------------------------------------------------------------------------------------------------------------
+        List<DetalleCompra> pro=new ArrayList<>();
+        pro=dCompraData.listarDetalleDelProducto(2);
+        
+        for(DetalleCompra ls:pro){
+            System.out.println("Nomre: "+ls.getIdProducto().getNombre());
+        }
+        */  
+        
+                                     //METODO MODIFICAR
+        /*
+        Producto pro=new Producto();
+        pro=produData.consultaProductoPorID(2);
+        Compra com=new Compra();
+        com=compraData.obtenerCompraPorID(3);
+        
+        DetalleCompra comp= new DetalleCompra(3,com,pro,5666,10000,true);
+        
+        dCompraData.modificarDetalleCompra(comp);
+        */
+        
+                                     //METODO ELIMINAR
+                                     
+        dCompraData.eliminarDetalleCompra(2);
       
         
         

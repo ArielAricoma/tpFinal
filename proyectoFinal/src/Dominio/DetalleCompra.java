@@ -30,6 +30,7 @@ public class DetalleCompra {
         this.cantidad = cantidad;
         this.estado = estado;
     }
+    
 
     public int getIdDetalle() {
         return idDetalle;

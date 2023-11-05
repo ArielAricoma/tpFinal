@@ -38,85 +38,77 @@ public class DetalleCompraData {
         }    
      }
     
-    public List<DetalleCompra> listarDetalleCOmpra(int idCompra){
-        
-     
-        String  sql = "SELECT idDetalle, idProducto, precioCosto, cantidad FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
+     public List<DetalleCompra> listarDetalleCOmpra(int idCompra){    
+        String  sql = "SELECT * FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
         List<DetalleCompra> detalles = new ArrayList<>();
-       try{
+        
+        try{
         PreparedStatement ps = conexion.prepareStatement(sql);
-        ps.setInt(1, idCompra);
-     
+        ps.setInt(1, idCompra);     
         ResultSet rs = ps.executeQuery();
      
         while(rs.next()){
             
             DetalleCompra detalle = new DetalleCompra();
             detalle.setIdDetalle(rs.getInt("idDetalle"));
-            detalle.getIdProducto().setIdProducto(rs.getInt("idProducto"));
+            int idProd=rs.getInt("idProducto");
+            Producto pro=productoData.consultaProductoPorID(idProd);
+            detalle.setIdProducto(pro);
             detalle.setPrecioCosto(rs.getDouble("precioCosto"));
             detalle.setCantidad(rs.getInt("cantidad"));
 
-            detalles.add(detalle);
-            
+            detalles.add(detalle);            
         }
      
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
-        }
-     
-     
+        }    
          return detalles;
      }
      
-     
+     //CORREGIR
      public List<DetalleCompra> listarDetalleDelProducto (int idProducto){
-         String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE idProducto = ?";
-         
+        String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra "
+                + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.idProducto = ?";
         List<DetalleCompra> list = new ArrayList<>();
             
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1,idProducto);
-            
+            ps.setInt(1,idProducto);            
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                  compra = new DetalleCompra();
                  compra.getIdProducto().setNombre(rs.getString("nombre"));
                  compra.getIdProducto().setDescripcion(rs.getString("descripcion"));
-                 compra.setCantidad(rs.getInt("cantidad"));
-                 
+                 compra.setCantidad(rs.getInt("cantidad"));                
                  
               list.add(compra);
-            }
-            
+            }           
             
         } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-         
-         
+        }        
          return list;
      }
      
      public void modificarDetalleCompra(DetalleCompra detalle){
-         String sql = "UPDATE * FROM detallecompra SET   precioCosto = ?, cantidad = ? WHERE estado = 1 AND idDetalle = ?";
+        String sql = "UPDATE detallecompra SET  precioCosto = ?, cantidad = ? WHERE estado = 1 AND idDetalle = ?";
          
         try {
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setDouble(1, detalle.getPrecioCosto());
-            ps.setInt(2, detalle.getCantidad());
-            ps.setInt(3, detalle.getIdDetalle());
+           PreparedStatement ps = conexion.prepareStatement(sql);          
+           ps.setDouble(1, detalle.getPrecioCosto());
+           ps.setInt(2, detalle.getCantidad());
+           ps.setInt(3,detalle.getIdDetalle());
+           ps.executeUpdate();
+           
+           JOptionPane.showMessageDialog(null,"Producto Modificado");
             
         } catch (SQLException ex) {
             
-            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-         
-         
+           JOptionPane.showMessageDialog(null,"Error Modificar");
+        }        
      }
      
      public void eliminarDetalleCompra(int idDetalle){
@@ -132,10 +124,7 @@ public class DetalleCompraData {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
-     
+        }     
      }
     
      
