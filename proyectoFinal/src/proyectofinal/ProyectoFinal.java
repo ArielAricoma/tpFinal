@@ -100,13 +100,16 @@ public class ProyectoFinal {
         */
         
                                      //METODO LISTAR PRODUCTO POR IDPROVEEDOR
-        /*  CORREGIR--------------------------------------------------------------------------------------------------------
+       
         List<Producto> lis= new ArrayList<>();
-        lis = produData.listarProductos(1);
+        lis = produData.listarProductos(2);
         for(Producto pro:lis){
             System.out.println("Nombre: "+pro.getNombre());
+            System.out.println("Descripcion: "+pro.getDescripcion());
+            System.out.println("Precio: "+pro.getPrecio());
+            
         }
-        */
+        
         
         //                    PROBANDO METODOS DE COMPRADATA
         
@@ -182,14 +185,16 @@ public class ProyectoFinal {
         */
         
                                      //METODO LISTAR DETALLE DEL PRODUCTO
-        /* no funca-------------------------------------------------------------------------------------------------------------
+        /*
         List<DetalleCompra> pro=new ArrayList<>();
-        pro=dCompraData.listarDetalleDelProducto(2);
+        pro=dCompraData.listarDetalleDelProducto(3);
         
         for(DetalleCompra ls:pro){
             System.out.println("Nomre: "+ls.getIdProducto().getNombre());
+            System.out.println("Descripcion: "+ls.getIdProducto().getDescripcion());
+            System.out.println("Cantidad: "+ls.getCantidad());
         }
-        */  
+        */          
         
                                      //METODO MODIFICAR
         /*
@@ -211,20 +216,25 @@ public class ProyectoFinal {
         //UsuarioData uData = new UsuarioData();
         
         
-            //METODOS DE USUARIO DATA
+        //                    PROBANDO METODOS DE USUARIO DATA
             
-            //crear usuario
+        
+                                     //METODO REGISTRAR
+                                     
         //user = new Usuario("Marco", "ooopsdssss3", "stakatakau@gmail.com", true);
         //uData.crearUsuario(user);
         
-        List<Usuario> uss = new ArrayList<>();
-       /*
-        uss = uData.buscarUsuario("M");
+                                     //METODO BUSCAR USUARIO
+        /*                             
+        List<Usuario> uss = new ArrayList<>();       
+        uss = uData.buscarUsuario("e");
         
         for(Usuario us : uss){
             System.out.println("Nombre: " + us.getNombreCuenta());
         }
-        */
+        */                             
+               
+                                     //METODO LISTAR USUARIOS
         /*
         uss = uData.listarUsuariosActivos();
         for(Usuario us : uss){
@@ -232,12 +242,13 @@ public class ProyectoFinal {
         }
         */
         
-        //METODO CAMBIAR CONTRASENA
+                                     //METODO CAMBIAR CONTRASENA
+                                     
         //uData.cambiarContasena("Matias", "bolita20");
         
+                                     //METODO DAR DE BAJA
         
-        
-        uData.darDeBaja("Pablo");
+        //uData.darDeBaja("Pablo");
         
     }
     

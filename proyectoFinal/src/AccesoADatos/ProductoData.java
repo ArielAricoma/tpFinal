@@ -1,6 +1,7 @@
 
 package AccesoADatos;
 
+import Dominio.DetalleCompra;
 import Dominio.Producto;
 import java.sql.*;
 import java.util.ArrayList;
@@ -91,22 +92,26 @@ public class ProductoData {
         return producto;   
     }
     
-    //TERMINAR PRODUCTO
+    //TERMINAR PRODUCTO  -ME PARECE QUE ES UN LIST DE DETALLECOMPRA-    
+    //LA SENTENCIA SQL FUNCIONA
     public List<Producto> listarProductos(int idProveedor){
-        String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCoompra.cantidad" +
-                " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallcompra.idCompra )" + 
+        String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
+                " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 
                 " JOIN producto ON (detallecompra.idProducto = producto.idProducto)WHERE proveedor.idProveedor = ? AND producto.estado = 1"; 
         
         List<Producto>listaProducto = new ArrayList(); 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idProveedor);
-            
+            ps.setInt(1, idProveedor);            
             ResultSet rs = ps.executeQuery();
             //nombre, precio, cantidad
             while(rs.next()){
+                
                 producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                listaProducto.add(producto);
                 
             }
         }catch(SQLException e){

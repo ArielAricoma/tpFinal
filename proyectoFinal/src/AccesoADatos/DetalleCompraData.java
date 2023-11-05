@@ -16,6 +16,7 @@ public class DetalleCompraData {
     private ProductoData productoData = new ProductoData();
     private CompraData compraData = new CompraData();
     private DetalleCompra compra = null;
+    private Producto producto= new Producto();
      public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
     }     
@@ -64,24 +65,23 @@ public class DetalleCompraData {
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
         }    
          return detalles;
-     }
-     
-     //CORREGIR
+     }     
+    
      public List<DetalleCompra> listarDetalleDelProducto (int idProducto){
         String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra "
                 + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.idProducto = ?";
         List<DetalleCompra> list = new ArrayList<>();
             
-        try {
-            
+        try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1,idProducto);            
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                  compra = new DetalleCompra();
-                 compra.getIdProducto().setNombre(rs.getString("nombre"));
-                 compra.getIdProducto().setDescripcion(rs.getString("descripcion"));
+                 producto.setNombre(rs.getString("nombre"));
+                 producto.setDescripcion(rs.getString("descripcion"));
+                 compra.setIdProducto(producto);
                  compra.setCantidad(rs.getInt("cantidad"));                
                  
               list.add(compra);
@@ -126,7 +126,5 @@ public class DetalleCompraData {
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
         }     
      }
-    
      
-      
 }

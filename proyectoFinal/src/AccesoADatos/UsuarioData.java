@@ -13,39 +13,28 @@ public class UsuarioData {
     private Usuario user = null;
     public UsuarioData(){
         conexion = Conexion.conectar();
-    }      
-    
-    
-//idUsuario, nombreCuenta, contrasena, correoElec, estado
+    }  
+
     public List<Usuario> buscarUsuario(String nombre){
-        String sql = "SELECT * FROM usuario WHERE nombreCuenta LIKE ?"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
-        List<Usuario> usuario = null;
-        try {
-            
+        String sql = "SELECT * FROM usuario WHERE nombreCuenta LIKE ?"; 
+        List<Usuario> usuario = new ArrayList<>();
+        try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre+"%");
+            ps.setString(1, nombre+ "%");
             
             
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                user = new Usuario();
-                usuario = new ArrayList<>();
+                user = new Usuario();                
                 user.setIdUsuario(rs.getInt("idUsuario"));
                 user.setNombreCuenta(rs.getString("nombreCuenta"));
                 user.setContrasena(rs.getString("contrasena"));
-                user.setCorreoElec(rs.getString("correoElec"));
-                
-                
-                usuario.add(user);
-                
-                rs.close();
-            }
-            
-            
+                user.setCorreoElec(rs.getString("correoElec"));                
+                usuario.add(user);               
+            }           
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }       
         return usuario;
     }
     
@@ -74,8 +63,7 @@ public class UsuarioData {
         }
         return user;
     }
-    //idUsuario, nombreCuenta, contrasena, correoElec, estado
-    
+        
     public void crearUsuario(Usuario user){
         String sql="INSERT INTO usuario( nombreCuenta, contrasena, correoElec, estado)" + " VALUES (?, ?, ?, 1)";    
         
@@ -133,18 +121,6 @@ public class UsuarioData {
         }
         
         
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }   
     
 }
