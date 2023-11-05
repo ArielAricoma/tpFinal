@@ -205,13 +205,39 @@ public class ProyectoFinal {
         
                                      //METODO ELIMINAR
                                      
-        dCompraData.eliminarDetalleCompra(2);
+        //dCompraData.eliminarDetalleCompra(2);
       
+        //Usuario user = null;
+        //UsuarioData uData = new UsuarioData();
+        
+        
+            //METODOS DE USUARIO DATA
+            
+            //crear usuario
+        //user = new Usuario("Marco", "ooopsdssss3", "stakatakau@gmail.com", true);
+        //uData.crearUsuario(user);
+        
+        List<Usuario> uss = new ArrayList<>();
+       /*
+        uss = uData.buscarUsuario("M");
+        
+        for(Usuario us : uss){
+            System.out.println("Nombre: " + us.getNombreCuenta());
+        }
+        */
+        /*
+        uss = uData.listarUsuariosActivos();
+        for(Usuario us : uss){
+            System.out.println("Nombre: " + us.getNombreCuenta());
+        }
+        */
+        
+        //METODO CAMBIAR CONTRASENA
+        //uData.cambiarContasena("Matias", "bolita20");
         
         
         
-        
-        
+        uData.darDeBaja("Pablo");
         
     }
     

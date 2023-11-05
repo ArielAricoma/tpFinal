@@ -18,12 +18,12 @@ public class UsuarioData {
     
 //idUsuario, nombreCuenta, contrasena, correoElec, estado
     public List<Usuario> buscarUsuario(String nombre){
-        String sql = "SELEECT * FROM usuario WHERE nombreUsuario = ?%"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
+        String sql = "SELECT * FROM usuario WHERE nombreCuenta LIKE ?"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
         List<Usuario> usuario = null;
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
+            ps.setString(1, nombre+"%");
             
             
             ResultSet rs = ps.executeQuery();
@@ -31,14 +31,14 @@ public class UsuarioData {
                 user = new Usuario();
                 usuario = new ArrayList<>();
                 user.setIdUsuario(rs.getInt("idUsuario"));
-                user.setNombreCuenta(rs.getString("nombreUsuario"));
+                user.setNombreCuenta(rs.getString("nombreCuenta"));
                 user.setContrasena(rs.getString("contrasena"));
                 user.setCorreoElec(rs.getString("correoElec"));
                 
                 
                 usuario.add(user);
                 
-                ps.close();
+                rs.close();
             }
             
             
@@ -51,32 +51,28 @@ public class UsuarioData {
     
     public List<Usuario> listarUsuariosActivos(){
         String sql = "SELECT * FROM usuario WHERE estado = 1";
-        
-        List<Usuario> usuario = null;
-            Usuario user = null;
-        try {
-            
+        List<Usuario> user = new ArrayList<>();
+        try { 
             PreparedStatement ps = conexion.prepareStatement(sql);
+            
             ResultSet rs = ps.executeQuery();
             
-            
-            
             while(rs.next()){
-                user = new Usuario();
-                usuario = new ArrayList<>();
-                user.setIdUsuario(rs.getInt("idUsuario"));
-                user.setNombreCuenta(rs.getString("nombreCuenta"));
-                user.setContrasena(rs.getString("contrasena"));
-                user.setCorreoElec(rs.getString("correoElec"));
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNombreCuenta(rs.getString("nombreCuenta"));
+                usuario.setContrasena(rs.getString("contrasena"));
+                usuario.setCorreoElec(rs.getString("correoElec"));
                 
-                usuario.add(user);
-                rs.close();
+                user.add(usuario);
+                    
             }
-            
+      
         } catch (SQLException ex) {
+            
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return usuario;
+        return user;
     }
     //idUsuario, nombreCuenta, contrasena, correoElec, estado
     
