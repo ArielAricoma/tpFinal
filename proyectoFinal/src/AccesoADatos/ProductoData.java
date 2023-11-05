@@ -67,22 +67,17 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null,"Error al conectar con Producto");
         }
     }
-    
-   
-    //CORREGIR
+       
     public Producto consultaProductoPorID(int idProducto){
-        String sql = "SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
+        String sql = " SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
         Producto producto = null;
         try{
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            
+            PreparedStatement ps = conexion.prepareStatement(sql);            
             ps.setInt(1, idProducto);
             ResultSet rs = ps.executeQuery();
             
-            if(rs.next()){
-                
-                producto = new Producto();
-                
+            if(rs.next()){                
+                producto = new Producto();                
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
@@ -92,11 +87,8 @@ public class ProductoData {
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado");
-        }
-        
-        
-        return producto;
-   
+        }        
+        return producto;   
     }
     
     //TERMINAR PRODUCTO

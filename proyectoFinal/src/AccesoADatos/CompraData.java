@@ -74,38 +74,33 @@ public class CompraData {
         return listado;
         
     }
-
-    
-    //PROBLEMAS-----------------------------------------------------------AYUDA PROFE-----------------------------------------
-    public List<Compra> entreFechas(LocalDate inicio, LocalDate fin){
-        
-        String sql="SELECT * FROM compra WHERE fecha BETWEEN ? AND ?";
+     
+    public List<Compra> entreFechas(LocalDate inicio, LocalDate fin){        
+        String sql= "SELECT * FROM compra WHERE fecha BETWEEN ? AND ?";
         List<Compra> compras=new ArrayList<>();  
                 
         try {
-            PreparedStatement lista=conexion.prepareStatement(sql);
-            
+            PreparedStatement lista=conexion.prepareStatement(sql);            
             lista.setDate(1,Date.valueOf(inicio));
-            lista.setDate(2, Date.valueOf(fin));
-            
-            
+            lista.setDate(2, Date.valueOf(fin));                    
             ResultSet rs=lista.executeQuery();
-            while(rs.next()){
-                
-                Compra compra=new Compra();
-                
+            
+            while(rs.next()){                
+                Compra compra=new Compra(); 
                 compra.setIdCompra(rs.getInt("idCompra"));
+                int idProvee=rs.getInt("idProveedor");
+                Proveedor id=proveedorData.buscarProveedor(idProvee);
                 
-                compra.getProveedor().setIdProveedor(rs.getInt("idProveedor"));
+                compra.setProveedor(id);
                 compra.setFecha(rs.getDate("fecha").toLocalDate());
-                compra.setEstado(rs.isBoolean("estado"));
+                compra.setEstado(rs.getBoolean("estado"));                
                 compras.add(compra);
             }
-            lista.close();
+            
         } catch (SQLException ex) {
+             ex.printStackTrace();
             JOptionPane.showMessageDialog(null,"Error con Lista Compra");
-        }
-        
+        }        
         return compras;
     }
         

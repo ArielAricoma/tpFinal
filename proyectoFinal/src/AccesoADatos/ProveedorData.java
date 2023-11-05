@@ -45,9 +45,7 @@ public class ProveedorData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    
+    }   
     
     //           METODO MODIFICAR PROVEEDOR
     
@@ -72,9 +70,7 @@ public class ProveedorData {
              
         }
 
-    }
-    
-    
+    }    
     
     //           METODO ELIMINAR PROVEEDOR
     
@@ -92,9 +88,7 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
 
-    }
-    
-    
+    }    
     
     //           METODO LISTAR PROVEEDORES.
     
@@ -124,9 +118,7 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
         return listaProveedor;
-    }
-    
-    
+    }    
     
     //          METODO PARA BUSCAR PROVEEDOR POR ID
     //sacar prove y colocar proveedor
@@ -191,10 +183,6 @@ public class ProveedorData {
   
   
       return proveedor;
-  }
-  
-  
-  
-  
+  } 
     
 }
