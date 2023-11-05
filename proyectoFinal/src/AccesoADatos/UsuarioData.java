@@ -3,6 +3,7 @@ package AccesoADatos;
 
 import Dominio.Usuario;
 import java.sql.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,10 +14,12 @@ public class UsuarioData {
     public UsuarioData(){
         conexion = Conexion.conectar();
     }      
+    
+    
 //idUsuario, nombreCuenta, contrasena, correoElec, estado
-    public Usuario buscarUsuario(String nombre){
+    public List<Usuario> buscarUsuario(String nombre){
         String sql = "SELEECT * FROM usuario WHERE nombreUsuario = ?%"; //buscar en la teoria como se hacia para buscar por contenido o comienzo 
-        
+        List<Usuario> usuario = null;
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -26,11 +29,15 @@ public class UsuarioData {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 user = new Usuario();
+                usuario = new ArrayList<>();
                 user.setIdUsuario(rs.getInt("idUsuario"));
                 user.setNombreCuenta(rs.getString("nombreUsuario"));
                 user.setContrasena(rs.getString("contrasena"));
                 user.setCorreoElec(rs.getString("correoElec"));
-                rs.close();
+                
+                
+                usuario.add(user);
+                
                 ps.close();
             }
             
@@ -39,33 +46,37 @@ public class UsuarioData {
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return user;
+        return usuario;
     }
     
-    public Usuario listarUsuariosActivos(){
+    public List<Usuario> listarUsuariosActivos(){
         String sql = "SELECT * FROM usuario WHERE estado = 1";
         
-        
+        List<Usuario> usuario = null;
+            Usuario user = null;
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
+            
+            
             while(rs.next()){
                 user = new Usuario();
+                usuario = new ArrayList<>();
                 user.setIdUsuario(rs.getInt("idUsuario"));
                 user.setNombreCuenta(rs.getString("nombreCuenta"));
                 user.setContrasena(rs.getString("contrasena"));
                 user.setCorreoElec(rs.getString("correoElec"));
                 
+                usuario.add(user);
                 rs.close();
-                
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return user;
+        return usuario;
     }
     //idUsuario, nombreCuenta, contrasena, correoElec, estado
     
