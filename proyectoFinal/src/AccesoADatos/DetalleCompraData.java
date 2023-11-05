@@ -14,32 +14,29 @@ public class DetalleCompraData {
 
     private Connection conexion = null;
     private ProductoData productoData = new ProductoData();
-    private CompraData compraData = null;
+    private CompraData compraData = new CompraData();
     private DetalleCompra compra = null;
      public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
-    }
-     
+    }     
      
      public void registrarDetalleCompra(DetalleCompra dC){
-     String sql = "INSERT INTO detallecompra (idCompra, idProducto, precioCosto, cantidad) VALUES ( ?, ?, ?, ?)";
+     String sql = "INSERT INTO detallecompra (idCompra, idProducto, precioCosto, cantidad, estado) VALUES ( ?, ?, ?, ?, ?)";
      
       try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, dC.getIdCompra().getIdCompra());
+            
+            ps.setInt(1,dC.getIdCompra().getIdCompra());
             ps.setInt(2, dC.getIdProducto().getIdProducto());
             ps.setDouble(3, dC.getPrecioCosto());
             ps.setInt(4, dC.getCantidad());
-     
+            ps.setBoolean(5, dC.isEstado());
             ps.executeUpdate();
             
         } catch (SQLException ex) {           
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
         }    
      }
-     
-     
-     
     
     public List<DetalleCompra> listarDetalleCOmpra(int idCompra){
         

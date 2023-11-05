@@ -93,11 +93,7 @@ public class CompraData {
                 
                 compra.setProveedor(id);
                 compra.setFecha(rs.getDate("fecha").toLocalDate());
-<<<<<<< HEAD
-                compra.setEstado(rs.getBoolean("estado"));
-=======
                 compra.setEstado(rs.getBoolean("estado"));                
->>>>>>> 6cedc4681525b5ccd881f9fcaaea870903cc0278
                 compras.add(compra);
             }
             

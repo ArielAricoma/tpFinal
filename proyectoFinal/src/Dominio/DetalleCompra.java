@@ -70,6 +70,14 @@ public class DetalleCompra {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
     
     
     
