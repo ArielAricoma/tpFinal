@@ -46,20 +46,17 @@ public class ProyectoFinal {
         //                    PROBANDO METODOS PROVEEDORDATA FUNCIONAAAAAAAN TODOS
         
         
-        //METODO AGREGAR PROVEEDOR 
+                                     //METODO AGREGAR PROVEEDOR 
         //proveedor = new Proveedor(3,"Musimundo", "Pedernera 368", "+54 2657-902030", true);
-         //proveData.agregarProveedor(proveedor);
-        
-        
-        //METODO MODIFICAR PROVEEDOR
+        //proveData.agregarProveedor(proveedor);
+                
+                                     //METODO MODIFICAR PROVEEDOR
         //proveData.modificarProveedor(proveedor);
-        
-        
-        //METODO ElIMINAR PROVEEDOR
+                
+                                     //METODO ElIMINAR PROVEEDOR
         //proveData.eliminarProveedor(1);
-        
-        
-        //METODO ListarProveedores
+                
+                                     //METODO ListarProveedores
         /*
         List<Proveedor> proveList = new ArrayList();
         proveList = proveData.listarProveedores();
@@ -70,14 +67,11 @@ public class ProyectoFinal {
         }
         */
         
-        //BUSCAR POR ID METODO
-       
+                                     //METODO BUSCAR POR ID METODO       
         //proveedor = new Proveedor();
-        //proveedor = proveData.buscarProveedor(3);
+        //proveedor = proveData.buscarProveedor(3);      
         
-       
-        
-        
+                                     //METODO PARA BUSCAR POR NOMBRE        
         /*
         proveedor = new Proveedor();
         proveedor = proveData.buscarProveedorNombre("Musimundo");
@@ -85,30 +79,44 @@ public class ProyectoFinal {
         System.out.println("Nombre: " + proveedor.getRazonSocial());
         */
         
-        // PROBANDO METODOS registroProducto Y modificarProducto
+        //                    PROBANDO METODOS DE PRODUCTODATA
+        
+        
+                                     // METODOS REGISTRAR y MODIFICAR
         //producto = new Producto(2,"Heladera","HGF358 plata con freezer 282L 220V", 250000, 0, true);
         //produData.registroProducto(producto);            
         //produData.modificarProducto(producto);
-        
-        
-        //PROBANDO METODO ELIMINAR PRODUCTO
+                
+                                     //METODO ELIMINAR PRODUCTO
         
         //produData.eliminarProducto(3);
         
-        //PROBANDO METODO ContultarMetodoPorId
+                                     //METODO CONSULTA POR ID        
+        /*
+        producto = new Producto();
+        producto = produData.consultaProductoPorID(1);
         
-        //  NO FUNCIONA-------------------------------------------------------------------------------------------------------------------------------------
-       /* producto = new Producto();
-        producto = produData.consultaProductoPorID(3);
+        System.out.println("Nombre: " + producto.getNombre()); 
+        */
         
-        System.out.println("Nombre: " + producto.getNombre()); */
+                                     //METODO LISTAR PRODUCTO POR IDPROVEEDOR
+        /*  CORREGIR--------------------------------------------------------------------------------------------------------
+        List<Producto> lis= new ArrayList<>();
+        lis = produData.listarProductos(1);
+        for(Producto pro:lis){
+            System.out.println("Nombre: "+pro.getNombre());
+        }
+        */
         
-       //METODO registrarCompra
+        //                    PROBANDO METODOS DE COMPRADATA
+        
+        
+                                     //METODO registrarCompra
         //compra = new Compra(proveedor, LocalDate.of(2022, 8,21), true);
         //compraData.registrarCompra(compra);
 
         
-        //METODO LISTAR COMPRA POR PROVEEDOR
+                                     //METODO LISTAR COMPRA POR PROVEEDOR
         /*
         List<Proveedor> listCom = new ArrayList<>();
         listCom = compraData.listarCompraporProveedor(2);
@@ -117,29 +125,27 @@ public class ProyectoFinal {
             System.out.println("Nombre: " + pro.getRazonSocial());
         }
         */
-        
-        
-        //METODO ENTE FECHA Y FECHA-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                
+                                     //METODO ENTE FECHA Y FECHA
         /*
         List<Compra> listComp = new ArrayList();
-        listComp = compraData.entreFechas(LocalDate.of(2023,9,1), LocalDate.of(2023,9,30));
+        listComp = compraData.entreFechas(LocalDate.of(2023, 8, 1), LocalDate.of(2023,11,30));
         
         for(Compra com : listComp){
             System.out.println("Fecha: " + com.getFecha());
-        }      
-        */
+        } 
+        */                             
         
-        
+                                     //METODO OBTENER COMPRA POR ID
         /*
-        compra = new Compra();
-        
+        compra = new Compra();        
         compra = compraData.obtenerCompraPorID(1);
         
         System.out.println("id: " + compra.getIdCompra());
         System.out.println("fecha: " + compra.getFecha());
         */
         
-        //METODO listarCompraporProducto 
+                                     //METODO LISTAR COMPRA POR PRODUCTO
         /*
         List<Producto> listProve = new ArrayList<>();
         listProve = compraData.listarCompraporProducto(2);
@@ -150,9 +156,11 @@ public class ProyectoFinal {
         */
         
         
-        //PROBANDO  detalleCOmpraData
-//a corregir ---------------------------------------------------------------------------------------------------------------------
-     /*   compra = new Compra();
+        //                    PROBANDO  METODOS DE DETALLE COMPRADATA
+        
+        
+                                     //METODO REGISTRAR
+        compra = new Compra();
         compra = compraData.obtenerCompraPorID(2);
         producto = new Producto();
         producto = produData.consultaProductoPorID(2);
@@ -160,7 +168,7 @@ public class ProyectoFinal {
         dCompra = new DetalleCompra(compra,producto,900.2,100,true);
         
         dCompraData.registrarDetalleCompra(dCompra);
-      */
+      
         
         
         

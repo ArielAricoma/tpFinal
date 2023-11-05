@@ -22,10 +22,9 @@ public class DetalleCompraData {
      
      
      public void registrarDetalleCompra(DetalleCompra dC){
-     String sql = "INSERT INTO detallecompra (idCompra, idProducto, precioCosto, cantidad) VALUES (?,?,?,?)";
+     String sql = "INSERT INTO detallecompra (idCompra, idProducto, precioCosto, cantidad) VALUES ( ?, ?, ?, ?)";
      
-      try {
-            
+      try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, dC.getIdCompra().getIdCompra());
             ps.setInt(2, dC.getIdProducto().getIdProducto());
@@ -34,16 +33,9 @@ public class DetalleCompraData {
      
             ps.executeUpdate();
             
-            
-        } catch (SQLException ex) {
-            
+        } catch (SQLException ex) {           
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
-        }
-     
-     
-     
-     
-     
+        }    
      }
      
      
