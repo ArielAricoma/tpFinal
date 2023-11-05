@@ -46,16 +46,21 @@ public class CompraData {
     }
     
     public List<Proveedor> listarCompraporProveedor(int idProveedor){
-        String sql="SELECT * FROM proveedor WHERE idProverdor=? AND estado=1";
-        ArrayList<Proveedor> listado= new ArrayList<>();
+        
+        String sql="SELECT * FROM proveedor WHERE idProveedor=? AND estado=1";
+        
+        List<Proveedor> listado= new ArrayList<>();
         
         try {
             PreparedStatement lista=conexion.prepareStatement(sql);
             lista.setInt(1,idProveedor);
+            
             ResultSet rs=lista.executeQuery();
+            
             while(rs.next()){
+                
                 int idProv=rs.getInt("idProveedor");
-                String nombre=rs.getString("razónSocial");
+                String nombre=rs.getString("razonSocial");
                 String domicilio=rs.getString("domicilio");
                 String telefono=rs.getString("telefono");
                 boolean estado=rs.getBoolean("estado");
@@ -69,22 +74,31 @@ public class CompraData {
         return listado;
         
     }
+
     
+    //PROBLEMAS-----------------------------------------------------------AYUDA PROFE-----------------------------------------
     public List<Compra> entreFechas(LocalDate inicio, LocalDate fin){
-        String sql="SELECT * FROM compra WHERE fecha between ? and ?";
-        ArrayList<Compra> compras=new ArrayList<>();  
+        
+        String sql="SELECT * FROM compra WHERE fecha BETWEEN ? AND ?";
+        List<Compra> compras=new ArrayList<>();  
                 
         try {
             PreparedStatement lista=conexion.prepareStatement(sql);
+            
             lista.setDate(1,Date.valueOf(inicio));
             lista.setDate(2, Date.valueOf(fin));
+            
+            
             ResultSet rs=lista.executeQuery();
             while(rs.next()){
+                
                 Compra compra=new Compra();
+                
                 compra.setIdCompra(rs.getInt("idCompra"));
-                compra.getProveedor().setIdProveedor(rs.getInt("idProveedro"));
+                
+                compra.getProveedor().setIdProveedor(rs.getInt("idProveedor"));
                 compra.setFecha(rs.getDate("fecha").toLocalDate());
-                compra.setEstado(rs.getBoolean("estado"));
+                compra.setEstado(rs.isBoolean("estado"));
                 compras.add(compra);
             }
             lista.close();
@@ -121,13 +135,15 @@ public class CompraData {
     }
     
     public List<Producto> listarCompraporProducto(int idProveedor){
-        String sql="SELECT * FROM producto WHERE idPeoducto=? AND estado=1";
+        String sql="SELECT * FROM producto WHERE idProducto=? AND estado=1";
         ArrayList<Producto> listado=new ArrayList<>();
         
         try {
+            
             PreparedStatement lista=conexion.prepareStatement(sql);
             lista.setInt(1,idProveedor);
             ResultSet rs=lista.executeQuery();
+            
             while(rs.next()){
                 int idProduc=rs.getInt("idProducto");
                 String nombre=rs.getString("nombre");

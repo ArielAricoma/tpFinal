@@ -17,7 +17,7 @@ public class ProductoData {
     }
     
     public void registroProducto(Producto produ){
-        String sql="INSERT INTO producto(nombre,descripcion,precio, descuento) VALUES(?, ?, ?, ?)";
+        String sql="INSERT INTO producto (nombre,descripcion,precio, descuento, estado) VALUES(?, ?, ?, ?, ?)";
         producto= new Producto();
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -26,8 +26,11 @@ public class ProductoData {
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
             ps.setDouble(4, produ.getDescuento());
+            ps.setBoolean(5, produ.isEstado());
             
+            ps.executeUpdate();
             
+            JOptionPane.showMessageDialog(null, "Producto cargado con exito", "", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"producto incorrecto");
         }
@@ -35,7 +38,7 @@ public class ProductoData {
     
     public void modificarProducto(Producto produ){
         
-        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE idProducto=?";
+        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE idProducto = ?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             
@@ -65,30 +68,37 @@ public class ProductoData {
         }
     }
     
+   
+    //CORREGIR
     public Producto consultaProductoPorID(int idProducto){
-        String sql="SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
+        String sql = "SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
         Producto producto = null;
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
+            
             ps.setInt(1, idProducto);
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            
             if(rs.next()){
-                producto =new Producto();
+                
+                producto = new Producto();
+                
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
-                producto.setDescripcion("descripcion");
+                producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setDescuento(rs.getDouble("descuento"));
-                producto.setEstado(rs.getBoolean("estado"));
+                
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado");
         }
         
         
-        return null;
+        return producto;
    
     }
+    
     //TERMINAR PRODUCTO
     public List<Producto> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCoompra.cantidad" +

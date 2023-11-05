@@ -49,7 +49,7 @@ public class DetalleCompraData {
      
      
     
-    public List<DetalleCompra>(int idCompra){
+    public List<DetalleCompra> listarDetalleCOmpra(int idCompra){
         
      
         String  sql = "SELECT idDetalle, idProducto, precioCosto, cantidad FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
@@ -64,7 +64,7 @@ public class DetalleCompraData {
             
             DetalleCompra detalle = new DetalleCompra();
             detalle.setIdDetalle(rs.getInt("idDetalle"));
-            detalle.setIdProducto(rs.getInt.("idProducto"));
+            detalle.getIdProducto().setIdProducto(rs.getInt("idProducto"));
             detalle.setPrecioCosto(rs.getDouble("precioCosto"));
             detalle.setCantidad(rs.getInt("cantidad"));
 
@@ -72,7 +72,7 @@ public class DetalleCompraData {
             
         }
      
-        }catch{
+        }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
         }
      
@@ -111,12 +111,25 @@ public class DetalleCompraData {
          
          return list;
      }
-     /*
-     public void modificarDetalleCompra(){
-         String sql = "UPDATE * FROM detallecompra";
+     
+     public void modificarDetalleCompra(DetalleCompra detalle){
+         String sql = "UPDATE * FROM detallecompra SET   precioCosto = ?, cantidad = ? WHERE estado = 1 AND idDetalle = ?";
+         
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setDouble(1, detalle.getPrecioCosto());
+            ps.setInt(2, detalle.getCantidad());
+            ps.setInt(3, detalle.getIdDetalle());
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+         
          
      }
-      */
+     
      public void eliminarDetalleCompra(int idDetalle){
         String sql = "UPDATE detallecompra SET estado = 0 WHERE idDetalle = ? AND estado = 1";
      

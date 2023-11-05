@@ -37,7 +37,7 @@ public class ProveedorData {
                 ps.setBoolean(4, prove.getEstado());
 
                 ps.executeUpdate();
-
+                JOptionPane.showMessageDialog(null, "EL proveedor se cargo correctamente", "", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "El proveedor ingresado es ERRONEO", "ERROR", 0);
             }
@@ -52,7 +52,7 @@ public class ProveedorData {
     //           METODO MODIFICAR PROVEEDOR
     
     public void modificarProveedor(Proveedor prove) {
-        String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ?, estado = ? WHERE idProveedor = ?";
+        String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ? WHERE idProveedor = ? ";
 
         try {
 
@@ -61,12 +61,15 @@ public class ProveedorData {
             ps.setString(1, prove.getRazonSocial());
             ps.setString(2, prove.getDomicilio());
             ps.setString(3, prove.getTelefono());
-            ps.setBoolean(4, prove.getEstado());
-            ps.setInt(5, prove.getIdProveedor());
+            ps.setInt(4, prove.getIdProveedor());
 
             ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Modificado Correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
+             
         }
 
     }
@@ -83,7 +86,8 @@ public class ProveedorData {
 
             ps.setInt(1, id);
             ps.executeUpdate();
-
+            
+            JOptionPane.showMessageDialog(null, "Eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
@@ -94,7 +98,7 @@ public class ProveedorData {
     
     //           METODO LISTAR PROVEEDORES.
     
-    public List<Proveedor> listarProveedores() throws SQLException {
+    public List<Proveedor> listarProveedores()  {
         String sql = "SELECT * FROM proveedor WHERE estado = 1";
         List<Proveedor> listaProveedor = new ArrayList();
 
@@ -157,15 +161,16 @@ public class ProveedorData {
   
   //                  METODO PARA BUSCAR PROVEEDOR POR NOMBRE
   
-  public Proveedor buscarProveedorNombre(String razonSocial){
-      String sql = "SELECT * FROM proveedor WHERE nombre = ? AND estado = 1";
+  public Proveedor buscarProveedorNombre(String rSocial){
+      String sql = "SELECT * FROM proveedor WHERE razonSocial = ? AND estado = 1";
       
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, razonSocial);
-            ResultSet rs = ps.executeQuery();
+            ps.setString(1, rSocial);
             
+            ResultSet rs = ps.executeQuery();
+          
             while(rs.next()){
                 proveedor = new Proveedor();
                 
@@ -174,7 +179,8 @@ public class ProveedorData {
                 proveedor.setDomicilio(rs.getString("domicilio"));
                 proveedor.setTelefono(rs.getString("telefono"));
                 
-                rs.close();
+                
+                
                 
             }
             
