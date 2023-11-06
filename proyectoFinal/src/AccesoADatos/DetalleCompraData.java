@@ -127,4 +127,22 @@ public class DetalleCompraData {
         }     
      }
      
+     public void actulizarCantidad(int cantidad, int idDetalle){
+         String sql = "UPDATE detallecompra SET cantidad = ?, WHERE idDetalle = =";
+     
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, cantidad);
+            ps.setInt(2, idDetalle);
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+         
+     }
+     
 }
