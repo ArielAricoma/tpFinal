@@ -35,7 +35,6 @@ public class Login extends javax.swing.JFrame {
         jtLogoInicio = new javax.swing.JTabbedPane();
         jpInicio = new javax.swing.JPanel();
         jlIcono = new javax.swing.JLabel();
-        jlBienvenido = new javax.swing.JLabel();
         jpRegistro = new javax.swing.JPanel();
         jlUsuarioReg = new javax.swing.JLabel();
         jlCorreo = new javax.swing.JLabel();
@@ -116,31 +115,21 @@ public class Login extends javax.swing.JFrame {
 
         jlIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/logo icon(1).png"))); // NOI18N
 
-        jlBienvenido.setFont(new java.awt.Font("Dubai Medium", 1, 18)); // NOI18N
-        jlBienvenido.setText("Bienvenido");
-
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
         jpInicio.setLayout(jpInicioLayout);
         jpInicioLayout.setHorizontalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInicioLayout.createSequentialGroup()
-                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpInicioLayout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jlBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpInicioLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jlIcono)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(103, 103, 103)
+                .addComponent(jlIcono)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInicioLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addGap(142, 142, 142)
                 .addComponent(jlIcono)
-                .addGap(38, 38, 38)
-                .addComponent(jlBienvenido)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jtLogoInicio.addTab("tab1", jpInicio);
@@ -307,7 +296,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbRegistrar;
-    private javax.swing.JLabel jlBienvenido;
     private javax.swing.JLabel jlConReg;
     private javax.swing.JLabel jlConfirConReg;
     private javax.swing.JLabel jlContraseña;
