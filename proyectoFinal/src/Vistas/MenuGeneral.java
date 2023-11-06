@@ -5,6 +5,7 @@
 package Vistas;
 
 import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  *
@@ -12,9 +13,7 @@ import java.awt.Color;
  */
 public class MenuGeneral extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuGeneral
-     */
+   
     public MenuGeneral() {
         initComponents();
         
@@ -762,10 +761,13 @@ public class MenuGeneral extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+       
         try {
+            
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    
                     break;
                 }
             }
@@ -779,7 +781,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

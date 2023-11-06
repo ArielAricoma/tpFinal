@@ -110,7 +110,7 @@ public class DetalleCompraData {
            JOptionPane.showMessageDialog(null,"Error Modificar");
         }        
      }
-     
+     /*
      public void eliminarDetalleCompra(int idDetalle){
         String sql = "UPDATE detallecompra SET estado = 0 WHERE idDetalle = ? AND estado = 1";
      
@@ -126,7 +126,7 @@ public class DetalleCompraData {
             JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", JOptionPane.ERROR_MESSAGE);
         }     
      }
-     
+     */
      public List<DetalleCompra> actualizaCantidad(int idDetalle){
          String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto)"
                  + " WHERE detallecompra.idDetalle = ? AND detallecompra.estado = 1 AND producto.estado = 1";
