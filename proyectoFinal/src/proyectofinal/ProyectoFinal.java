@@ -100,16 +100,16 @@ public class ProyectoFinal {
         */
         
                                      //METODO LISTAR PRODUCTO POR IDPROVEEDOR
-       
-        List<Producto> lis= new ArrayList<>();
+       /*
+        List<DetalleCompra> lis= new ArrayList<>();
         lis = produData.listarProductos(2);
-        for(Producto pro:lis){
-            System.out.println("Nombre: "+pro.getNombre());
-            System.out.println("Descripcion: "+pro.getDescripcion());
-            System.out.println("Precio: "+pro.getPrecio());
-            
+        for(DetalleCompra pro:lis){
+            System.out.println("Nombre: "+pro.getIdProducto().getNombre());
+            System.out.println("Descripcion:" + pro.getIdProducto().getDescripcion());
+            System.out.println("Precio: " + pro.getIdProducto().getPrecio());
+            System.out.println("Cantidad" +  pro.getCantidad());
         }
-        
+        */
         
         //                    PROBANDO METODOS DE COMPRADATA
         
@@ -163,16 +163,17 @@ public class ProyectoFinal {
         
         
                                      //METODO REGISTRAR
-        /*                             
+             /*                       
         compra = new Compra();
-        compra = compraData.obtenerCompraPorID(2);
+        compra = compraData.obtenerCompraPorID(1);
         producto = new Producto();
         producto = produData.consultaProductoPorID(2);
         
         dCompra = new DetalleCompra(compra,producto,900.2,100,true);
         
         dCompraData.registrarDetalleCompra(dCompra);
-        */
+         */                            
+        
         
                                      //METODO LISTAR DETALLE COMPRA POR ID
         /*
@@ -250,6 +251,19 @@ public class ProyectoFinal {
         
         //uData.darDeBaja("Pablo");
         
+        
+        //METODO actualizarCantidad de DETALLECOMPRA
+       /*
+        List<DetalleCompra> nombreQueQuiera = new ArrayList<>();
+        
+        nombreQueQuiera=dCompraData.actualizaCantidad(1);
+        
+        for(DetalleCompra ss : nombreQueQuiera ){
+            System.out.println("Nombre: "+ ss.getIdProducto().getNombre());
+            System.out.println("descripcion: "+ ss.getIdProducto().getDescripcion());
+            System.out.println("Cantidad: " + ss.getCantidad());
+        }
+            */
     }
     
 }

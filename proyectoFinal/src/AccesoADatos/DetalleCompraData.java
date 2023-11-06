@@ -127,22 +127,35 @@ public class DetalleCompraData {
         }     
      }
      
-     public void actulizarCantidad(int cantidad, int idDetalle){
-         String sql = "UPDATE detallecompra SET cantidad = ?, WHERE idDetalle = =";
-     
+     public List<DetalleCompra> actualizaCantidad(int idDetalle){
+         String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto)"
+                 + " WHERE detallecompra.idDetalle = ? AND detallecompra.estado = 1 AND producto.estado = 1";
+         List<DetalleCompra> listDetalle = new ArrayList<>();
         try {
-            
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, cantidad);
-            ps.setInt(2, idDetalle);
+            ps.setInt(1, idDetalle);
             
-            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+              compra = new DetalleCompra();
+              producto = new Producto();
+              
+              producto.setNombre(rs.getString("nombre"));
+              producto.setDescripcion(rs.getString("descripcion"));
+              compra.setIdProducto(producto);
+              compra.setCantidad(rs.getInt("cantidad"));
+              listDetalle.add(compra);
+            
+            }
+            
+            
         } catch (SQLException ex) {
             
             Logger.getLogger(DetalleCompraData.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
          
+         return listDetalle;
      }
      
 }

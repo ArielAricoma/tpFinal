@@ -5,7 +5,9 @@ import Dominio.DetalleCompra;
 import Dominio.Producto;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 
@@ -94,24 +96,34 @@ public class ProductoData {
     
     //TERMINAR PRODUCTO  -ME PARECE QUE ES UN LIST DE DETALLECOMPRA-    
     //FALTA ASIGNAR LA CANTIDAD LO OTRO SI MUESTRA
-    public List<Producto> listarProductos(int idProveedor){
+    public List<DetalleCompra> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
                 " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 
                 " JOIN producto ON (detallecompra.idProducto = producto.idProducto)WHERE proveedor.idProveedor = ? AND producto.estado = 1"; 
         
-        List<Producto>listaProducto = new ArrayList(); 
+        List<DetalleCompra>listaProducto = new ArrayList(); 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, idProveedor);            
             ResultSet rs = ps.executeQuery();
-            //nombre, precio, cantidad
+            DetalleCompra detalleCompra = null;
+//nombre, precio, cantidad
             while(rs.next()){
                 
+                //producto = new Producto();
+                detalleCompra= new DetalleCompra();
                 producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
-                listaProducto.add(producto);
+                detalleCompra.setCantidad(rs.getInt("cantidad"));
+                
+                detalleCompra.setIdProducto(producto);
+                
+                
+                
+                
+                listaProducto.add(detalleCompra);
                 
             }
         }catch(SQLException e){
