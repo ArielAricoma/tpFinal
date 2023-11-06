@@ -5,6 +5,7 @@
 package Vistas;
 
 import java.awt.Color;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 /**
@@ -110,6 +111,17 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/logo icon(1).png"))); // NOI18N
 
         jpPrincipal.setBackground(new java.awt.Color(2, 104, 66));
+        jpPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpPrincipalMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpPrincipalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpPrincipalMouseExited(evt);
+            }
+        });
 
         jlIconoPrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Principal.png"))); // NOI18N
 
@@ -139,6 +151,17 @@ public class MenuGeneral extends javax.swing.JFrame {
         );
 
         jpProveedor.setBackground(new java.awt.Color(2, 104, 66));
+        jpProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpProveedorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpProveedorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpProveedorMouseExited(evt);
+            }
+        });
 
         jlIconoProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Proveedor.png"))); // NOI18N
 
@@ -165,6 +188,17 @@ public class MenuGeneral extends javax.swing.JFrame {
         );
 
         jpProducto.setBackground(new java.awt.Color(2, 104, 66));
+        jpProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpProductoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpProductoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpProductoMouseExited(evt);
+            }
+        });
 
         jlIconoProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Producto.png"))); // NOI18N
 
@@ -192,8 +226,14 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jpCompra.setBackground(new java.awt.Color(2, 104, 66));
         jpCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jpCompraMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpCompraMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpCompraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpCompraMouseExited(evt);
             }
         });
 
@@ -301,7 +341,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                     .addGroup(jpInicioLayout.createSequentialGroup()
                         .addGap(385, 385, 385)
                         .addComponent(jLabel2)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(924, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -375,7 +415,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(1011, Short.MAX_VALUE))
         );
         jpInivioProveedorLayout.setVerticalGroup(
             jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,7 +488,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpInicioProductoLayout.createSequentialGroup()
                             .addGap(402, 402, 402)
                             .addComponent(jLabel4))))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(1067, Short.MAX_VALUE))
         );
         jpInicioProductoLayout.setVerticalGroup(
             jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,7 +562,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(48, 48, 48)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(1080, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton8)
@@ -531,7 +571,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGroup(jpInicioCompraLayout.createSequentialGroup()
                     .addGap(177, 177, 177)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(273, Short.MAX_VALUE)))
+                    .addContainerGap(1082, Short.MAX_VALUE)))
         );
         jpInicioCompraLayout.setVerticalGroup(
             jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +641,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                             .addComponent(jCheckBox1)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton9))))
-                .addContainerGap(673, Short.MAX_VALUE))
+                .addContainerGap(1464, Short.MAX_VALUE))
         );
         jpRegistroProveedorLayout.setVerticalGroup(
             jpRegistroProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,7 +722,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                     .addGroup(jpRegistroCompraLayout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(jButton10)))
-                .addContainerGap(688, Short.MAX_VALUE))
+                .addContainerGap(1448, Short.MAX_VALUE))
         );
         jpRegistroCompraLayout.setVerticalGroup(
             jpRegistroCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -721,10 +761,13 @@ public class MenuGeneral extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jtpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jtpEscritorio)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,10 +783,6 @@ public class MenuGeneral extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jpCompraMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCompraMouseReleased
-        
-    }//GEN-LAST:event_jpCompraMouseReleased
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -751,6 +790,66 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jpPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseEntered
+        // TODO add your handling code here:
+        seleccion(jpPrincipal);
+    }//GEN-LAST:event_jpPrincipalMouseEntered
+
+    private void jpPrincipalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseExited
+        // TODO add your handling code here:
+        sinSeleccionar(jpPrincipal);
+    }//GEN-LAST:event_jpPrincipalMouseExited
+
+    private void jpProveedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProveedorMouseEntered
+        // TODO add your handling code here:
+        seleccion(jpProveedor);
+    }//GEN-LAST:event_jpProveedorMouseEntered
+
+    private void jpProveedorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProveedorMouseExited
+        // TODO add your handling code here:
+        sinSeleccionar(jpProveedor);
+    }//GEN-LAST:event_jpProveedorMouseExited
+
+    private void jpProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseEntered
+        // TODO add your handling code here:
+        seleccion(jpProducto);
+    }//GEN-LAST:event_jpProductoMouseEntered
+
+    private void jpProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseExited
+        // TODO add your handling code here:
+        sinSeleccionar(jpProducto);
+    }//GEN-LAST:event_jpProductoMouseExited
+
+    private void jpCompraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCompraMouseEntered
+        // TODO add your handling code here:
+        seleccion(jpCompra);
+    }//GEN-LAST:event_jpCompraMouseEntered
+
+    private void jpCompraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCompraMouseExited
+        // TODO add your handling code here:
+        sinSeleccionar(jpCompra);
+    }//GEN-LAST:event_jpCompraMouseExited
+
+    private void jpPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseClicked
+        // TODO add your handling code here:
+        jtpEscritorio.setSelectedIndex(0);
+    }//GEN-LAST:event_jpPrincipalMouseClicked
+
+    private void jpProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProveedorMouseClicked
+        // TODO add your handling code here:
+        jtpEscritorio.setSelectedIndex(1);
+    }//GEN-LAST:event_jpProveedorMouseClicked
+
+    private void jpProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseClicked
+        // TODO add your handling code here:
+        jtpEscritorio.setSelectedIndex(2);
+    }//GEN-LAST:event_jpProductoMouseClicked
+
+    private void jpCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCompraMouseClicked
+        // TODO add your handling code here:
+        jtpEscritorio.setSelectedIndex(3);
+    }//GEN-LAST:event_jpCompraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -788,6 +887,14 @@ public class MenuGeneral extends javax.swing.JFrame {
                 new MenuGeneral().setVisible(true);
             }
         });
+    }
+    
+    public void seleccion(JPanel panel){
+        panel.setBackground(new Color(0,157,113));        
+    }
+    
+    public void sinSeleccionar(JPanel panel){
+        panel.setBackground(new Color(2,104,66));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
