@@ -93,7 +93,7 @@ public class ProductoData {
     }
     
     //TERMINAR PRODUCTO  -ME PARECE QUE ES UN LIST DE DETALLECOMPRA-    
-    //LA SENTENCIA SQL FUNCIONA
+    //FALTA ASIGNAR LA CANTIDAD LO OTRO SI MUESTRA
     public List<Producto> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
                 " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 
