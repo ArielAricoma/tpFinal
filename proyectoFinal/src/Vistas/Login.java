@@ -8,8 +8,6 @@ import AccesoADatos.UsuarioData;
 import Dominio.Usuario;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author pablo
@@ -65,7 +63,6 @@ public class Login extends javax.swing.JFrame {
         jtConfirmar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFocusableWindowState(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -76,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         jlContraseña.setText("Contraseña: ");
 
         jbIniciar.setText("Iniciar");
+        jbIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIniciarActionPerformed(evt);
+            }
+        });
 
         jbRegistrar.setText("Registrase");
         jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,18 +179,6 @@ public class Login extends javax.swing.JFrame {
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
-            }
-        });
-
-        jtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtCorreoActionPerformed(evt);
-            }
-        });
-
-        jtConfirContra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtConfirContraActionPerformed(evt);
             }
         });
 
@@ -323,64 +313,78 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
-        // TODO add your handling code here: 
-        jtLogoInicio.setSelectedIndex(1);
-         
-    }//GEN-LAST:event_jbRegistrarActionPerformed
     
-    private void jtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCorreoActionPerformed
-
-    private void jtConfirContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtConfirContraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtConfirContraActionPerformed
-
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       // TODO add your handling code here:
-      
-       String nombre = jtUsuario.getText();
+       // TODO add your handling code here:      
+       String nombre = jtUsuarioReg.getText();
        String correo = jtCorreo.getText();
        String contraseña = jtContraReg.getText();
        String confirm = jtConfirContra.getText();
-       Boolean estado = jcbEstado.isSelected();               
-       if(nombre.isEmpty()||correo.isEmpty()||contraseña.isEmpty()||confirm.isEmpty()||estado.equals(false)){
-           JOptionPane.showMessageDialog(null,"Campos incompletos","",JOptionPane.INFORMATION_MESSAGE);           
-       }
-       if(!contraseña.equals(confirm)){
-           JOptionPane.showMessageDialog(null,"Contraseña Incorrecta","",JOptionPane.INFORMATION_MESSAGE);
-       }
+       Boolean estado = jcbEstado.isSelected();  
        
-       if(user!=null){
-           user=new Usuario(nombre,correo,contraseña,estado);
-           uData.crearUsuario(user);
-       }
-       limpiarRegistro();
-       jtLogoInicio.setSelectedIndex(0);      
+       if(nombre.isEmpty()||correo.isEmpty()||contraseña.isEmpty()||confirm.isEmpty()||estado.equals(false)){
+           
+           JOptionPane.showMessageDialog(null,"Campos incompletos","",JOptionPane.INFORMATION_MESSAGE);          
+       } else if(!contraseña.equals(confirm)){
+           
+           JOptionPane.showMessageDialog(null,"No coinciden las contraseñas","",JOptionPane.INFORMATION_MESSAGE);
+       } else{
+            if(user == null){
+              user = new Usuario(nombre,contraseña,correo,estado);
+              uData.crearUsuario(user);
+              jtLogoInicio.setSelectedIndex(0);
+              limpiarRegistro();  
+            }            
+       }                    
     }//GEN-LAST:event_jbGuardarActionPerformed
-
-    private void jlNuevaContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseClicked
-        // TODO add your handling code here:
-        jtLogoInicio.setSelectedIndex(2);       
-    }//GEN-LAST:event_jlNuevaContraseñaMouseClicked
 
     private void jbGuardarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarModActionPerformed
         // TODO add your handling code here:
+        String usuario = jtUsuario.getText();
         String contraseña=jtNuevaContraseña.getText();
         String confirmar=jtConfirmar.getText();
-        if(contraseña.equals(confirmar)){
-            uData.cambiarContasena(contraseña, confirmar);
-            
-        }
-        limpiarContra();
-        jtLogoInicio.setSelectedIndex(0);
         
+        if(usuario.isEmpty()||contraseña.isEmpty()||confirmar.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null,"Debe llenar los campos","",JOptionPane.INFORMATION_MESSAGE);
+        }else if(!contraseña.equals(confirmar)){
+            
+            JOptionPane.showMessageDialog(null,"No coinciden las Contraseñas","",JOptionPane.INFORMATION_MESSAGE);                 
+        }else{
+            uData.cambiarContasena(usuario, contraseña);
+            jtLogoInicio.setSelectedIndex(0);
+            limpiarContra();
+        }        
     }//GEN-LAST:event_jbGuardarModActionPerformed
 
+    private void jlNuevaContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseClicked
+        // TODO add your handling code here:
+        jtLogoInicio.setSelectedIndex(2);
+    }//GEN-LAST:event_jlNuevaContraseñaMouseClicked
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+        jtLogoInicio.setSelectedIndex(1);
+
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
+        // TODO add your handling code here:
+        String usuario = jtUsuario.getText();
+        String contraseña = jpContraseña.getSelectedText();
+        user = uData.buscarUsuario(usuario);
+        
+        if(usuario.isEmpty()||contraseña.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null,"Llene los Campos","",JOptionPane.INFORMATION_MESSAGE);     
+        }else 
+            
+            
+        }
+    }//GEN-LAST:event_jbIniciarActionPerformed
+
     private void limpiarRegistro(){
-        jtUsuario.setText("");
+        jtUsuarioReg.setText("");
         jtCorreo.setText("");
         jtContraReg.setText("");
         jtConfirContra.setText("");
@@ -403,7 +407,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

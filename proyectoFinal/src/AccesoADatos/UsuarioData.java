@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class UsuarioData {
@@ -31,7 +32,8 @@ public class UsuarioData {
                 user.setContrasena(rs.getString("contrasena"));
                 user.setCorreoElec(rs.getString("correoElec"));                
                 usuario.add(user);               
-            }           
+            }       
+            
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
         }       
@@ -75,9 +77,7 @@ public class UsuarioData {
             ps.setString(3, user.getCorreoElec());
             
             ps.executeUpdate();
-            
-            
-            
+            JOptionPane.showMessageDialog(null,"Se agrego un usuario","",JOptionPane.INFORMATION_MESSAGE);           
         } catch (SQLException ex) {
             
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,6 +94,8 @@ public class UsuarioData {
             ps.setString(2, nombreUsuario);
             
             ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Contraseña modificada","",JOptionPane.INFORMATION_MESSAGE);
             
             ps.close();
             
