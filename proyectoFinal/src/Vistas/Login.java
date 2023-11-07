@@ -4,6 +4,10 @@
  */
 package Vistas;
 
+import AccesoADatos.UsuarioData;
+import Dominio.Usuario;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -11,6 +15,8 @@ package Vistas;
  * @author pablo
  */
 public class Login extends javax.swing.JFrame {
+    private Usuario user=null;
+    private UsuarioData uData= new UsuarioData();
 
     public Login() {
         initComponents();
@@ -49,10 +55,12 @@ public class Login extends javax.swing.JFrame {
         jtCorreo = new javax.swing.JTextField();
         jtContraReg = new javax.swing.JTextField();
         jtConfirContra = new javax.swing.JTextField();
+        jcbEstado = new javax.swing.JCheckBox();
+        jlEstado = new javax.swing.JLabel();
         jpCambioContraseña = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jlNuevaContra = new javax.swing.JLabel();
+        jlConfirmCon = new javax.swing.JLabel();
+        jbGuardarMod = new javax.swing.JButton();
         jtNuevaContraseña = new javax.swing.JTextField();
         jtConfirmar = new javax.swing.JTextField();
 
@@ -184,6 +192,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlEstado.setText("Estado:");
+
         javax.swing.GroupLayout jpRegistroLayout = new javax.swing.GroupLayout(jpRegistro);
         jpRegistro.setLayout(jpRegistroLayout);
         jpRegistroLayout.setHorizontalGroup(
@@ -199,13 +209,16 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jlUsuarioReg)
                                 .addGap(6, 6, 6))
                             .addComponent(jlCorreo)
-                            .addComponent(jlConfirConReg))
+                            .addComponent(jlConfirConReg)
+                            .addComponent(jlEstado))
                         .addGap(24, 24, 24)
-                        .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtConfirContra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtUsuarioReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbEstado)
+                            .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtConfirContra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtUsuarioReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jpRegistroLayout.setVerticalGroup(
@@ -227,54 +240,62 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtConfirContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlConfirConReg))
-                .addGap(68, 68, 68)
+                .addGap(35, 35, 35)
+                .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jcbEstado)
+                    .addComponent(jlEstado))
+                .addGap(30, 30, 30)
                 .addComponent(jbGuardar)
-                .addGap(61, 61, 61))
+                .addGap(40, 40, 40))
         );
 
         jtLogoInicio.addTab("tab2", jpRegistro);
 
         jpCambioContraseña.setBackground(new java.awt.Color(172, 235, 198));
 
-        jLabel1.setText("Contraseña Nueva: ");
+        jlNuevaContra.setText("Contraseña Nueva: ");
 
-        jLabel2.setText("Confirme Contraseña: ");
+        jlConfirmCon.setText("Confirme Contraseña: ");
 
-        jButton1.setText("jButton1");
+        jbGuardarMod.setText("Guardar");
+        jbGuardarMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarModActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpCambioContraseñaLayout = new javax.swing.GroupLayout(jpCambioContraseña);
         jpCambioContraseña.setLayout(jpCambioContraseñaLayout);
         jpCambioContraseñaLayout.setHorizontalGroup(
             jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCambioContraseñaLayout.createSequentialGroup()
-                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpCambioContraseñaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jpCambioContraseñaLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbGuardarMod)
                 .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCambioContraseñaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlNuevaContra)
+                    .addComponent(jlConfirmCon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtNuevaContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(jtConfirmar))
+                .addGap(37, 37, 37))
         );
         jpCambioContraseñaLayout.setVerticalGroup(
             jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCambioContraseñaLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlNuevaContra)
                     .addComponent(jtNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jlConfirmCon)
                     .addComponent(jtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addComponent(jButton1)
+                .addComponent(jbGuardarMod)
                 .addContainerGap(186, Short.MAX_VALUE))
         );
 
@@ -318,17 +339,59 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jtConfirContraActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       // TODO add your handling code here: 
-       jtLogoInicio.setSelectedIndex(0);
+       // TODO add your handling code here:
+      
+       String nombre = jtUsuario.getText();
+       String correo = jtCorreo.getText();
+       String contraseña = jtContraReg.getText();
+       String confirm = jtConfirContra.getText();
+       Boolean estado = jcbEstado.isSelected();               
+       if(nombre.isEmpty()||correo.isEmpty()||contraseña.isEmpty()||confirm.isEmpty()||estado.equals(false)){
+           JOptionPane.showMessageDialog(null,"Campos incompletos","",JOptionPane.INFORMATION_MESSAGE);           
+       }
+       if(!contraseña.equals(confirm)){
+           JOptionPane.showMessageDialog(null,"Contraseña Incorrecta","",JOptionPane.INFORMATION_MESSAGE);
+       }
+       
+       if(user!=null){
+           user=new Usuario(nombre,correo,contraseña,estado);
+           uData.crearUsuario(user);
+       }
+       limpiarRegistro();
+       jtLogoInicio.setSelectedIndex(0);      
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jlNuevaContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseClicked
         // TODO add your handling code here:
-        jtLogoInicio.setSelectedIndex(2);
-        
-        
+        jtLogoInicio.setSelectedIndex(2);       
     }//GEN-LAST:event_jlNuevaContraseñaMouseClicked
 
+    private void jbGuardarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarModActionPerformed
+        // TODO add your handling code here:
+        String contraseña=jtNuevaContraseña.getText();
+        String confirmar=jtConfirmar.getText();
+        if(contraseña.equals(confirmar)){
+            uData.cambiarContasena(contraseña, confirmar);
+            
+        }
+        limpiarContra();
+        jtLogoInicio.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_jbGuardarModActionPerformed
+
+    private void limpiarRegistro(){
+        jtUsuario.setText("");
+        jtCorreo.setText("");
+        jtContraReg.setText("");
+        jtConfirContra.setText("");
+        jcbEstado.setSelected(false);
+        
+    }
+    
+    private void limpiarContra(){
+        jtNuevaContraseña.setText("");
+        jtConfirmar.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -365,18 +428,20 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbGuardarMod;
     private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbRegistrar;
+    private javax.swing.JCheckBox jcbEstado;
     private javax.swing.JLabel jlConReg;
     private javax.swing.JLabel jlConfirConReg;
+    private javax.swing.JLabel jlConfirmCon;
     private javax.swing.JLabel jlContraseña;
     private javax.swing.JLabel jlCorreo;
+    private javax.swing.JLabel jlEstado;
     private javax.swing.JLabel jlIcono;
+    private javax.swing.JLabel jlNuevaContra;
     private javax.swing.JLabel jlNuevaContraseña;
     private javax.swing.JLabel jlSuperior;
     private javax.swing.JLabel jlTitulo;
