@@ -55,14 +55,17 @@ public class Login extends javax.swing.JFrame {
         jtConfirContra = new javax.swing.JTextField();
         jcbEstado = new javax.swing.JCheckBox();
         jlEstado = new javax.swing.JLabel();
+        jbVolver = new javax.swing.JButton();
         jpCambioContraseña = new javax.swing.JPanel();
         jlNuevaContra = new javax.swing.JLabel();
         jlConfirmCon = new javax.swing.JLabel();
         jbGuardarMod = new javax.swing.JButton();
         jtNuevaContraseña = new javax.swing.JTextField();
         jtConfirmar = new javax.swing.JTextField();
+        jbVolverInIcio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,24 +101,26 @@ public class Login extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(jlTitulo))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jlUsuario)
+                .addGap(29, 29, 29)
+                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jlContraseña)
+                .addGap(29, 29, 29)
+                .addComponent(jpContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(jlNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jbRegistrar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                            .addComponent(jbIniciar))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jlContraseña)
-                                .addComponent(jlUsuario))
-                            .addGap(29, 29, 29)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jlTitulo)
-                                .addComponent(jtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                .addComponent(jpContraseña)))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addComponent(jbRegistrar)
+                .addGap(62, 62, 62)
+                .addComponent(jbIniciar))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,24 +128,30 @@ public class Login extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addComponent(jlTitulo)
                 .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlUsuario)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jlUsuario))
                     .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlContraseña)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jlContraseña))
                     .addComponent(jpContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jlNuevaContraseña)
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbIniciar)
-                    .addComponent(jbRegistrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbRegistrar)
+                    .addComponent(jbIniciar)))
         );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 0, 360, 500));
 
         jlSuperior.setBackground(new java.awt.Color(2, 104, 66));
         jlSuperior.setOpaque(true);
+        getContentPane().add(jlSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 40));
 
         jpInicio.setBackground(new java.awt.Color(2, 104, 66));
 
@@ -153,14 +164,14 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpInicioLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jlIcono)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInicioLayout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addComponent(jlIcono)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jtLogoInicio.addTab("tab1", jpInicio);
@@ -184,15 +195,21 @@ public class Login extends javax.swing.JFrame {
 
         jlEstado.setText("Estado:");
 
+        jbVolver.setText("Volver");
+        jbVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpRegistroLayout = new javax.swing.GroupLayout(jpRegistro);
         jpRegistro.setLayout(jpRegistroLayout);
         jpRegistroLayout.setHorizontalGroup(
             jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpRegistroLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbGuardar)
+                .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jpRegistroLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlConReg)
                             .addGroup(jpRegistroLayout.createSequentialGroup()
@@ -208,8 +225,13 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jtConfirContra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtUsuarioReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                .addComponent(jtUsuarioReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpRegistroLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jbVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbGuardar)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jpRegistroLayout.setVerticalGroup(
             jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +248,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlConReg)
                     .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtConfirContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlConfirConReg))
@@ -235,7 +257,9 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jcbEstado)
                     .addComponent(jlEstado))
                 .addGap(30, 30, 30)
-                .addComponent(jbGuardar)
+                .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardar)
+                    .addComponent(jbVolver))
                 .addGap(40, 40, 40))
         );
 
@@ -254,12 +278,21 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jbVolverInIcio.setText("Volver");
+        jbVolverInIcio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVolverInIcioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpCambioContraseñaLayout = new javax.swing.GroupLayout(jpCambioContraseña);
         jpCambioContraseña.setLayout(jpCambioContraseñaLayout);
         jpCambioContraseñaLayout.setHorizontalGroup(
             jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCambioContraseñaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
+                .addComponent(jbVolverInIcio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbGuardarMod)
                 .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCambioContraseñaLayout.createSequentialGroup()
@@ -267,7 +300,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlNuevaContra)
                     .addComponent(jlConfirmCon))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtNuevaContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(jtConfirmar))
@@ -285,30 +318,15 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jlConfirmCon)
                     .addComponent(jtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addComponent(jbGuardarMod)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbGuardarMod)
+                    .addComponent(jbVolverInIcio))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         jtLogoInicio.addTab("tab3", jpCambioContraseña);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(356, 356, 356)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jtLogoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jtLogoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jtLogoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -371,17 +389,32 @@ public class Login extends javax.swing.JFrame {
     private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
         // TODO add your handling code here:
         String usuario = jtUsuario.getText();
-        String contraseña = jpContraseña.getSelectedText();
+        char [] contra = jpContraseña.getPassword();
+        String contraseña=String.valueOf(contra);
         user = uData.buscarUsuario(usuario);
+       
         
         if(usuario.isEmpty()||contraseña.isEmpty()){
             
             JOptionPane.showMessageDialog(null,"Llene los Campos","",JOptionPane.INFORMATION_MESSAGE);     
-        }else 
+        }else if(!contraseña.equals(user.getContrasena())||!usuario.equals(user.getNombreCuenta())){
             
-            
-        }
+            JOptionPane.showMessageDialog(null,"Contraseña incorrecta","",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            MenuGeneral general = new MenuGeneral(); 
+            general.setVisible(true);           
+        }       
     }//GEN-LAST:event_jbIniciarActionPerformed
+
+    private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
+        // TODO add your handling code here:
+        jtLogoInicio.setSelectedIndex(0);
+    }//GEN-LAST:event_jbVolverActionPerformed
+
+    private void jbVolverInIcioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverInIcioActionPerformed
+        // TODO add your handling code here:
+        jtLogoInicio.setSelectedIndex(0);
+    }//GEN-LAST:event_jbVolverInIcioActionPerformed
 
     private void limpiarRegistro(){
         jtUsuarioReg.setText("");
@@ -437,6 +470,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jbGuardarMod;
     private javax.swing.JButton jbIniciar;
     private javax.swing.JButton jbRegistrar;
+    private javax.swing.JButton jbVolver;
+    private javax.swing.JButton jbVolverInIcio;
     private javax.swing.JCheckBox jcbEstado;
     private javax.swing.JLabel jlConReg;
     private javax.swing.JLabel jlConfirConReg;

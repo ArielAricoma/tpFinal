@@ -14,9 +14,30 @@ public class UsuarioData {
     private Usuario user = null;
     public UsuarioData(){
         conexion = Conexion.conectar();
-    }  
+    } 
+    
+    public Usuario buscarUsuario (String nombre){
+        String sql= "SELECT * FROM usuario WHERE nombreCuenta = ? AND estado = 1";
+        
+        try {           
+            PreparedStatement ps= conexion.prepareStatement(sql);
+            ps.setString(1,nombre);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                nombre= rs.getString("nombreCuenta");
+                String contrasena= rs.getString("contrasena");
+                String correo= rs.getString("correoElec");
+                Boolean estado= rs.getBoolean("estado");
+                user= new Usuario(nombre,contrasena,correo,estado);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
 
-    public List<Usuario> buscarUsuario(String nombre){
+    public List<Usuario> buscarLisUsuario(String nombre){
         String sql = "SELECT * FROM usuario WHERE nombreCuenta LIKE ?"; 
         List<Usuario> usuario = new ArrayList<>();
         try {            
