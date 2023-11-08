@@ -94,8 +94,7 @@ public class ProductoData {
         return producto;   
     }
     
-    //TERMINAR PRODUCTO  -ME PARECE QUE ES UN LIST DE DETALLECOMPRA-    
-    //FALTA ASIGNAR LA CANTIDAD LO OTRO SI MUESTRA
+    
     public List<DetalleCompra> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
                 " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 

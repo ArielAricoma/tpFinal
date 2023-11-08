@@ -74,13 +74,29 @@ public class ProveedorData {
     
     //           METODO ELIMINAR PROVEEDOR
     
-    public void eliminarProveedor(int id) {
-        String sql = "UPDATE proveedor SET estado = 0 WHERE idProveedor = ?";
+    public void eliminarProveedor(String razonSocial) {
+        String sql = "UPDATE proveedor SET estado = 0 WHERE razonSocial = ?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
 
-            ps.setInt(1, id);
+            ps.setString(1, razonSocial);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }    
+    
+     public void darDeAltaProveedor(String razonSocial) {
+        String sql = "UPDATE proveedor SET estado = 1 WHERE razonSocial = ?";
+
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+
+            ps.setString(1, razonSocial);
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
