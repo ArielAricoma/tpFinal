@@ -2,6 +2,7 @@
 package AccesoADatos;
 
 import Dominio.Compra;
+import Dominio.DetalleCompra;
 import Dominio.Producto;
 import Dominio.Proveedor;
 import java.sql.Connection;
@@ -21,15 +22,19 @@ import javax.swing.JOptionPane;
 public class CompraData {
     private Connection conexion;
     private ProveedorData proveedorData = new ProveedorData();
-
+    
     public CompraData() {
        conexion= Conexion.conectar();
     }
     
-    public void registrarCompra(Compra compra){
-        String sql="INSERT compra (idProveedor,fecha,estado) VALUES(?, ?, ?)";
+    public void registrarCompra(Compra compra, DetalleCompra detalleCompra){
+        String sqlCompra = "INSERT INTO Compra (idProveedor, fecha, estado) VALUES (?, ?, ?)";
+        String sqlDetalleCompra = "INSERT INTO DetalleCompra () VALUES (?, ?)";
+
+        
+        
         try {
-            PreparedStatement añadir=conexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement añadir=conexion.prepareStatement(sqlCompra,Statement.RETURN_GENERATED_KEYS);
             añadir.setInt(1,compra.getProveedor().getIdProveedor());
             añadir.setDate(2,Date.valueOf(compra.getFecha()));
             añadir.setBoolean(3,compra.isEstado());
@@ -42,18 +47,22 @@ public class CompraData {
             añadir.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error Ingresar tabla compra");
-        }        
+        }    
+        
+        PreparedStatement 
+        
+        
     }
     
-    public List<Proveedor> listarCompraporProveedor(int idProveedor){
+    public List<Proveedor> listarCompraporProveedor(String razonSocial){
         
-        String sql="SELECT * FROM proveedor WHERE idProveedor=? AND estado=1";
+        String sql="SELECT * FROM proveedor WHERE razonSocial=? AND estado=1";
         
         List<Proveedor> listado= new ArrayList<>();
         
         try {
             PreparedStatement lista=conexion.prepareStatement(sql);
-            lista.setInt(1,idProveedor);
+            lista.setString(1,razonSocial);
             
             ResultSet rs=lista.executeQuery();
             
@@ -156,5 +165,7 @@ public class CompraData {
         return listado;
         
     }    
+    
+    
 
 }

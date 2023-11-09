@@ -110,6 +110,7 @@ public class DetalleCompraData {
            JOptionPane.showMessageDialog(null,"Error Modificar");
         }        
      }
+     
      /*
      public void eliminarDetalleCompra(int idDetalle){
         String sql = "UPDATE detallecompra SET estado = 0 WHERE idDetalle = ? AND estado = 1";
@@ -157,5 +158,8 @@ public class DetalleCompraData {
          
          return listDetalle;
      }
+     
+     //public DetalleCompra nuevaCompra(){};
+     
      
 }
