@@ -21,10 +21,13 @@ import javax.swing.table.DefaultTableModel;
 public class MenuGeneral extends javax.swing.JFrame {
  private ProveedorData proveedorData = new ProveedorData();
  private Proveedor proveedor = null;
+ //private mo;
+
  
  
     public MenuGeneral() {
         initComponents();
+        //_-------------------------------------------------------------------
         
     }
     public void limpiarCampos(){
