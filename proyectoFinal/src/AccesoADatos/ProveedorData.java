@@ -33,10 +33,8 @@ public class ProveedorData {
                 ps.setBoolean(4, prove.getEstado());
 
                 ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "EL proveedor se cargo correctamente", "", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "El proveedor ingresado es ERRONEO", "ERROR", 0);
-            }
+                
+            } 
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
@@ -45,28 +43,25 @@ public class ProveedorData {
     
     //           METODO MODIFICAR PROVEEDOR
     
-    public void modificarProveedor(Proveedor prove) {
-        String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ? WHERE idProveedor = ? ";
-
-        try {
-
-            PreparedStatement ps = conexion.prepareStatement(sql);
-
-            ps.setString(1, prove.getRazonSocial());
-            ps.setString(2, prove.getDomicilio());
-            ps.setString(3, prove.getTelefono());
-            ps.setInt(4, prove.getIdProveedor());
-
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Modificado Correctamente", "", JOptionPane.INFORMATION_MESSAGE);
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
-             
-        }
-
-    }    
+    public void modificarProveedor(Proveedor proveedor) {
+    String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ?, estado = ? WHERE idProveedor = ?";
+     
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        ps.setString(1, proveedor.getRazonSocial());
+        ps.setString(2, proveedor.getDomicilio());
+        ps.setString(3, proveedor.getTelefono());
+        ps.setBoolean(4, proveedor.getEstado());
+        ps.setInt(5, proveedor.getIdProveedor()); 
+        ps.executeUpdate();
+        
+        
+        
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
+    }
+}
     
     //           METODO ELIMINAR PROVEEDOR
     
@@ -150,6 +145,7 @@ public class ProveedorData {
             prove.setRazonSocial(rs.getString("razonSocial"));
             prove.setDomicilio(rs.getString("domicilio"));
             prove.setTelefono(rs.getString("telefono"));
+            prove.setEstado(rs.getBoolean("estado"));
         }
 
         
@@ -178,13 +174,11 @@ public class ProveedorData {
             while(rs.next()){
                 proveedor = new Proveedor();
                 
-                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
                 proveedor.setTelefono(rs.getString("telefono"));
-                
-                
-                
+                proveedor.setEstado(rs.getBoolean("estado"));
                 
             }
             
