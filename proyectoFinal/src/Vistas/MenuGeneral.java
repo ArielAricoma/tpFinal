@@ -22,15 +22,17 @@ public class MenuGeneral extends javax.swing.JFrame {
     private DefaultTableModel modelo2;
     private ProveedorData proveedorData = new ProveedorData();
     private Proveedor proveedor = null;
-    List<Producto> productos;
+    List<Producto> productos = null;
     private ProductoData productoData = new ProductoData();
     private Producto producto = null;
+    boolean cabeceraProdIni = false;
 
 
  
  
     public MenuGeneral() {
         initComponents();
+       
         modelo = new DefaultTableModel();
         modelo2 = new DefaultTableModel();
         
@@ -328,7 +330,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addComponent(jpProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jpCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(717, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(2, 104, 66));
@@ -584,6 +586,11 @@ public class MenuGeneral extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaProductoMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jtTablaProducto);
 
         jlProductoTitulo.setText("Producto");
@@ -596,10 +603,13 @@ public class MenuGeneral extends javax.swing.JFrame {
         });
 
         jbModificarP.setText("Modificar");
-        jbModificarP.setEnabled(false);
+        jbModificarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarPActionPerformed(evt);
+            }
+        });
 
         jbEliminarP.setText("Eliminar");
-        jbEliminarP.setEnabled(false);
 
         jlProductos.setText("Productos:");
 
@@ -903,10 +913,10 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGap(71, 71, 71)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1971, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(91, 91, 91)
+                .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1951, Short.MAX_VALUE))
             .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpInicioCompraLayout.createSequentialGroup()
                     .addGap(177, 177, 177)
@@ -916,21 +926,21 @@ public class MenuGeneral extends javax.swing.JFrame {
         jpInicioCompraLayout.setVerticalGroup(
             jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(jLabel7)
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpInicioCompraLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(58, 58, 58)
+                        .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(180, 180, 180))
                     .addGroup(jpInicioCompraLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(70, 70, 70)
                         .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jButton8)
@@ -939,7 +949,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGroup(jpInicioCompraLayout.createSequentialGroup()
                     .addGap(118, 118, 118)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(749, Short.MAX_VALUE)))
+                    .addContainerGap(695, Short.MAX_VALUE)))
         );
 
         jtpEscritorio.addTab("tab4", jpInicioCompra);
@@ -1031,8 +1041,9 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     //metodo para cargar datos a la tabla proveedor
     private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
-    modelo2 = (DefaultTableModel) jtProveedor.getModel();
-    borrarFila2();
+        borrarFila2();
+        modelo2 = (DefaultTableModel) jtProveedor.getModel();
+    
 
     for (Proveedor proveedor : proveedores) {
         
@@ -1049,9 +1060,14 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     private void jpProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseClicked
         // TODO add your handling code here:
+        
         jtpEscritorio.setSelectedIndex(2);
-        cabeceraProducto();
+        
+        if(!cabeceraProdIni){
+            cabeceraProducto();
+        }            
         listaProducto();
+        jbModificarP.setEnabled(false);
         jpNuevoProducto.setVisible(false);
     }//GEN-LAST:event_jpProductoMouseClicked
 
@@ -1237,6 +1253,28 @@ public class MenuGeneral extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void jtTablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaProductoMouseClicked
+        // TODO add your handling code here:
+        jbModificarP.setEnabled(true);
+    }//GEN-LAST:event_jtTablaProductoMouseClicked
+
+    private void jbModificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarPActionPerformed
+        // TODO add your handling code here:
+        int indice = jtTablaProducto.getSelectedRow();       
+        
+        if(indice!=-1){
+            String nombre = (String)modelo.getValueAt(indice,0);
+            String descripcion = (String)modelo.getValueAt(indice, 1);
+            double precio = (Double)modelo.getValueAt(indice,2);
+            double descuento = (Double)modelo.getValueAt(indice,3);
+            
+           
+            producto = new Producto(nombre,descripcion,precio,descuento,true);
+                    
+            productoData.modificarProducto(producto);
+        }
+    }//GEN-LAST:event_jbModificarPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1283,22 +1321,28 @@ public class MenuGeneral extends javax.swing.JFrame {
         panel.setBackground(new Color(2,104,66));
     }
     
-    private void cabeceraProducto(){        
-        ArrayList<Object> titulos=new ArrayList<>();
+    private void cabeceraProducto(){         
+        ArrayList<Object> titulos=new ArrayList<>(); 
         
-        titulos.add("Nombre");
-        titulos.add("Descripcion");
-        titulos.add("Precio");
-        titulos.add("Descuento");
+             titulos.add("ID");       
+             titulos.add("Nombre");
+             titulos.add("Descripcion");
+             titulos.add("Precio");
+             titulos.add("Descuento");          
         
-        for(Object filas:titulos){
+        for(Object filas : titulos){
             modelo.addColumn(filas);
         }
-        jtTablaProducto.setModel(modelo);    
+       
+        jtTablaProducto.setModel(modelo);
+        cabeceraProdIni = true;
+                      
     }
     
     private void listaProducto(){
+        productos =new ArrayList<>();
         productos = productoData.listaProductos();
+        
         for(Producto lista: productos){
             jcbListaProductos.addItem(lista);
         }

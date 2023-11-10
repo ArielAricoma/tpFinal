@@ -42,11 +42,12 @@ public class ProductoData {
     }
     
     public void modificarProducto(Producto produ){
-        
+                
         String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE idProducto = ?";
+                
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
-            
+           
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
@@ -54,8 +55,12 @@ public class ProductoData {
             ps.setBoolean(5, produ.isEstado());
             ps.setInt(6, produ.getIdProducto());
             
-            ps.executeUpdate();
+            int ya=ps.executeUpdate();
+            if(ya>0){
+                JOptionPane.showMessageDialog(null,"ya ta");
+            }
             
+//            JOptionPane.showMessageDialog(null,"SIIIIIIIIIII");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado","error de conexion",0);
         }
@@ -106,11 +111,14 @@ public class ProductoData {
             
             while(rs.next()){
                 producto = new Producto();
+                
+                producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setDescuento(rs.getDouble("descuento"));
                 producto.setEstado(rs.getBoolean("estado"));
+                
                 lista.add(producto);
                 
             }
