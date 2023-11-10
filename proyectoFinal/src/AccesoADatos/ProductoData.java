@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -94,6 +96,57 @@ public class ProductoData {
         return producto;   
     }
     
+    public List<Producto> listaProductos(){
+        String sql= "SELECT * FROM producto WHERE estado=1";
+        List<Producto> lista = new ArrayList<>();
+            
+        try {           
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                producto = new Producto();
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setDescuento(rs.getDouble("descuento"));
+                producto.setEstado(rs.getBoolean("estado"));
+                lista.add(producto);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"No se encontro el Producto"," ",JOptionPane.INFORMATION_MESSAGE);
+        }
+        return lista;
+       
+    }
+    
+    public List<Producto> listaProductospoID(String nombre){
+        String sql= "SELECT * FROM producto WHERE nombre = ? AND estado = 1";
+        List<Producto> listado = new ArrayList<>();
+            
+        try {           
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                producto = new Producto();
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setDescuento(rs.getDouble("descuento"));
+                producto.setEstado(rs.getBoolean("estado"));
+                listado.add(producto);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"No se encontro el Producto"," ",JOptionPane.INFORMATION_MESSAGE);
+        }
+        return listado;
+       
+    }
+    
     
     public List<DetalleCompra> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
@@ -117,10 +170,7 @@ public class ProductoData {
                 producto.setPrecio(rs.getDouble("precio"));
                 detalleCompra.setCantidad(rs.getInt("cantidad"));
                 
-                detalleCompra.setIdProducto(producto);
-                
-                
-                
+                detalleCompra.setIdProducto(producto);               
                 
                 listaProducto.add(detalleCompra);
                 

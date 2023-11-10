@@ -49,7 +49,7 @@ public class CompraData {
             JOptionPane.showMessageDialog(null,"Error Ingresar tabla compra");
         }    
         
-        PreparedStatement 
+       
         
         
     }
