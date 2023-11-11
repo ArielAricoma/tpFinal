@@ -1016,7 +1016,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-      // --------- METODOS DE SELECCION (CAMBIO DE COLOR EN EL MENU LATERAL) -------------
+    
+      // ------- METODOS DE SELECCION (CAMBIO DE COLOR EN EL MENU LATERAL) ------------------
     
     
     private void jpPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseEntered
@@ -1060,7 +1061,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jpCompraMouseExited
 
     
-      // ------- METODOS DE CLICK PARA ACCEDER A LAS VENTANAS CORRESPONDIENTES -------------
+      // ------- METODOS DE CLICK PARA ACCEDER A LAS VENTANAS CORRESPONDIENTES --------------
     
     
     private void jpPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseClicked
@@ -1080,13 +1081,13 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jpProveedorMouseClicked
     
     private void jpProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseClicked
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:        
         jtpEscritorio.setSelectedIndex(2);
         
         if(!cabeceraProdIni){
             cabeceraProducto();
         }
+        
         listaProducto();
         jbModificarP.setEnabled(false);
         jpNuevoProducto.setVisible(false);
@@ -1094,8 +1095,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     private void jpCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCompraMouseClicked
         // TODO add your handling code here:
-        jtpEscritorio.setSelectedIndex(3);
-        
+        jtpEscritorio.setSelectedIndex(3);       
         
         if(!cabeceraCompraIni && !cabeceraDetalleIni){
             cabeceraCompra();
@@ -1106,13 +1106,12 @@ public class MenuGeneral extends javax.swing.JFrame {
             listaCompra(listaTablaCompra);
             List<DetalleCompra> listaD= new ArrayList<>(detalleData.listaDetalles());
             listaDetalle(listaD);
-        }
-        
+        }        
         jpnewCompra.setVisible(false);
     }//GEN-LAST:event_jpCompraMouseClicked
 
         
-      // ------- METODOS PARA LA VENTANA PROVEEDOR ----------------------------------------
+      // ------- METODOS PARA LA VENTANA PROVEEDOR ------------------------------------------
     
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1247,7 +1246,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
     
     
-      // ------- METODOS PARA LA VENTANA PRODUCTO -----------------------------------------
+      // ------- METODOS PARA LA VENTANA PRODUCTO -------------------------------------------
     
     
     private void jbNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoPActionPerformed
@@ -1315,8 +1314,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             String nombre = (String)modelo.getValueAt(indice,0);
             String descripcion = (String)modelo.getValueAt(indice, 1);
             double precio = (Double)modelo.getValueAt(indice,2);
-            double descuento = (Double)modelo.getValueAt(indice,3);
-            
+            double descuento = (Double)modelo.getValueAt(indice,3);            
            
             producto = new Producto(nombre,descripcion,precio,descuento,true);
                     
@@ -1325,28 +1323,36 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbModificarPActionPerformed
 
     
-      // ------- METODOS PARA LA VENTANA COMPRA -------------------------------------------
+      // ------- METODOS PARA LA VENTANA COMPRA ---------------------------------------------
     
     
     private void jbNuevaCComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCComprarActionPerformed
-    Proveedor proveedor = (Proveedor) jcbNuevaCProveedor.getSelectedItem();
-    Producto producto = (Producto) jcbNuevaCProducto.getSelectedItem();
-    Date fecha = (Date)jdcNuevaCFecha.getDate();
-    LocalDate fc = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    double precio = Double.parseDouble(jtNuevaCPrecio.getText());
-    int cantidad = Integer.parseInt(jtNuevaCCantidad.getText());
-    
-    compra = new Compra(proveedor,fc,true);    
-    compraData.registrarCompra(compra);
-    detalle = new DetalleCompra(compra,producto,precio,cantidad,true);
-    detalleData.registrarDetalleCompra(detalle);    
-//    if (proveedor == null || fecha == null || producto.isEmpty() || precioTexto.isEmpty() || cantidadTexto.isEmpty()) {
-//        JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados.", "Error", JOptionPane.ERROR_MESSAGE);
-//         
-//    }
-    limpiarCompra();
-    jpnewCompra.setVisible(false);
-    
+        // TODO add your handling code here:
+        Proveedor proveedor = (Proveedor) jcbNuevaCProveedor.getSelectedItem();
+        Producto producto = (Producto) jcbNuevaCProducto.getSelectedItem();
+        Date fecha = (Date)jdcNuevaCFecha.getDate();
+        LocalDate fc = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double precio = Double.parseDouble(jtNuevaCPrecio.getText());
+        int cantidad = Integer.parseInt(jtNuevaCCantidad.getText());
+        
+        compra = new Compra(proveedor,fc,true);
+        compraData.registrarCompra(compra);
+        detalle = new DetalleCompra(compra,producto,precio,cantidad,true);
+        detalleData.registrarDetalleCompra(detalle);
+        
+//        if (proveedor == null || fecha == null || producto.isEmpty() || precioTexto.isEmpty() || cantidadTexto.isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+        
+        limpiarCompra();
+        borrarFilaCompra();
+        borrarFilaDetalle();
+        List<Compra> listaAux = new ArrayList<>(compraData.listaCompras());
+        List<DetalleCompra> listaAuxDetalle = new ArrayList<>(detalleData.listaDetalles());
+        listaCompra(listaAux);
+        listaDetalle(listaAuxDetalle);
+        
+        jpnewCompra.setVisible(false);    
     }//GEN-LAST:event_jbNuevaCComprarActionPerformed
 
     private void jbNuevaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCompraActionPerformed
@@ -1399,39 +1405,12 @@ public class MenuGeneral extends javax.swing.JFrame {
         });
     }
     
-     public void limpiarCampos(){
-       jtxRazonSocial.setText("");
-        jtxDomicilio.setText("");
-       jtxTelefono.setText("");
-        
-    }
     
-     //metodo para cargar datos a la tabla proveedor
-    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
-        borrarFila2();
-        modelo2 = (DefaultTableModel) jtProveedor.getModel();
+      // --------------------------- METODOS AUXILIARES ------------------------------------- 
     
-
-    for (Proveedor proveedor : proveedores) {
-        
-        Object[] rowData = {
-                proveedor.getIdProveedor(),
-                proveedor.getRazonSocial(),
-                proveedor.getDomicilio(),
-                proveedor.getTelefono(),
-                proveedor.getEstado()
-        };
-        modelo2.addRow(rowData);
-    }
-}
     
-    public void seleccion(JPanel panel){
-        panel.setBackground(new Color(0,157,113));        
-    }
+      // ------- Metodos para cargar la cebecera de las tablas ------------------------------
     
-    public void sinSeleccionar(JPanel panel){
-        panel.setBackground(new Color(2,104,66));
-    }
     
     private void cabeceraProducto(){         
         ArrayList<Object> titulos=new ArrayList<>();       
@@ -1446,19 +1425,9 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
        
         jtTablaProducto.setModel(modelo);
-        cabeceraProdIni = true;
-                      
+        cabeceraProdIni = true;                      
     }
-    
-    private void listaProducto(){
-        productos =new ArrayList<>();
-        productos = productoData.listaProductos();
         
-        for(Producto lista: productos){
-            jcbListaProductos.addItem(lista);
-        }
-    }
-    
     private void cabeceraCompra(){         
         ArrayList<Object> titulos=new ArrayList<>();        
  
@@ -1470,23 +1439,9 @@ public class MenuGeneral extends javax.swing.JFrame {
             modelo3.addColumn(filas);
         }       
         jtTablaCompra.setModel(modelo3);
-        cabeceraCompraIni = true;
-                      
-    }
-    
-    private void listaCompra(List<Compra> compras){
-        
-        for(Compra carrito: compras ){
-            Object[] rowData={
-                carrito.getProveedor(),
-                carrito.getFecha(),
-                carrito.isEstado()
-            };
-            modelo3.addRow(rowData);
-        }
-        listaCompra = true;
-    }
-    
+        cabeceraCompraIni = true;                      
+    }    
+       
     private void cabeceraDetalle(){         
         ArrayList<Object> titulos=new ArrayList<>();      
       
@@ -1503,6 +1458,41 @@ public class MenuGeneral extends javax.swing.JFrame {
         cabeceraDetalleIni = true;                      
     }
     
+    
+      // ------- Metodos para cargar datos dentro de las tablas -----------------------------
+    
+    
+    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
+        
+        borrarFila2();
+        modelo2 = (DefaultTableModel) jtProveedor.getModel();
+        
+        for (Proveedor proveedor : proveedores) {
+        
+        Object[] rowData = {
+                proveedor.getIdProveedor(),
+                proveedor.getRazonSocial(),
+                proveedor.getDomicilio(),
+                proveedor.getTelefono(),
+                proveedor.getEstado()
+        };        
+        modelo2.addRow(rowData);
+        }
+    }   
+    
+    private void listaCompra(List<Compra> compras){
+        
+        for(Compra carrito: compras ){
+            Object[] rowData={
+                carrito.getProveedor(),
+                carrito.getFecha(),
+                carrito.isEstado()
+            };
+            modelo3.addRow(rowData);
+        }
+        listaCompra = true;
+    }
+    
     private void listaDetalle(List<DetalleCompra> detalles){
         
         for(DetalleCompra dc: detalles ){
@@ -1517,7 +1507,21 @@ public class MenuGeneral extends javax.swing.JFrame {
         listaDetalle = true;
     }
     
+    
+      // ------- Metodos para carga de CombosBoxs -------------------------------------------
+    
+    
+    private void listaProducto(){
+        productos =new ArrayList<>();
+        productos = productoData.listaProductos();
+        
+        for(Producto lista: productos){
+            jcbListaProductos.addItem(lista);
+        }
+    }
+    
     private void listaComboProveedor(){
+        
         proveedores =new ArrayList<>();
         proveedores = proveedorData.listarProveedores();
         
@@ -1526,7 +1530,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }
     
-     private void listaProductoCompra(){
+    private void listaProductoCompra(){
+        
         productos =new ArrayList<>();
         productos = productoData.listaProductos();
         
@@ -1535,16 +1540,20 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }
     
+     
+      // ------- Metodos para borrar filas de las tablas ---------------------------------
+    
+    
     private void borrarFila(){
+        
         int indice= modelo.getRowCount()-1;
         for(int i = indice;i>=0;i--){
-            modelo.removeRow(i);
-           
-        }
-       
+            modelo.removeRow(i);           
+        }       
     }
      
     private void borrarFila2(){
+        
         int indice= modelo2.getRowCount()-1;
         for(int i = indice;i>=0;i--){
             modelo2.removeRow(i);           
@@ -1552,6 +1561,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void borrarFilaCompra(){
+        
         int indice= modelo3.getRowCount()-1;
         for(int i = indice;i>=0;i--){
             modelo3.removeRow(i);           
@@ -1559,10 +1569,21 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void borrarFilaDetalle(){
+        
         int indice= modelo4.getRowCount()-1;
         for(int i = indice;i>=0;i--){
             modelo4.removeRow(i);           
         }       
+    }
+    
+    
+      // ------- Metodos para limpiar Campos ------------------------------------------------
+    
+    
+    private void limpiarCampos(){
+       jtxRazonSocial.setText("");
+        jtxDomicilio.setText("");
+       jtxTelefono.setText("");        
     }
     
     private void limpiarProducto(){
@@ -1577,6 +1598,18 @@ public class MenuGeneral extends javax.swing.JFrame {
         jdcNuevaCFecha.setDate(null);
         jtNuevaCPrecio.setText("");
         jtNuevaCCantidad.setText("");
+    }
+    
+    
+      // ------- Metodos para Seleccion (cambia de color al pasar el mouse) -----------------
+    
+    
+    private void seleccion(JPanel panel){
+        panel.setBackground(new Color(0,157,113));        
+    }
+    
+    private void sinSeleccionar(JPanel panel){
+        panel.setBackground(new Color(2,104,66));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
