@@ -34,22 +34,12 @@ public class MenuGeneral extends javax.swing.JFrame {
     private Compra compra = null;
     private CompraData compraData = new CompraData();
     private DetalleCompraData detalleData = new DetalleCompraData(); 
-
- 
  
     public MenuGeneral() {
-        initComponents();
-       
+        initComponents();       
         modelo = new DefaultTableModel();
-        modelo2 = new DefaultTableModel();
-        
-    }
-    public void limpiarCampos(){
-       jtxRazonSocial.setText("");
-        jtxDomicilio.setText("");
-       jtxTelefono.setText("");
-        
-    }
+        modelo2 = new DefaultTableModel();        
+    }   
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -456,11 +446,6 @@ public class MenuGeneral extends javax.swing.JFrame {
         jLabel20.setText("Activo:");
 
         jcbActivo.setText("jCheckBox1");
-        jcbActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbActivoActionPerformed(evt);
-            }
-        });
 
         jbtnGuardarNewProveedor.setText("jButton9");
         jbtnGuardarNewProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -630,12 +615,6 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlNuevoPDescuento.setText("Descuento:");
 
         jlNuevoPEstado.setText("Estado:");
-
-        jtNuevoPDescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNuevoPDescuentoActionPerformed(evt);
-            }
-        });
 
         jbGuardarProNuevo.setText("Guardar");
         jbGuardarProNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -827,11 +806,6 @@ public class MenuGeneral extends javax.swing.JFrame {
         jLabel24.setText("Precio");
 
         jtPrecio.setText("jTextField6");
-        jtPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtPrecioActionPerformed(evt);
-            }
-        });
 
         jLabel25.setText("Cantidad");
 
@@ -985,7 +959,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -993,6 +967,9 @@ public class MenuGeneral extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+      // --------- METODOS DE SELECCION (CAMBIO DE COLOR EN EL MENU LATERAL) -------------
+    
+    
     private void jpPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseEntered
         // TODO add your handling code here:
         seleccion(jpPrincipal);
@@ -1033,6 +1010,10 @@ public class MenuGeneral extends javax.swing.JFrame {
         sinSeleccionar(jpCompra);
     }//GEN-LAST:event_jpCompraMouseExited
 
+    
+      // ------- METODOS DE CLICK PARA ACCEDER A LAS VENTANAS CORRESPONDIENTES -------------
+    
+    
     private void jpPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseClicked
         // TODO add your handling code here:
         jtpEscritorio.setSelectedIndex(0);
@@ -1048,26 +1029,6 @@ public class MenuGeneral extends javax.swing.JFrame {
         cargarDatosEnTablaProveedor(listaTablaProveedor);
         
     }//GEN-LAST:event_jpProveedorMouseClicked
-
-    //metodo para cargar datos a la tabla proveedor
-    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
-        borrarFila2();
-        modelo2 = (DefaultTableModel) jtProveedor.getModel();
-    
-
-    for (Proveedor proveedor : proveedores) {
-        
-        Object[] rowData = {
-                proveedor.getIdProveedor(),
-                proveedor.getRazonSocial(),
-                proveedor.getDomicilio(),
-                proveedor.getTelefono(),
-                proveedor.getEstado()
-        };
-        modelo2.addRow(rowData);
-    }
-}
-
     
     private void jpProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseClicked
         // TODO add your handling code here:
@@ -1087,10 +1048,10 @@ public class MenuGeneral extends javax.swing.JFrame {
         jtpEscritorio.setSelectedIndex(3);
     }//GEN-LAST:event_jpCompraMouseClicked
 
-    private void jcbActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbActivoActionPerformed
-
+        
+      // ------- METODOS PARA LA VENTANA PROVEEDOR ----------------------------------------
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jPanel1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1129,10 +1090,7 @@ public class MenuGeneral extends javax.swing.JFrame {
        }
         
     }//GEN-LAST:event_jbtnGuardarNewProveedorActionPerformed
-    
-    
-//                       boton BUSCAR en PROVEEDOR
-    
+   
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
 
         String vproveedor = jtxBuscarProveedor.getText();
@@ -1191,18 +1149,18 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jtNuevoPDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNuevoPDescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtNuevoPDescuentoActionPerformed
-
+    
+    
+      // ------- METODOS PARA LA VENTANA PRODUCTO -----------------------------------------
+    
+    
     private void jbNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoPActionPerformed
         // TODO add your handling code here:
         jpNuevoProducto.setVisible(true);
     }//GEN-LAST:event_jbNuevoPActionPerformed
 
     private void jbGuardarProNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarProNuevoActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:        
         try{
             String nombre=jtNuevoPNombre.getText();
             String descripcion=jtNuevoPDescripcion.getText();
@@ -1248,22 +1206,16 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbListaProductosActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-      int filaSeleccionada = jtProveedor.getSelectedRow();
-      
-       
+      int filaSeleccionada = jtProveedor.getSelectedRow();      
       
     if (filaSeleccionada != -1) {  
         int idProveedor = (Integer) modelo2.getValueAt(filaSeleccionada, 0);
         String razonSocial = (String) modelo2.getValueAt(filaSeleccionada, 1);
         String domicilio = (String) modelo2.getValueAt(filaSeleccionada, 2);
         String telefono = (String) modelo2.getValueAt(filaSeleccionada, 3);
-        Boolean estado = (Boolean) modelo2.getValueAt(filaSeleccionada, 4);
-
+        Boolean estado = (Boolean) modelo2.getValueAt(filaSeleccionada, 4);  
        
-       
-         proveedor = new Proveedor(idProveedor, razonSocial, domicilio, telefono, estado);
-        
-    
+         proveedor = new Proveedor(idProveedor, razonSocial, domicilio, telefono, estado);   
       
         // JOptionPane para confirmar
         int opcion = JOptionPane.showConfirmDialog( 
@@ -1308,10 +1260,6 @@ public class MenuGeneral extends javax.swing.JFrame {
             productoData.modificarProducto(producto);
         }
     }//GEN-LAST:event_jbModificarPActionPerformed
-
-    private void jtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtPrecioActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
          
@@ -1370,6 +1318,32 @@ public class MenuGeneral extends javax.swing.JFrame {
         });
     }
     
+     public void limpiarCampos(){
+       jtxRazonSocial.setText("");
+        jtxDomicilio.setText("");
+       jtxTelefono.setText("");
+        
+    }
+    
+     //metodo para cargar datos a la tabla proveedor
+    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
+        borrarFila2();
+        modelo2 = (DefaultTableModel) jtProveedor.getModel();
+    
+
+    for (Proveedor proveedor : proveedores) {
+        
+        Object[] rowData = {
+                proveedor.getIdProveedor(),
+                proveedor.getRazonSocial(),
+                proveedor.getDomicilio(),
+                proveedor.getTelefono(),
+                proveedor.getEstado()
+        };
+        modelo2.addRow(rowData);
+    }
+}
+    
     public void seleccion(JPanel panel){
         panel.setBackground(new Color(0,157,113));        
     }
@@ -1381,7 +1355,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void cabeceraProducto(){         
         ArrayList<Object> titulos=new ArrayList<>(); 
         
-             titulos.add("ID");       
+//             titulos.add("ID");       
              titulos.add("Nombre");
              titulos.add("Descripcion");
              titulos.add("Precio");
@@ -1405,7 +1379,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }
     
-     private void borrarFila(){
+    private void borrarFila(){
         int indice= modelo.getRowCount()-1;
         for(int i = indice;i>=0;i--){
             modelo.removeRow(i);
@@ -1413,7 +1387,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
        
     }
-       private void borrarFila2(){
+     
+    private void borrarFila2(){
         int indice= modelo2.getRowCount()-1;
         for(int i = indice;i>=0;i--){
             modelo2.removeRow(i);

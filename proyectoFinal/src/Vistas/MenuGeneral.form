@@ -46,7 +46,7 @@
               <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtpEscritorio" min="-2" pref="583" max="-2" attributes="0"/>
+              <Component id="jtpEscritorio" min="-2" pref="663" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -669,9 +669,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jCheckBox1"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbActivoActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jbtnGuardarNewProveedor">
                   <Properties>
@@ -956,9 +953,6 @@
                 <Component class="javax.swing.JTextField" name="jtNuevoPPrecio">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jtNuevoPDescuento">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtNuevoPDescuentoActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="jcbNuevoPEstado">
                 </Component>
@@ -1267,9 +1261,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jTextField6"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtPrecioActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel25">
                   <Properties>

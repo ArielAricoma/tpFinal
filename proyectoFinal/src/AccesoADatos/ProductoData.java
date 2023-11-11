@@ -43,7 +43,7 @@ public class ProductoData {
     
     public void modificarProducto(Producto produ){
                 
-        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE idProducto = ?";
+        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE nombre = ?";
                 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -53,7 +53,7 @@ public class ProductoData {
             ps.setDouble(3, produ.getPrecio());
             ps.setDouble(4, produ.getDescuento());
             ps.setBoolean(5, produ.isEstado());
-            ps.setInt(6, produ.getIdProducto());
+            ps.setString(6, produ.getNombre());
             
             int ya=ps.executeUpdate();
             if(ya>0){
