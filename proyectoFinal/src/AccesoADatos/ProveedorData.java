@@ -54,6 +54,7 @@ public class ProveedorData {
         ps.setString(3, proveedor.getTelefono());
         ps.setBoolean(4, proveedor.getEstado());
         ps.setInt(5, proveedor.getIdProveedor()); 
+        
         ps.executeUpdate();
         
         

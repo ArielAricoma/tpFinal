@@ -28,16 +28,15 @@ public class CompraData {
     }
     
     public void registrarCompra(Compra compra, DetalleCompra detalleCompra){
-        String sqlCompra = "INSERT INTO Compra (idProveedor, fecha, estado) VALUES (?, ?, ?)";
-        String sqlDetalleCompra = "INSERT INTO DetalleCompra () VALUES (?, ?)";
+        String sqlCompra = "INSERT INTO Compra (idProveedor, fecha, estado) VALUES (?, ?, true)";
+        String sqlDetalleCompra = "INSERT INTO DetalleCompra (idCompra, idProducto, precioCosto, cantidad) VALUES (?, ?,?,?, true)";
 
         
         
         try {
             PreparedStatement añadir=conexion.prepareStatement(sqlCompra,Statement.RETURN_GENERATED_KEYS);
             añadir.setInt(1,compra.getProveedor().getIdProveedor());
-            añadir.setDate(2,Date.valueOf(compra.getFecha()));
-            añadir.setBoolean(3,compra.isEstado());
+            añadir.setDate(2,Date.valueOf(compra.getFecha()));        
             añadir.executeUpdate();
             ResultSet añadido=añadir.getGeneratedKeys();
             if(añadido.next()){
@@ -47,7 +46,19 @@ public class CompraData {
             añadir.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error Ingresar tabla compra");
-        }    
+        }
+        
+        try {
+            PreparedStatement añadirDetalleCompra = conexion.prepareStatement(sqlDetalleCompra);
+            añadirDetalleCompra.setInt(1, compra.getIdCompra());
+            añadirDetalleCompra.setInt(2, detalleCompra.getIdProducto().getIdProducto());
+            añadirDetalleCompra.setDouble(3, detalleCompra.getPrecioCosto());
+            añadirDetalleCompra.setInt(4, detalleCompra.getCantidad());
+            añadirDetalleCompra.executeUpdate();
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"Error de conexion");
+        }
         
        
         
