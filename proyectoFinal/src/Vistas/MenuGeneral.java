@@ -35,17 +35,20 @@ public class MenuGeneral extends javax.swing.JFrame {
     List<Proveedor> proveedores = null;
     private ProductoData productoData = new ProductoData();
     private Producto producto = null;
-    boolean cabeceraProdIni = false;
-    boolean cabeceraCompraIni = false;
-    boolean cabeceraDetalleIni = false;
-    boolean listaCompra = false;
-    boolean listaDetalle = false;
+    private boolean cabeceraProdIni = false;
+    private boolean cabeceraCompraIni = false;
+    private boolean cabeceraDetalleIni = false;
+    private boolean listaCompra = false;
+    private boolean listaDetalle = false;
+    private boolean comboProveedor = false;
+    private boolean comboProducto = false;
     private Compra compra = null;
     private CompraData compraData = new CompraData();
     private DetalleCompra detalle = null;
     private DetalleCompraData detalleData = new DetalleCompraData(); 
     private boolean listaProductosCargada = false;
     private boolean ejecutarUnaVez = true;
+    
     public MenuGeneral() {
         initComponents();       
         modelo = new DefaultTableModel();
@@ -1373,8 +1376,12 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void jbNuevaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCompraActionPerformed
         // TODO add your handling code here:
         jpnewCompra.setVisible(true);
-        listaComboProveedor(); 
-        listaProductoCompra();
+        
+        if(!comboProveedor && !comboProducto){
+             listaComboProveedor(); 
+             listaProductoCompra();
+        }
+       
     }//GEN-LAST:event_jbNuevaCompraActionPerformed
 
     private void jbNuevaCCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCCancelarActionPerformed
@@ -1610,6 +1617,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         for(Proveedor lista: proveedores){
             jcbNuevaCProveedor.addItem(lista);
         }
+        comboProveedor = true;
     }
     
     private void listaProductoCompra(){
@@ -1620,6 +1628,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         for(Producto lista: productos){
             jcbNuevaCProducto.addItem(lista);
         }
+        comboProducto = true;
     }
     
      
