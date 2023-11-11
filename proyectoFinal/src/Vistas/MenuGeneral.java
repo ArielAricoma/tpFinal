@@ -1247,7 +1247,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
             
             if(producto==null){
-                producto = new Producto(nombre,descripcion,precio);
+                producto = new Producto(nombre,descripcion,precio,true);
                 productoData.registroProducto(producto);
             }
             limpiarProducto();
@@ -1569,6 +1569,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     
     }
+    
     private void listaDetalle(List<DetalleCompra> detalles){
         
         for(DetalleCompra dc: detalles ){
@@ -1670,9 +1671,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void limpiarProducto(){
         jtNuevoPNombre.setText("");
         jtNuevoPDescripcion.setText("");
-        jtNuevoPPrecio.setText("");
-        jtNuevoPDescuento.setText("");
-        jcbNuevoPEstado.setSelected(false);        
+        jtNuevoPPrecio.setText("");           
     }
     
     private void limpiarCompra(){

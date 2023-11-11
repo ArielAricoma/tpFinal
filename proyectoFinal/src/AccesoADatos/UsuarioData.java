@@ -15,13 +15,12 @@ public class UsuarioData {
         conexion = Conexion.conectar();
     }  
 
-    public List<Usuario> buscarUsuario(String nombre){
-        String sql = "SELECT * FROM usuario WHERE nombreCuenta LIKE ?"; 
-        List<Usuario> usuario = new ArrayList<>();
+    public Usuario buscarUsuario(String nombre){
+        String sql = "SELECT * FROM usuario WHERE nombreCuenta = ? AND estado = 1"; 
+        
         try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre+ "%");
-            
+            ps.setString(1, nombre);            
             
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -30,12 +29,12 @@ public class UsuarioData {
                 user.setNombreCuenta(rs.getString("nombreCuenta"));
                 user.setContrasena(rs.getString("contrasena"));
                 user.setCorreoElec(rs.getString("correoElec"));                
-                usuario.add(user);               
+                               
             }           
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-        return usuario;
+        }      
+       return user;
     }
     
     public List<Usuario> listarUsuariosActivos(){
