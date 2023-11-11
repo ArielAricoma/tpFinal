@@ -21,8 +21,8 @@ public class ProductoData {
         conexion = Conexion.conectar();
     }
     
-    public void registroProducto(Producto produ){
-        String sql="INSERT INTO producto (nombre,descripcion,precio, descuento, estado) VALUES(?, ?, ?, ?, ?)";
+    public void registroProducto(Producto produ){ 
+        String sql="INSERT INTO producto (nombre,descripcion,precio, descuento, estado) VALUES(?, ?, ?, ?)";
         producto= new Producto();
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class ProductoData {
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
-            ps.setDouble(4, produ.getDescuento());
+           
             ps.setBoolean(5, produ.isEstado());
             
             ps.executeUpdate();
@@ -51,7 +51,7 @@ public class ProductoData {
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
             ps.setDouble(3, produ.getPrecio());
-            ps.setDouble(4, produ.getDescuento());
+            
             ps.setBoolean(5, produ.isEstado());
             ps.setString(6, produ.getNombre());
             
@@ -66,11 +66,11 @@ public class ProductoData {
         }
     }
     
-    public void eliminarProducto(int idProducto){
-        String sql="UPDATE producto SET estado = 0 WHERE idProducto = ?";
+    public void eliminarProducto(String idProducto){
+        String sql="UPDATE producto SET estado = 0 WHERE nombre = ?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1,idProducto);
+            ps.setString(1,idProducto);
             ps.executeUpdate();
             
         }catch(SQLException e){
@@ -92,7 +92,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
-                producto.setDescuento(rs.getDouble("descuento"));
+               
                 
             }
         }catch(SQLException e){
@@ -115,7 +115,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
-                producto.setDescuento(rs.getDouble("descuento"));
+               
                 
             }
         }catch(SQLException e){
@@ -139,7 +139,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
-                producto.setDescuento(rs.getDouble("descuento"));
+               
                 producto.setEstado(rs.getBoolean("estado"));
                 
                 lista.add(producto);
@@ -166,7 +166,7 @@ public class ProductoData {
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
-                producto.setDescuento(rs.getDouble("descuento"));
+                
                 producto.setEstado(rs.getBoolean("estado"));
                 listado.add(producto);
                 

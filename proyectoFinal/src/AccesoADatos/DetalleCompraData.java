@@ -40,6 +40,38 @@ public class DetalleCompraData {
         }    
      }
     
+     //NUEVO METODO CREADO PARA OBTENER SOLO UN DETALLE DE COMPRA
+     public DetalleCompra obtenerDetalleCompra(String razonSocial) {
+    String sql = "SELECT * FROM detallecompra " +
+                 "JOIN producto ON (detallecompra.idProducto = producto.idProducto)" +  
+                 "JOIN compra ON (detallecompra.idCompra = compra.idCompra) " +
+                 "JOIN proveedor ON (compra.idProveedor = proveedor.idProveedor) " +
+                 "WHERE proveedor.razonSocial = ? AND proveedor.estado = 1";
+    DetalleCompra detalle = null;
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setString(1, razonSocial);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            detalle = new DetalleCompra();
+            detalle.setIdDetalle(rs.getInt("idDetalle"));
+            int idProd = rs.getInt("idProducto");
+            Producto pro = productoData.consultaProductoPorID(idProd);
+            detalle.setIdProducto(pro);
+            detalle.setPrecioCosto(rs.getDouble("precioCosto"));
+            detalle.setCantidad(rs.getInt("cantidad"));
+        }
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
+    }
+    
+    return detalle;
+}
+     
+     
      public List<DetalleCompra> listarDetalleCOmpra(int idCompra){    
         String  sql = "SELECT * FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
         List<DetalleCompra> detalles = new ArrayList<>();
@@ -129,6 +161,8 @@ public class DetalleCompraData {
         }     
      }
      */
+    
+     
      public List<DetalleCompra> actualizaCantidad(int idDetalle){
          String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto)"
                  + " WHERE detallecompra.idDetalle = ? AND detallecompra.estado = 1 AND producto.estado = 1";

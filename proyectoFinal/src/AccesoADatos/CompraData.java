@@ -169,9 +169,9 @@ public class CompraData {
                 String nombre=rs.getString("nombre");
                 String descripcion=rs.getString("descripcion");
                 double precio=rs.getDouble("precio");
-                double descuento=rs.getDouble("descuento");
+               
                 boolean estado=rs.getBoolean("estado");
-                Producto nuevo=new Producto(idProduc,nombre,descripcion,precio,descuento,estado);
+                Producto nuevo=new Producto(idProduc,nombre,descripcion,precio,estado);
                 listado.add(nuevo);
             }
             lista.close();
@@ -183,7 +183,7 @@ public class CompraData {
     } 
     
     public List<Compra> listaCompras(){
-        String sql = "SELECT * FROM compra WHERE estado=1";
+        String sql = "SELECT * FROM compra JOIN proveedor ON(compra.idProveedor = proveedor.idProveedor)WHERE compra.estado=1 AND proveedor.estado =1";
         List<Compra> lista = new ArrayList<>();
         
         try {

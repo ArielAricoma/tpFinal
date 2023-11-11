@@ -6,23 +6,23 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private double precio;
-    private double descuento;
+    
     private boolean estado;
 
-    public Producto(int idProducto, String nombre, String descripcion, double precio, double descuento, boolean estado) {
+    public Producto(int idProducto, String nombre, String descripcion, double precio, boolean estado) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.descuento = descuento;
+        
         this.estado = estado;
     }
 
-    public Producto(String nombre, String descripcion, double precio, double descuento, boolean estado) {
+    public Producto(String nombre, String descripcion, double precio, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.descuento = descuento;
+       
         this.estado = estado;
     }
     
@@ -62,13 +62,6 @@ public class Producto {
         this.precio = precio;
     }
 
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
 
     public boolean isEstado() {
         return estado;
