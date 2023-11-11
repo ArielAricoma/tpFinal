@@ -17,7 +17,8 @@ public class DetalleCompraData {
     private CompraData compraData = new CompraData();
     private DetalleCompra compra = null;
     private Producto producto= new Producto();
-     public DetalleCompraData(){
+    
+    public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
     }     
      
@@ -159,7 +160,38 @@ public class DetalleCompraData {
          return listDetalle;
      }
      
-     //public DetalleCompra nuevaCompra(){};
+     public List<DetalleCompra> listaDetalles(){
+        String sql = "SELECT * FROM detallecompra WHERE estado=1";
+        List<DetalleCompra> lista = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                compra = new DetalleCompra();                
+                compra.setIdDetalle(rs.getInt("idDetalle"));
+                
+                int idCompra = rs.getInt("idCompra");
+                Compra comp = compraData.obtenerCompraPorID(idCompra);
+                compra.setIdCompra(comp);
+                
+                int idProducto = rs.getInt("idProducto");
+                Producto produ = productoData.consultaProductoPorID(idProducto);
+                compra.setIdProducto(produ);
+                
+                compra.setPrecioCosto(rs.getDouble("precioCosto"));
+                compra.setCantidad(rs.getInt("cantidad"));
+                compra.setEstado(rs.getBoolean("estado"));
+                
+                lista.add(compra);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CompraData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+     }
      
      
 }

@@ -21,15 +21,16 @@ import javax.swing.JOptionPane;
 
 public class CompraData {
     private Connection conexion;
+    private Compra compra=null;
     private ProveedorData proveedorData = new ProveedorData();
     
     public CompraData() {
        conexion= Conexion.conectar();
     }
     
-    public void registrarCompra(Compra compra, DetalleCompra detalleCompra){
+    public void registrarCompra(Compra compra){
         String sqlCompra = "INSERT INTO Compra (idProveedor, fecha, estado) VALUES (?, ?, true)";
-        String sqlDetalleCompra = "INSERT INTO DetalleCompra (idCompra, idProducto, precioCosto, cantidad) VALUES (?, ?,?,?, true)";
+//        String sqlDetalleCompra = "INSERT INTO DetalleCompra (idCompra, idProducto, precioCosto, cantidad) VALUES (?, ?, ?, ?, true)";
 
         
         
@@ -47,18 +48,22 @@ public class CompraData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error Ingresar tabla compra");
         }
-        
-        try {
-            PreparedStatement añadirDetalleCompra = conexion.prepareStatement(sqlDetalleCompra);
-            añadirDetalleCompra.setInt(1, compra.getIdCompra());
-            añadirDetalleCompra.setInt(2, detalleCompra.getIdProducto().getIdProducto());
-            añadirDetalleCompra.setDouble(3, detalleCompra.getPrecioCosto());
-            añadirDetalleCompra.setInt(4, detalleCompra.getCantidad());
-            añadirDetalleCompra.executeUpdate();
-            
-        } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Error de conexion");
-        }
+//        
+//        try {
+//            PreparedStatement añadirDetalleCompra = conexion.prepareStatement(sqlDetalleCompra);
+//            añadirDetalleCompra.setInt(3, compra.getIdCompra());
+//            añadirDetalleCompra.setInt(4, detalleCompra.getIdProducto().getIdProducto());
+//            añadirDetalleCompra.setDouble(5, detalleCompra.getPrecioCosto());
+//            añadirDetalleCompra.setInt(6, detalleCompra.getCantidad());
+//            int si=añadirDetalleCompra.executeUpdate();
+//            if(si>0){
+//                JOptionPane.showMessageDialog(null,"SISISIISISI");
+//            }
+//            
+//            
+//        } catch (SQLException ex) {
+//           JOptionPane.showMessageDialog(null,"Error de conexion");
+//        }
         
        
         
@@ -175,7 +180,33 @@ public class CompraData {
         }
         return listado;
         
-    }    
+    } 
+    
+    public List<Compra> listaCompras(){
+        String sql = "SELECT * FROM compra WHERE estado=1";
+        List<Compra> lista = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                compra = new Compra();                
+                compra.setIdCompra(rs.getInt("idCompra"));
+                int id = rs.getInt("idProveedor");
+                Proveedor prove = proveedorData.buscarProveedor(id);
+                compra.setProveedor(prove);
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setEstado(rs.getBoolean("estado"));
+                
+                lista.add(compra);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CompraData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
     
     
 

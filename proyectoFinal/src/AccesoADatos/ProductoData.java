@@ -101,6 +101,29 @@ public class ProductoData {
         return producto;   
     }
     
+    public Producto consultaProductoPorID(String nombre){
+        String sql = " SELECT * FROM producto WHERE nombre = ? AND estado = 1";
+        Producto producto = null;
+        try{
+            PreparedStatement ps = conexion.prepareStatement(sql);            
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){                
+                producto = new Producto();                
+                
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setDescuento(rs.getDouble("descuento"));
+                
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Producto no encontrado");
+        }        
+        return producto;   
+    }
+    
     public List<Producto> listaProductos(){
         String sql= "SELECT * FROM producto WHERE estado=1";
         List<Producto> lista = new ArrayList<>();

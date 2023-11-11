@@ -67,6 +67,13 @@ private Boolean estado;
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return razonSocial;
+    }
+    
+    
+
 
 
 
