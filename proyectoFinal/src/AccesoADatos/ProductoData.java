@@ -78,12 +78,12 @@ public class ProductoData {
         }
     }
        
-    public Producto consultaProductoPorID(int idProducto){
-        String sql = " SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
-        Producto producto = null;
+    public Producto consultaProductoPorID(){
+        String sql = " SELECT * FROM producto WHERE estado = 1";
+       
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);            
-            ps.setInt(1, idProducto);
+            
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){                
@@ -91,9 +91,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-               
-                
+                producto.setPrecio(rs.getDouble("precio"));               
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado");
@@ -103,7 +101,7 @@ public class ProductoData {
     
     public Producto consultaProductoPorID(String nombre){
         String sql = " SELECT * FROM producto WHERE nombre = ? AND estado = 1";
-        Producto producto = null;
+        
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);            
             ps.setString(1, nombre);
@@ -138,8 +136,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-               
+                producto.setPrecio(rs.getDouble("precio"));               
                 producto.setEstado(rs.getBoolean("estado"));
                 
                 lista.add(producto);
@@ -165,8 +162,7 @@ public class ProductoData {
                 producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-                
+                producto.setPrecio(rs.getDouble("precio"));                
                 producto.setEstado(rs.getBoolean("estado"));
                 listado.add(producto);
                 

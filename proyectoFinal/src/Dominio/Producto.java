@@ -13,16 +13,14 @@ public class Producto {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precio = precio;
-        
+        this.precio = precio;        
         this.estado = estado;
     }
 
     public Producto(String nombre, String descripcion, double precio, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precio = precio;
-       
+        this.precio = precio;       
         this.estado = estado;
     }
     

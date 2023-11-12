@@ -42,12 +42,13 @@ public class MenuGeneral extends javax.swing.JFrame {
     private boolean listaDetalle = false;
     private boolean comboProveedor = false;
     private boolean comboProducto = false;
+    private boolean listaProductosCargada = false;
     private Compra compra = null;
     private CompraData compraData = new CompraData();
     private DetalleCompra detalle = null;
     private DetalleCompraData detalleData = new DetalleCompraData(); 
-    private boolean listaProductosCargada = false;
-    private boolean ejecutarUnaVez = true;
+    
+    
     
     public MenuGeneral() {
         initComponents();       
@@ -1380,8 +1381,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         if(!comboProveedor && !comboProducto){
              listaComboProveedor(); 
              listaProductoCompra();
-        }
-       
+        }       
     }//GEN-LAST:event_jbNuevaCompraActionPerformed
 
     private void jbNuevaCCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCCancelarActionPerformed
@@ -1417,15 +1417,16 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEliminarPActionPerformed
 
     private void jtTablaCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaCompraMouseClicked
-         int indice = jtTablaCompra.getSelectedRow();
+        int indice = jtTablaCompra.getSelectedRow();
        
         if(indice == -1){
             List<Compra> listaAux = new ArrayList<>(compraData.listaCompras());
             listaCompra(listaAux);
             List<DetalleCompra> listaAuxDetalle = new ArrayList<>(detalleData.listaDetalles());
             listaDetalle(listaAuxDetalle);
-        }else if(indice != -1){          
-            String razonSocial = (String)modelo3.getValueAt(indice, 0);
+        }else {
+            proveedor = (Proveedor)modelo3.getValueAt(indice, 0);
+            String razonSocial = proveedor.getRazonSocial();
             mostrarDetalleUnaCompra(razonSocial);
         }
     }//GEN-LAST:event_jtTablaCompraMouseClicked
@@ -1484,8 +1485,7 @@ public class MenuGeneral extends javax.swing.JFrame {
       
              titulos.add("Nombre");
              titulos.add("Descripcion");
-             titulos.add("Precio");
-             titulos.add("Descuento");          
+             titulos.add("Precio");            
         
         for(Object filas : titulos){
             modelo.addColumn(filas);
@@ -1561,6 +1561,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void mostrarDetalleUnaCompra(String id){
+        modelo4.setRowCount(0);
         detalle = new DetalleCompra();
         detalle = detalleData.obtenerDetalleCompra(id);
         
@@ -1578,6 +1579,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void listaDetalle(List<DetalleCompra> detalles){
+        modelo4.setRowCount(0);
         
         for(DetalleCompra dc: detalles ){
             Object[] rowData={                
@@ -1597,8 +1599,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     private void listaProducto(){
         if (!listaProductosCargada) {
-        productos = new ArrayList<>();
-        productos = productoData.listaProductos();
+            producto = new Producto();
+            productos = new ArrayList<>();
+            producto = productoData.consultaProductoPorID();
+            productos = productoData.listaProductos();
 
         for (Producto lista : productos) {
             jcbListaProductos.addItem(lista);
@@ -1700,6 +1704,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void sinSeleccionar(JPanel panel){
         panel.setBackground(new Color(2,104,66));
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificar;
