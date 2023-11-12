@@ -1330,7 +1330,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             jpNuevoProducto.setVisible(false);
             
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Debe ingresar numeros"," ",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe ingresar numeros en Precio"," ",JOptionPane.INFORMATION_MESSAGE);
         }
         borrarFila();
     }//GEN-LAST:event_jbGuardarProNuevoActionPerformed
@@ -1635,7 +1635,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             cabeceraInicial();
         }
         if(!listaRepoIni){
-            List<DetalleCompra> listatablaIni = new ArrayList<>(detalleData.listaDetalles());
+            List<DetalleCompra> listatablaIni = new ArrayList<>(detalleData.listarDetalleDelProducto());
             listaProductoIni(listatablaIni);
         }        
     }

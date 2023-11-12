@@ -101,7 +101,7 @@ public class DetalleCompraData {
      }     
     
      public List<DetalleCompra> listarDetalleDelProducto (){
-        String sql = "SELECT producto.nombre, producto.descripcion, producto.precio, detallecompra.cantidad FROM detallecompra "
+        String sql = "SELECT producto.idProducto, producto.nombre, producto.descripcion, producto.precio, detallecompra.cantidad FROM detallecompra "
                 + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.estado = 1 AND detallecompra.estado = 1";
         List<DetalleCompra> list = new ArrayList<>();
             
@@ -115,6 +115,7 @@ public class DetalleCompraData {
                  producto.setNombre(rs.getString("nombre"));
                  producto.setDescripcion(rs.getString("descripcion"));
                  producto.setPrecio(rs.getDouble("precio"));
+//                 producto.setIdProducto(rs.getInt("idProducto"));
                  compra.setIdProducto(producto);
                  compra.setCantidad(rs.getInt("cantidad"));                
                  

@@ -22,16 +22,15 @@ public class ProductoData {
     }
     
     public void registroProducto(Producto produ){ 
-        String sql="INSERT INTO producto (nombre,descripcion,precio, descuento, estado) VALUES(?, ?, ?, ?)";
+        String sql="INSERT INTO producto (nombre, descripcion, precio, estado) VALUES(?, ?, ?, ?)";
         producto= new Producto();
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
-            ps.setDouble(3, produ.getPrecio());
-           
-            ps.setBoolean(5, produ.isEstado());
+            ps.setDouble(3, produ.getPrecio());           
+            ps.setBoolean(4, produ.isEstado());
             
             ps.executeUpdate();
             
