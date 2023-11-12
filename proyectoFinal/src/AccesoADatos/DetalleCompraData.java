@@ -58,7 +58,7 @@ public class DetalleCompraData {
             detalle = new DetalleCompra();
             detalle.setIdDetalle(rs.getInt("idDetalle"));
             int idProd = rs.getInt("idProducto");
-            Producto pro = productoData.consultaProductoPorID(idProd);
+            Producto pro = productoData.consultaProductoPorID();
             detalle.setIdProducto(pro);
             detalle.setPrecioCosto(rs.getDouble("precioCosto"));
             detalle.setCantidad(rs.getInt("cantidad"));
@@ -86,7 +86,7 @@ public class DetalleCompraData {
             DetalleCompra detalle = new DetalleCompra();
             detalle.setIdDetalle(rs.getInt("idDetalle"));
             int idProd=rs.getInt("idProducto");
-            Producto pro=productoData.consultaProductoPorID(idProd);
+            Producto pro=productoData.consultaProductoPorID();
             detalle.setIdProducto(pro);
             detalle.setPrecioCosto(rs.getDouble("precioCosto"));
             detalle.setCantidad(rs.getInt("cantidad"));
@@ -100,20 +100,21 @@ public class DetalleCompraData {
          return detalles;
      }     
     
-     public List<DetalleCompra> listarDetalleDelProducto (int idProducto){
-        String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra "
-                + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.idProducto = ?";
+     public List<DetalleCompra> listarDetalleDelProducto (){
+        String sql = "SELECT producto.nombre, producto.descripcion, producto.precio, detallecompra.cantidad FROM detallecompra "
+                + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.estado = 1 AND detallecompra.estado = 1";
         List<DetalleCompra> list = new ArrayList<>();
             
         try {            
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1,idProducto);            
+//            ps.setInt(1,idProducto);            
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                  compra = new DetalleCompra();
                  producto.setNombre(rs.getString("nombre"));
                  producto.setDescripcion(rs.getString("descripcion"));
+                 producto.setPrecio(rs.getDouble("precio"));
                  compra.setIdProducto(producto);
                  compra.setCantidad(rs.getInt("cantidad"));                
                  
@@ -211,7 +212,7 @@ public class DetalleCompraData {
                 compra.setIdCompra(comp);
                 
                 int idProducto = rs.getInt("idProducto");
-                Producto produ = productoData.consultaProductoPorID(idProducto);
+                Producto produ = productoData.consultaProductoPorID();
                 compra.setIdProducto(produ);
                 
                 compra.setPrecioCosto(rs.getDouble("precioCosto"));

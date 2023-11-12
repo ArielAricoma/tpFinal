@@ -72,9 +72,9 @@ private Boolean estado;
         return razonSocial;
     }
     
+     
     
-
-
+    
 
 
 }

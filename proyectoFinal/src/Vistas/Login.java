@@ -431,7 +431,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Contraseña invalida");
         }else{
             MenuGeneral menugeneral = new MenuGeneral();
-            menugeneral.setVisible(true);
+            menugeneral.setVisible(true);            
         }      
     }//GEN-LAST:event_jbIniciarActionPerformed
 
