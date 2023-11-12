@@ -45,6 +45,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private boolean listaRepoIni = false;
     private boolean comboProveedor = false;
     private boolean comboProducto = false;
+    private boolean btnModifiProve = false;
     private boolean listaProductosCargada = false;
     private Compra compra = null;
     private CompraData compraData = new CompraData();
@@ -100,7 +101,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jtxBuscarProveedor = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -451,6 +452,12 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jtpEscritorio.addTab("tab1", jpInicio);
 
+        jpInivioProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jpInivioProveedorMouseReleased(evt);
+            }
+        });
+
         jtProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -463,6 +470,11 @@ public class MenuGeneral extends javax.swing.JFrame {
                 "ID", "Razon Social", "Domicilio", "Telefono", "Estado"
             }
         ));
+        jtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtProveedor);
 
         jLabel1.setText("Proveedores ");
@@ -474,10 +486,10 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -573,14 +585,14 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpInivioProveedorLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpInivioProveedorLayout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addGap(54, 54, 54)
+                                .addGap(53, 53, 53)
                                 .addComponent(btnModificar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3))))
+                                .addComponent(btnEliminar))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpInivioProveedorLayout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(jLabel4)
@@ -593,7 +605,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addGap(125, 125, 125)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(414, Short.MAX_VALUE))
         );
         jpInivioProveedorLayout.setVerticalGroup(
             jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,16 +623,12 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addComponent(jButton9)))
                         .addGap(44, 44, 44)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpInivioProveedorLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
-                                    .addComponent(btnModificar)))
-                            .addGroup(jpInivioProveedorLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jButton3)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnModificar)
+                            .addComponent(jButton2))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jtpEscritorio.addTab("tab2", jpInivioProveedor);
@@ -1112,10 +1120,14 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPrincipalMouseClicked
 
     private void jpProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProveedorMouseClicked
-        // TODO add your handling code here:
+        
         borrarFila2();
         jtpEscritorio.setSelectedIndex(1);
-        jPanel1.setVisible(false);
+        jPanel1.setVisible(false); 
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        
+        
         
         List<Proveedor> listaTablaProveedor = new ArrayList<>(proveedorData.listarProveedores());
         cargarDatosEnTablaProveedor(listaTablaProveedor);
@@ -1224,7 +1236,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
        int filaSeleccionada = jtProveedor.getSelectedRow();
        
 
@@ -1252,7 +1264,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
        
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
        int filaSeleccionada = jtProveedor.getSelectedRow();      
@@ -1494,6 +1506,15 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void jtxDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxDomicilioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxDomicilioActionPerformed
+
+    private void jpInivioProveedorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInivioProveedorMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpInivioProveedorMouseReleased
+
+    private void jtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProveedorMouseClicked
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+    }//GEN-LAST:event_jtProveedorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1811,10 +1832,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
