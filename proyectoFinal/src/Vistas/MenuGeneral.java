@@ -497,7 +497,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("Desabilitar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -1242,7 +1242,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         if(!cabeceraProdIni){
             cabeceraProducto();
         }
-        
+               
         if(!listaProductosCargada){
             List<Producto> listaComboProducto = new ArrayList<>(productoData.listaProductos());
             listaComboProducto(listaComboProducto);
@@ -1442,10 +1442,9 @@ public class MenuGeneral extends javax.swing.JFrame {
         int idProveedor = (Integer) modelo2.getValueAt(filaSeleccionada, 0);
         String razonSocial = (String) modelo2.getValueAt(filaSeleccionada, 1);
         String domicilio = (String) modelo2.getValueAt(filaSeleccionada, 2);
-        String telefono = (String) modelo2.getValueAt(filaSeleccionada, 3);
-        Boolean estado = (Boolean) modelo2.getValueAt(filaSeleccionada, 4);  
-       
-         proveedor = new Proveedor(idProveedor, razonSocial, domicilio, telefono, estado);   
+        String telefono = (String) modelo2.getValueAt(filaSeleccionada, 3);        
+              
+        proveedor = new Proveedor(idProveedor, razonSocial, domicilio, telefono);   
       
         // JOptionPane para confirmar
         int opcion = JOptionPane.showConfirmDialog( 
@@ -1512,6 +1511,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                 producto = new Producto(nombre,descripcion,precio,true);
                 productoData.registroProducto(producto);
                 JOptionPane.showMessageDialog(null,"Producto agregado","Exito!",JOptionPane.INFORMATION_MESSAGE);
+                List<Producto> liscom = new ArrayList<>(productoData.listaProductos());
+                listaComboProducto(liscom);
             }
             limpiarProducto();
             borrarFilaProducto();
@@ -1557,7 +1558,9 @@ public class MenuGeneral extends javax.swing.JFrame {
         // TODO add your handling code here:
         borrarFilaProducto();        
         Producto seleccion = (Producto)jcbListaProductos.getSelectedItem();
-        productos = productoData.listaProductospoID(seleccion.getNombre());
+        
+        
+        productos = new ArrayList<>(productoData.listaProductospoID(seleccion.getNombre())) ;
         
          for(Producto lista: productos){
             modelo.addRow(new Object[]{
@@ -2087,7 +2090,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     
       // ------- Metodos para carga de CombosBoxs -------------------------------------------
     
-        
+     
+    
+  
+     
     private void listaComboProducto(List<Producto>productos){
                 
         jcbListaProductos.removeAllItems();
@@ -2166,7 +2172,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void limpiarCampos(){
         jtxRazonSocial.setText("");
         jtxDomicilio.setText("");
-        jtxTelefono.setText("");        
+        jtxTelefono.setText("");   
+        jtxTelefonoo.setText("");
     }
     
     private void limpiarProducto(){

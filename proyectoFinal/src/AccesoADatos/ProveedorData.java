@@ -44,15 +44,14 @@ public class ProveedorData {
     //           METODO MODIFICAR PROVEEDOR
     
     public void modificarProveedor(Proveedor proveedor) {
-    String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ?, estado = ? WHERE idProveedor = ?";
+    String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ? WHERE idProveedor = ?";
      
     try {
         PreparedStatement ps = conexion.prepareStatement(sql);
         
         ps.setString(1, proveedor.getRazonSocial());
         ps.setString(2, proveedor.getDomicilio());
-        ps.setString(3, proveedor.getTelefono());
-        ps.setBoolean(4, proveedor.getEstado());
+        ps.setString(3, proveedor.getTelefono());       
         ps.setInt(5, proveedor.getIdProveedor()); 
         
         ps.executeUpdate();
