@@ -167,6 +167,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlCompraSeleccionar = new javax.swing.JLabel();
         jlCompraY = new javax.swing.JLabel();
         jbNuevaCompra = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -956,22 +958,24 @@ public class MenuGeneral extends javax.swing.JFrame {
         jpnewCompraLayout.setHorizontalGroup(
             jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnewCompraLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlNuevaCCantidad)
-                    .addComponent(jbNuevaCComprar)
-                    .addGroup(jpnewCompraLayout.createSequentialGroup()
-                        .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlNuevaCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNuevaCProvedor)
-                            .addComponent(jlNuevaCProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNuevaCPrecio))
-                        .addGap(1, 1, 1)))
+                .addGap(47, 47, 47)
+                .addComponent(jbNuevaCComprar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbNuevaCCancelar)
-                .addGap(49, 49, 49))
+                .addGap(73, 73, 73))
             .addGroup(jpnewCompraLayout.createSequentialGroup()
                 .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnewCompraLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlNuevaCCantidad)
+                            .addGroup(jpnewCompraLayout.createSequentialGroup()
+                                .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlNuevaCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlNuevaCProvedor)
+                                    .addComponent(jlNuevaCProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlNuevaCPrecio))
+                                .addGap(1, 1, 1))))
                     .addGroup(jpnewCompraLayout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addGroup(jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -983,7 +987,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                     .addGroup(jpnewCompraLayout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jlNuevaCompraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGap(49, 110, Short.MAX_VALUE))
         );
         jpnewCompraLayout.setVerticalGroup(
             jpnewCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1030,6 +1034,20 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Actualizar Tablas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpInicioCompraLayout = new javax.swing.GroupLayout(jpInicioCompra);
         jpInicioCompra.setLayout(jpInicioCompraLayout);
         jpInicioCompraLayout.setHorizontalGroup(
@@ -1037,29 +1055,30 @@ public class MenuGeneral extends javax.swing.JFrame {
             .addGroup(jpInicioCompraLayout.createSequentialGroup()
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpInicioCompraLayout.createSequentialGroup()
-                        .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(126, 126, 126)
+                        .addComponent(jlCompraSeleccionar)
+                        .addGap(67, 67, 67)
+                        .addComponent(jdcCompraFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jlCompraY, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jdcCompraFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton4))
+                    .addGroup(jpInicioCompraLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlCompraDetalleCTabla)
+                            .addComponent(jlCompraTabla))
+                        .addGap(47, 47, 47)
+                        .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpInicioCompraLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jlCompraDetalleCTabla)
-                                    .addComponent(jlCompraTabla))
-                                .addGap(47, 47, 47)
-                                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jpInicioCompraLayout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(jlCompraSeleccionar)
-                                .addGap(57, 57, 57)
-                                .addComponent(jdcCompraFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jlCompraY, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(jdcCompraFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(121, 121, 121))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createSequentialGroup()
-                        .addComponent(jbNuevaCompra)
-                        .addGap(341, 341, 341)))
+                                .addComponent(jbNuevaCompra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5)))))
+                .addGap(121, 121, 121)
                 .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1075,18 +1094,28 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jdcCompraFecha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jdcCompraFecha2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlCompraY, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(78, 78, 78)
+                            .addComponent(jlCompraY, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlCompraTabla))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jbNuevaCompra)
-                .addGap(71, 71, 71)
+                    .addGroup(jpInicioCompraLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jlCompraTabla))
+                    .addGroup(jpInicioCompraLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbNuevaCompra)
+                    .addComponent(jButton5))
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlCompraDetalleCTabla))
-                .addGap(51, 51, 51))
+                    .addGroup(jpInicioCompraLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addComponent(jlCompraDetalleCTabla)
+                        .addGap(289, 289, 289))))
             .addGroup(jpInicioCompraLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jpnewCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1566,7 +1595,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             productoData.modificarProducto(producto);
             JOptionPane.showMessageDialog(null, "Producto modificado Correctamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
         } else{
-            JOptionPane.showMessageDialog(null, "El producto no ha sido modificado.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El producto no se a modificado.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
         }
             
         }
@@ -1640,8 +1669,17 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNuevaCompraActionPerformed
 
     private void jbNuevaCCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCCancelarActionPerformed
-        // TODO add your handling code here:
-        jpnewCompra.setVisible(false);
+         int opcion = JOptionPane.showConfirmDialog( 
+                null,
+                "¿Esta seguro de cancelar?",
+                "Confirmar", 
+                JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {   
+            JOptionPane.showMessageDialog(null, "Calcelado", "Exito!", JOptionPane.INFORMATION_MESSAGE);      
+            jpnewCompra.setVisible(false);
+        } 
+        
     }//GEN-LAST:event_jbNuevaCCancelarActionPerformed
 
     private void jbEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarPActionPerformed
@@ -1770,25 +1808,65 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbActivosActionPerformed
 
     private void jcbNoActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNoActivosActionPerformed
-         boolean activosSeleccionados = jcbNoActivos.isSelected();
-         if (jcbNoActivos.isSelected()) {
-        
-        jcbActivos.setSelected(false);
-       }
-      if (activosSeleccionados) {      
-        List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedoresNoActivos());
-        cargarDatosEnTablaProveedor(listita);
-      } else {
-        
-        List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedores());
-        cargarDatosEnTablaProveedor(listita);
-    }
+            boolean activosSeleccionados = jcbNoActivos.isSelected();
+            
+            if (jcbNoActivos.isSelected()) {
+
+               jcbActivos.setSelected(false);
+              }
+             if (activosSeleccionados) {      
+               List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedoresNoActivos());
+               cargarDatosEnTablaProveedor(listita);
+             } else {
+
+               List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedores());
+               cargarDatosEnTablaProveedor(listita);
+           }
     }//GEN-LAST:event_jcbNoActivosActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedores());
         cargarDatosEnTablaProveedor(listita);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Date date1 = jdcCompraFecha1.getDate();
+        Date date2 = jdcCompraFecha2.getDate();
+
+        if (date1 != null && date2 != null) {
+            LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            List<Compra> comprita = compraData.entreFechas(fecha1, fecha2);
+
+            if (!comprita.isEmpty()) {
+                listaCompra = false;
+                listaDetalle = false;
+
+                if (!listaCompra && !listaDetalle) {  
+                    borrarFilaCompra();
+                    listaCompra(comprita);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay compras entre las fechas seleccionadas", "Informacipn", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar fechas validas", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        listaCompra = false; listaDetalle = false;
+        if(!listaCompra && !listaDetalle){
+          borrarFilaCompra();  
+         List<Compra> comprita = compraData.listaCompras();
+         List<DetalleCompra> detallito = detalleData.listaDetalles();
+         listaCompra(comprita);
+         listaDetalle(detallito);
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1958,6 +2036,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
         listaProducto = true;
     }
+    
     
     private void listaCompra(List<Compra> compras){
         
@@ -2139,6 +2218,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
