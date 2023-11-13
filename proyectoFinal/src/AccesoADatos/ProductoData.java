@@ -167,6 +167,32 @@ public class ProductoData {
        
     }
     
+     public List<Producto> listaProductosMasComprado(String nombre){
+        String sql= "SELECT count(*) FROM producto WHERE estado=1 AND nombre = ?";
+        List<Producto> lista = new ArrayList<>();
+            
+        try {           
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                producto = new Producto();
+                
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));               
+                producto.setEstado(rs.getBoolean("estado"));
+                
+                lista.add(producto);
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al conectar con la tabla Productos","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+        return lista; 
+    }
     
     public List<DetalleCompra> listarProductos(int idProveedor){
         String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
