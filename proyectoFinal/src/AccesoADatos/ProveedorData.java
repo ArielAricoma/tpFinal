@@ -91,7 +91,7 @@ public class ProveedorData {
             ps.setString(1, razonSocial);
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Eliminado correctamente", "", JOptionPane.INFORMATION_MESSAGE);
+           
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }
