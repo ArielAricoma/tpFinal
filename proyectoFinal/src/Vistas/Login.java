@@ -417,6 +417,8 @@ public class Login extends javax.swing.JFrame {
         jlNuevaContraseña.setFont(font.deriveFont(atributos));
     }//GEN-LAST:event_jlNuevaContraseñaMouseExited
 
+   
+    
     private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
         // TODO add your handling code here:
         String nombre = jtUsuario.getText();
@@ -430,8 +432,10 @@ public class Login extends javax.swing.JFrame {
         }else if(!contraseña.equals(usuario.getContrasena())){ 
             JOptionPane.showMessageDialog(null,"Contraseña invalida");
         }else{
+            
             MenuGeneral menugeneral = new MenuGeneral();
-            menugeneral.setVisible(true);            
+            menugeneral.setVisible(true); 
+            menugeneral.labelUsuario(nombre);
         }      
     }//GEN-LAST:event_jbIniciarActionPerformed
 
