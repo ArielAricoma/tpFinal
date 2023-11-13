@@ -128,6 +128,34 @@ public class CompraData {
         }        
         return compras;
     }
+    
+     public List<Compra> entreUnaFecha(LocalDate inicio){        
+        String sql= "SELECT * FROM compra WHERE fecha = ?";
+        List<Compra> compras=new ArrayList<>();  
+                
+        try {
+            PreparedStatement lista=conexion.prepareStatement(sql);            
+            lista.setDate(1,Date.valueOf(inicio));                   
+            ResultSet rs=lista.executeQuery();
+            
+            while(rs.next()){                
+                Compra compra=new Compra(); 
+                compra.setIdCompra(rs.getInt("idCompra"));
+                int idProvee=rs.getInt("idProveedor");
+                Proveedor id=proveedorData.buscarProveedor(idProvee);
+                
+                compra.setProveedor(id);
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setEstado(rs.getBoolean("estado"));                
+                compras.add(compra);
+            }
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null,"Error con Lista Compra");
+        }        
+        return compras;
+    }
         
     public Compra obtenerCompraPorID(int idCompra){
         String sql="SELECT * FROM compra WHERE idCompra=? AND estado=1";

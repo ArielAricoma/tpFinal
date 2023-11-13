@@ -96,6 +96,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jtRepositorio = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jbtnRellenarStock = new javax.swing.JButton();
         jpInivioProveedor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtProveedor = new javax.swing.JTable();
@@ -429,11 +430,24 @@ public class MenuGeneral extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtRepositorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtRepositorioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtRepositorio);
 
         jLabel2.setText("Repositorio de Cantidad");
 
         jButton1.setText("jButton1");
+
+        jbtnRellenarStock.setText("Rellenar Stock");
+        jbtnRellenarStock.setEnabled(false);
+        jbtnRellenarStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRellenarStockActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
         jpInicio.setLayout(jpInicioLayout);
@@ -450,8 +464,10 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jpInicioLayout.createSequentialGroup()
                         .addGap(192, 192, 192)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(772, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(jbtnRellenarStock)))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +475,9 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jLabel2)
                 .addGap(117, 117, 117)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRellenarStock))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(67, 67, 67))
@@ -1265,7 +1283,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     
     private void jpPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPrincipalMouseClicked
-        // TODO add your handling code here:
+        
         jtpEscritorio.setSelectedIndex(0);
         cargaTablaIni();
     }//GEN-LAST:event_jpPrincipalMouseClicked
@@ -1891,7 +1909,24 @@ public class MenuGeneral extends javax.swing.JFrame {
         Date date1 = jdcCompraFecha1.getDate();
         Date date2 = jdcCompraFecha2.getDate();
 
-        if (date1 != null && date2 != null) {
+        if(date1 != null && date2 == null){
+             LocalDate fecha = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+             List<Compra> compri = compraData.entreUnaFecha(fecha);
+             
+            if (!compri.isEmpty()) {
+                listaCompra = false;
+                listaDetalle = false;
+
+                if (!listaCompra && !listaDetalle) {  
+                    borrarFilaCompra();
+                    listaCompra(compri);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay compras en esta fecha.", "Informacipn", JOptionPane.INFORMATION_MESSAGE);
+            }
+             
+             
+        }else if (date1 != null && date2 != null) {
             LocalDate fecha1 = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fecha2 = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -1911,7 +1946,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar fechas validas", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1943,6 +1978,14 @@ public class MenuGeneral extends javax.swing.JFrame {
     
         
     }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jbtnRellenarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRellenarStockActionPerformed
+      
+    }//GEN-LAST:event_jbtnRellenarStockActionPerformed
+
+    private void jtRepositorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRepositorioMouseClicked
+        jbtnRellenarStock.setEnabled(true);
+    }//GEN-LAST:event_jtRepositorioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2067,7 +2110,18 @@ public class MenuGeneral extends javax.swing.JFrame {
             listaProductoIni(listatablaIni);
         }        
     }
-    
+    private DetalleCompra listaProductoUnico(DetalleCompra detalle){
+        DetalleCompra ss = new DetalleCompra();
+        Producto pd = new Producto(); 
+          if(detalle != null){
+                ss.getIdProducto().getNombre();
+                ss.getIdProducto().getDescripcion();
+                ss.getIdProducto().getPrecio();
+                ss.getCantidad();
+                
+            }
+        return ss;
+    }
     private void listaProductoIni(List<DetalleCompra> detalle){
         
         for(DetalleCompra compra : detalle){
@@ -2331,6 +2385,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JButton jbNuevaCompra;
     private javax.swing.JButton jbNuevoP;
     private javax.swing.JButton jbtnGuardarNewProveedor;
+    private javax.swing.JButton jbtnRellenarStock;
     private javax.swing.JCheckBox jcbActivos;
     private javax.swing.JComboBox<Producto> jcbListaProductos;
     private javax.swing.JCheckBox jcbNoActivos;
