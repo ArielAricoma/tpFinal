@@ -23,7 +23,7 @@ public class ProductoData {
     
     public void registroProducto(Producto produ){ 
         String sql="INSERT INTO producto (nombre, descripcion, precio, estado) VALUES(?, ?, ?, ?)";
-        producto= new Producto();
+       
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             
@@ -32,34 +32,28 @@ public class ProductoData {
             ps.setDouble(3, produ.getPrecio());           
             ps.setBoolean(4, produ.isEstado());
             
-            ps.executeUpdate();
+            ps.executeUpdate();            
             
-            JOptionPane.showMessageDialog(null, "Producto cargado con exito", "", JOptionPane.INFORMATION_MESSAGE);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"producto incorrecto");
         }
     }
     
-    public void modificarProducto(Producto produ){
-                
-        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, descuento=?, estado=? WHERE nombre = ?";
+    public void modificarProducto(Producto produ){                
+        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, estado=? WHERE nombre = ?";
                 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
+            
            
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
-            ps.setDouble(3, produ.getPrecio());
+            ps.setDouble(3, produ.getPrecio());            
+            ps.setBoolean(4, produ.isEstado());
+            ps.setString(5, produ.getNombre());
             
-            ps.setBoolean(5, produ.isEstado());
-            ps.setString(6, produ.getNombre());
-            
-            int ya=ps.executeUpdate();
-            if(ya>0){
-                JOptionPane.showMessageDialog(null,"ya ta");
-            }
-            
-//            JOptionPane.showMessageDialog(null,"SIIIIIIIIIII");
+            ps.executeUpdate();
+           
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Producto no encontrado","error de conexion",0);
         }

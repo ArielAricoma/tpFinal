@@ -40,6 +40,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private boolean cabeceraCompraIni = false;
     private boolean cabeceraDetalleIni = false;
     private boolean cabeceraRepoIni = false;
+    private boolean listaProducto = false;
     private boolean listaCompra = false;
     private boolean listaDetalle = false;
     private boolean listaRepoIni = false;
@@ -50,14 +51,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private Compra compra = null;
     private CompraData compraData = new CompraData();
     private DetalleCompra detalle = null;
-    private DetalleCompraData detalleData = new DetalleCompraData();     
-    
-    
-    
-    
-    public void labelUsuario(String nombre){
-        jlabelUsuario.setText(nombre);
-    }
+    private DetalleCompraData detalleData = new DetalleCompraData();    
     
     public MenuGeneral() {
         initComponents();       
@@ -381,6 +375,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/usuario.png"))); // NOI18N
 
+        jlabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         jlabelUsuario.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1188,14 +1183,21 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jpProveedorMouseClicked
     
     private void jpProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductoMouseClicked
-        // TODO add your handling code here:        
+         // TODO add your handling code here:        
         jtpEscritorio.setSelectedIndex(2);
         
         if(!cabeceraProdIni){
             cabeceraProducto();
         }
         
-        listaProducto();
+        if(!listaProductosCargada){
+            List<Producto> listaComboProducto = new ArrayList<>(productoData.listaProductos());
+            listaComboProducto(listaComboProducto);
+        }
+        if(!listaProducto){
+            List<Producto> listaTablaProducto = new ArrayList<>(productoData.listaProductos());
+            listaProducto(listaTablaProducto);
+        }
         jbModificarP.setEnabled(false);
         jpNuevoProducto.setVisible(false);
         jbEliminarP.setEnabled(false);
@@ -1384,29 +1386,45 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNuevoPActionPerformed
 
     private void jbGuardarProNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarProNuevoActionPerformed
-        // TODO add your handling code here:        
+       // TODO add your handling code here:        
         try{
-            String nombre=jtNuevoPNombre.getText();
-            String descripcion=jtNuevoPDescripcion.getText();
-            double precio=Double.parseDouble(jtNuevoPPrecio.getText());
+            String nombre = jtNuevoPNombre.getText();
+            String descripcion = jtNuevoPDescripcion.getText();
+            String precio1 = jtNuevoPPrecio.getText();
             
-            
-            if(nombre.isEmpty()||descripcion.isEmpty()||jtNuevoPPrecio.getText().isEmpty()){
+            if(nombre.isEmpty() || descripcion.isEmpty() || precio1.isEmpty()){
                 JOptionPane.showMessageDialog(null,"Complete los campos"," ",JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }
+            }else if(verificarSiHayNumeros(nombre)){
+                JOptionPane.showMessageDialog(null,"Nombre Incorrectos"+"\n"+"Debe Ingresar solo letras","",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }          
             
-            if(producto==null){
+            double precio = Double.parseDouble(precio1);
+            
+            if(producto == null){
                 producto = new Producto(nombre,descripcion,precio,true);
                 productoData.registroProducto(producto);
+                JOptionPane.showMessageDialog(null,"Producto agregado"," ",JOptionPane.OK_OPTION);
             }
             limpiarProducto();
+            borrarFilaProducto();
+            producto = null;
+            
+            int indice = jtTablaProducto.getSelectedRow();         
+
+            if (indice == -1) {
+            List<Producto> listaAux = new ArrayList<>(productoData.listaProductos());
+            listaProducto(listaAux);
+            
+           
+            }
+        
             jpNuevoProducto.setVisible(false);
             
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Debe ingresar numeros en Precio"," ",JOptionPane.INFORMATION_MESSAGE);
-        }
-        borrarFila();
+        }       
     }//GEN-LAST:event_jbGuardarProNuevoActionPerformed
 
     private void jbCancelarProNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarProNuevoActionPerformed
@@ -1416,7 +1434,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     private void jcbListaProductosActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
-        borrarFila();        
+        borrarFilaProducto();        
         Producto seleccion = (Producto)jcbListaProductos.getSelectedItem();
         productos = productoData.listaProductospoID(seleccion.getNombre());
         
@@ -1450,8 +1468,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         if (opcion == JOptionPane.YES_OPTION) {
             String descripcion = (String)modelo.getValueAt(indice, 1);
-            double precio = (Double)modelo.getValueAt(indice,2);
-            double descuento = (Double)modelo.getValueAt(indice,3);  
+            double precio = ((Double)modelo.getValueAt(indice,2)).doubleValue();            
             producto = new Producto(nombre,descripcion,precio,true);
                     
             productoData.modificarProducto(producto);
@@ -1832,6 +1849,19 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }   
     
+    private void listaProducto(List<Producto> productos){
+        
+        for(Producto prod : productos ){
+            Object[] rowData = {
+                prod.getNombre(),
+                prod.getDescripcion(),
+                prod.getPrecio()
+            };
+            modelo.addRow(rowData);
+        }
+        listaProducto = true;
+    }
+    
     private void listaCompra(List<Compra> compras){
         
         for(Compra carrito : compras ){
@@ -1882,20 +1912,17 @@ public class MenuGeneral extends javax.swing.JFrame {
       // ------- Metodos para carga de CombosBoxs -------------------------------------------
     
         
-    private void listaProducto(){
-        if (!listaProductosCargada) {
-            producto = new Producto();
-            productos = new ArrayList<>();
-            producto = productoData.consultaProductoPorID();
-            productos = productoData.listaProductos();
-
+    private void listaComboProducto(List<Producto>productos){
+                
+        jcbListaProductos.removeAllItems();
+        
+        jcbListaProductos.addItem(new Producto("-------------- SELECCIONAR --------------", "", 0.0, false));
+        
+        
         for (Producto lista : productos) {
             jcbListaProductos.addItem(lista);
-        }
-
-        
-        listaProductosCargada = true;
-    }
+        }        
+        listaProductosCargada = true;    
     }
     
     private void listaComboProveedor(){
@@ -1924,7 +1951,7 @@ public class MenuGeneral extends javax.swing.JFrame {
       // ------- Metodos para borrar filas de las tablas ---------------------------------
     
     
-    private void borrarFila(){        
+    private void borrarFilaProducto(){        
         int indice = modelo.getRowCount()-1;
         
         for(int i = indice;i >= 0;i--){
@@ -1977,12 +2004,24 @@ public class MenuGeneral extends javax.swing.JFrame {
         jtNuevaCPrecio.setText("");
         jtNuevaCCantidad.setText("");
     }
-    //----------Metodos para validar campos -------------------------------------------
     
-     private boolean verificarSiHayNumeros(String texto) {
+    
+      // ------- Metodos para validar campos ------------------------------------------------
+    
+    
+    private boolean verificarSiHayNumeros(String texto) {
         return texto.matches(".*\\d.*");
     }
     
+    
+      // -------- Metodo para settear el usuario en el menuGeneral --------------------------
+    
+    
+    public void labelUsuario(String nombre){
+        jlabelUsuario.setText(nombre);
+    }
+    
+      
       // ------- Metodos para Seleccion (cambia de color al pasar el mouse) -----------------
     
     
