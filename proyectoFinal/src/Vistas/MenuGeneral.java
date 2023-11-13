@@ -1507,16 +1507,17 @@ public class MenuGeneral extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {   
-           if(producto == null){
+         
                 producto = new Producto(nombre,descripcion,precio,true);
                 productoData.registroProducto(producto);
                 JOptionPane.showMessageDialog(null,"Producto agregado","Exito!",JOptionPane.INFORMATION_MESSAGE);
+                borrarFilaProducto();
                 List<Producto> liscom = new ArrayList<>(productoData.listaProductos());
                 listaComboProducto(liscom);
-            }
-            limpiarProducto();
-            borrarFilaProducto();
-            producto = null;
+            
+                limpiarProducto();
+                
+            
             
             int indice = jtTablaProducto.getSelectedRow();         
 
@@ -1555,21 +1556,24 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarProNuevoActionPerformed
 
     private void jcbListaProductosActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+        
         borrarFilaProducto();        
-        Producto seleccion = (Producto)jcbListaProductos.getSelectedItem();
-        
-        
-        productos = new ArrayList<>(productoData.listaProductospoID(seleccion.getNombre())) ;
-        
-         for(Producto lista: productos){
-            modelo.addRow(new Object[]{
-                lista.getNombre(),
-                lista.getDescripcion(),
-                lista.getPrecio()});
-                         
-        }      
-    }                                                     
+
+        Producto seleccion = (Producto) jcbListaProductos.getSelectedItem();
+        //if (seleccion != null) {
+            productos = new ArrayList<>(productoData.listaProductospoID(seleccion.getNombre()));
+
+            for (Producto lista : productos) {
+                modelo.addRow(new Object[]{
+                    lista.getNombre(),
+                    lista.getDescripcion(),
+                    lista.getPrecio()});
+            }
+        //} else {
+            
+            System.out.println("No se ha seleccionado ningun producto.");
+       // }    
+        }                                                     
 
     private void jtTablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaProductoMouseClicked
         // TODO add your handling code here:
