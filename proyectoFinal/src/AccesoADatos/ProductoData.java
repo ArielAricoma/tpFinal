@@ -142,6 +142,29 @@ public class ProductoData {
        
     }
     
+    public List<Producto> listaProductosSinDuplicado() {
+    String sql = "SELECT DISTINCT nombre FROM producto WHERE estado = 1";
+    List<Producto> lista = new ArrayList<>();
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Producto producto = new Producto();
+            producto.setNombre(rs.getString("nombre"));
+
+            // Puedes agregar otros campos si es necesario
+
+            lista.add(producto);
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener la lista de productos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    return lista;
+}
+    
+    
     public List<Producto> listaProductospoID(String nombre){
         String sql= "SELECT * FROM producto WHERE nombre = ? AND estado = 1";
         List<Producto> listado = new ArrayList<>();

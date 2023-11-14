@@ -52,7 +52,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private CompraData compraData = new CompraData();
     private DetalleCompra detalle = null;
     private DetalleCompraData detalleData = new DetalleCompraData();    
-    
+    private LocalDate fc = null;
     public MenuGeneral() {
         initComponents();       
         modelo = new DefaultTableModel();
@@ -1305,7 +1305,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         
         jtpEscritorio.setSelectedIndex(1);
         jPanel1.setVisible(false);       
- 
+        
         List<Proveedor> listaTablaProveedor = new ArrayList<>(proveedorData.listarProveedores());
         cargarDatosEnTablaProveedor(listaTablaProveedor);
         
@@ -1324,7 +1324,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
                
         if(!listaProductosCargada){
-            List<Producto> listaComboProducto = new ArrayList<>(productoData.listaProductos());
+            List<Producto> listaComboProducto = new ArrayList<>(productoData.listaProductosSinDuplicado());
             listaComboProducto(listaComboProducto);
         }
 
@@ -1563,24 +1563,48 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNuevoPActionPerformed
 
     private void jbGuardarProNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarProNuevoActionPerformed
-       // TODO add your handling code here:        
+       String carac = ","+" ."+" -"+" ("+" )"+" :";      
         try{
             String nombre = jtNuevoPNombre.getText();
             String descripcion = jtNuevoPDescripcion.getText();
             String precio1 = jtNuevoPPrecio.getText();
             
-            if(descripcion.length()>100){
-                JOptionPane.showMessageDialog(null, "Ingreso: "+descripcion.length()+" caracteres. Supera el limite de 100.", "Error!", JOptionPane.INFORMATION_MESSAGE);
+              
+            if(nombre.isEmpty() && descripcion.isEmpty() && precio1.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Es necesario llenar todos los campos.", "Error!", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-      
-            if(nombre.isEmpty() || descripcion.isEmpty() || precio1.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Complete los campos","Error!",JOptionPane.INFORMATION_MESSAGE);
+            
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Es necesario agregar un dato en el campo nombre.", "Error!", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }else if(verificarSiHayNumeros(nombre)){
-                JOptionPane.showMessageDialog(null,"Nombre incorrecto"+"\n"+"Debe ingresar solo letras","Error!",JOptionPane.INFORMATION_MESSAGE);
+            } else if (nombre.length() > 20) {
+                JOptionPane.showMessageDialog(null, "Ingreso: " + nombre.length() + " caracteres. Supera el limite permitido(20).", "Error!", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }          
+            } else if (contieneLetrasYEspacios(nombre) != true) {
+                JOptionPane.showMessageDialog(null, "En el campo de nombre solo estan permitidos caracteres validos.", "Error!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            if (descripcion.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Es necesario agregar un dato en el campo descripcion.", "Error!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else if (descripcion.length() > 100) {
+                JOptionPane.showMessageDialog(null, "Ingreso: " + descripcion.length() + " caracteres. Supera el limite de 100.", "Error!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else if (contieneLetrasEspaciosNumeros(descripcion) != true) {
+                JOptionPane.showMessageDialog(null, "En el campo de descripcion solo estan permitidos caracteres validos.\n"
+                        +carac, "Error!", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            
+            if(precio1.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Es necesario completar el campo de precio.","Error!",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            
             
             double precio = Double.parseDouble(precio1);
             
@@ -1599,7 +1623,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                 borrarFilaProducto();
                 List<Producto> liscom = new ArrayList<>(productoData.listaProductos());
                 listaComboProducto(liscom);
-            
+                List<Producto> ccombo = new ArrayList<>(productoData.listaProductosSinDuplicado());
+                listaComboProducto(ccombo);
                 limpiarProducto();
                 
             
@@ -1616,7 +1641,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         } 
      
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Debe ingresar numeros en Precio"," ",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe ingresar un precio valido."," ",JOptionPane.INFORMATION_MESSAGE);
         }       
     }//GEN-LAST:event_jbGuardarProNuevoActionPerformed
 
@@ -1699,21 +1724,61 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     private void jbNuevaCComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCComprarActionPerformed
     Proveedor proveedor = (Proveedor) jcbNuevaCProveedor.getSelectedItem();
+    
+    int indiceProve = (int) jcbNuevaCProveedor.getSelectedIndex();
+    int indiceProdu = (int) jcbNuevaCProducto.getSelectedIndex();
     Producto producto = (Producto) jcbNuevaCProducto.getSelectedItem();
+    String cant = jtNuevaCCantidad.getText();
+    String pre = jtNuevaCPrecio.getText();
+        
     Date fecha = (Date) jdcNuevaCFecha.getDate();
+    
+    
+        if (indiceProve == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, es necesario seleccionar un proveedor.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }else if(indiceProdu == 0){
+             JOptionPane.showMessageDialog(null, "Por favor, es necesario seleccionar un producto.", "Error", JOptionPane.ERROR_MESSAGE);
+             return;
+        }else if( fecha == null){
+             JOptionPane.showMessageDialog(null, "Por favor, complete el campo de fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+             return;
+        }
+        if(pre.isEmpty()){ 
+            JOptionPane.showMessageDialog(null, "Debe llenar el campo precio.", "Error", JOptionPane.ERROR_MESSAGE);   
+            return;
+          }
 
-    // Verificar si los campos obligatorios estan llenos
-    if (proveedor == null || producto == null || fecha == null) {
-        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
-        return; 
-    }
+     
+        if(cant.isEmpty()){
+        JOptionPane.showMessageDialog(null, "Debe llenar el campo cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+        }
+        
+        if(fecha != null){
 
-    LocalDate fc = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fc = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha valida.", "Error", JOptionPane.ERROR_MESSAGE);  
+            return;
+        }
 
     try {
         double precio = Double.parseDouble(jtNuevaCPrecio.getText());
         int cantidad = Integer.parseInt(jtNuevaCCantidad.getText());
-
+        
+        
+        if (precio <= 0) {
+        JOptionPane.showMessageDialog(null, "El precio debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+        }
+     
+        if (cantidad <= 0) {
+        JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+        }
+        
         int opcion = JOptionPane.showConfirmDialog( 
                 null,
                 "¿Estás seguro de realizar esta compra?: ",
@@ -1746,7 +1811,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jpnewCompra.setVisible(false);
     } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Error en formato de precio o cantidad. Deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error en formato de precio o cantidad. Deben ser numeros validos.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jbNuevaCComprarActionPerformed
 
@@ -1780,6 +1845,7 @@ public class MenuGeneral extends javax.swing.JFrame {
        if(indice != -1){
           
          String name = (String) modelo.getValueAt(indice, 1);
+         
          int opcion = JOptionPane.showConfirmDialog( 
                 null,
                 "Estas seguro de eliminar el producto "+name,
@@ -2020,12 +2086,12 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     private void jbActualizarTProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarTProduActionPerformed
         // TODO add your handling code here:        
-
+           
             List<Producto> carrito = new ArrayList<>(productoData.listaProductos());
             listaProducto(carrito);
-            
+      
             jbModificarP.setEnabled(false);
-        jbEliminarP.setEnabled(false);
+            jbEliminarP.setEnabled(false);
 
     }//GEN-LAST:event_jbActualizarTProduActionPerformed
 
@@ -2370,6 +2436,38 @@ public class MenuGeneral extends javax.swing.JFrame {
         return texto.matches(".*\\d.*");
     }
     
+    public static boolean contieneLetrasYEspacios(String fraseRecibida) {
+    for (char c : fraseRecibida.toCharArray()) {
+        if (!esCaracterSinNumero(c)) {
+            return false;
+          }
+       }
+        return true;
+    }
+    
+     public static boolean contieneLetrasEspaciosNumeros(String fraseRecibida) {
+     for (char c : fraseRecibida.toCharArray()) {
+        if (!esCaracterPermitido(c)) {
+            return false;
+          }
+       }
+        return true;
+    }
+    
+    //metodos auxiliares para el uso de validacion de campos------------------------------
+     
+    
+    public static boolean esCaracterPermitido(char c) {
+    return (c >= 'a' && c <= 'z') ||
+           (c >= 'A' && c <= 'Z') ||
+           (c >= '0' && c <= '9') ||
+           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')';
+    }
+    public static boolean esCaracterSinNumero(char c) {
+    return (c >= 'a' && c <= 'z') ||
+           (c >= 'A' && c <= 'Z') ||
+           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')' || c == ':';
+    }
     
       // -------- Metodo para settear el usuario en el menuGeneral --------------------------
     
@@ -2390,6 +2488,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         panel.setBackground(new Color(2,104,66));
     }
     
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
