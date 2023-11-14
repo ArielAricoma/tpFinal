@@ -502,7 +502,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Razon Social", "Domicilio", "Telefono", "Estado"
+                "Codigo ", "Razon Social", "Domicilio", "Telefono", "Estado"
             }
         ));
         jtProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1699,7 +1699,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                 "Confirmar", 
                 JOptionPane.YES_NO_OPTION);
 
-        if (opcion == JOptionPane.YES_OPTION) {
+        if (opcion == JOptionPane.YES_OPTION && producto == null) {
             String descripcion = (String)modelo.getValueAt(indice, 1);
             double precio = ((Double)modelo.getValueAt(indice,2)).doubleValue();            
             producto = new Producto(nombre,descripcion,precio,true);
@@ -1716,6 +1716,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
         jbModificarP.setEnabled(false);
         jbEliminarP.setEnabled(false);
+        producto = null;
     }//GEN-LAST:event_jbModificarPActionPerformed
 
     
@@ -1846,6 +1847,7 @@ public class MenuGeneral extends javax.swing.JFrame {
           
          String name = (String) modelo.getValueAt(indice, 1);
          
+         
          int opcion = JOptionPane.showConfirmDialog( 
                 null,
                 "Estas seguro de eliminar el producto "+name,
@@ -1854,8 +1856,8 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         if (opcion == JOptionPane.YES_OPTION) {
             
-           String id = (String) modelo.getValueAt(indice, 0);
-           productoData.eliminarProducto(id);           
+           String nombre = (String) modelo.getValueAt(indice, 0);
+           productoData.eliminarProducto(nombre, name);           
            
            JOptionPane.showMessageDialog(null, "El producto a sido eliminado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
            
@@ -2162,7 +2164,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     private void cabeceraProducto(){         
         ArrayList<Object> titulos = new ArrayList<>();       
-      
+             
+             titulos.add("id");
              titulos.add("Nombre");
              titulos.add("Descripcion");
              titulos.add("Precio");            

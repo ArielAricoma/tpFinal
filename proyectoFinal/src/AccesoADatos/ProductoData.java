@@ -59,11 +59,13 @@ public class ProductoData {
         }
     }
     
-    public void eliminarProducto(String idProducto){
-        String sql="UPDATE producto SET estado = 0 WHERE nombre = ?";
+    public void eliminarProducto(String nombre, String descripcion){
+        String sql="UPDATE producto SET estado = 0 WHERE nombre = ? AND descripcion = ?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1,idProducto);
+            
+            ps.setString(1,nombre);
+            ps.setString(2, descripcion);
             ps.executeUpdate();
             
         }catch(SQLException e){
