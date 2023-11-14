@@ -52,7 +52,7 @@ public class ProveedorData {
         ps.setString(1, proveedor.getRazonSocial());
         ps.setString(2, proveedor.getDomicilio());
         ps.setString(3, proveedor.getTelefono());       
-        ps.setInt(5, proveedor.getIdProveedor()); 
+        ps.setInt(4, proveedor.getIdProveedor()); 
         
         ps.executeUpdate();
         
