@@ -16,7 +16,7 @@ public class DetalleCompraData {
     private ProductoData productoData = new ProductoData();
     private CompraData compraData = new CompraData();
     private DetalleCompra compra = null;
-    private Producto producto= new Producto();
+    private Producto producto = null;
     
     public DetalleCompraData(){
         conexion = (Connection) Conexion.conectar();
@@ -46,8 +46,7 @@ public class DetalleCompraData {
                  "JOIN producto ON (detallecompra.idProducto = producto.idProducto)" +  
                  "JOIN compra ON (detallecompra.idCompra = compra.idCompra) " +
                  "JOIN proveedor ON (compra.idProveedor = proveedor.idProveedor) " +
-                 "WHERE proveedor.razonSocial = ? AND proveedor.estado = 1";
-    DetalleCompra detalle = null;
+                 "WHERE proveedor.razonSocial = ? AND proveedor.estado = 1";    
 
     try {
         PreparedStatement ps = conexion.prepareStatement(sql);
@@ -55,23 +54,22 @@ public class DetalleCompraData {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            detalle = new DetalleCompra();
-            detalle.setIdDetalle(rs.getInt("idDetalle"));
+            compra = new DetalleCompra();
+            compra.setIdDetalle(rs.getInt("idDetalle"));
             int idProd = rs.getInt("idProducto");
-            Producto pro = productoData.consultaProductoPorID();
-            detalle.setIdProducto(pro);
-            detalle.setPrecioCosto(rs.getDouble("precioCosto"));
-            detalle.setCantidad(rs.getInt("cantidad"));
+            producto = productoData.consultaProductoPorID(idProd);
+            compra.setIdProducto(producto);
+            compra.setPrecioCosto(rs.getDouble("precioCosto"));
+            compra.setCantidad(rs.getInt("cantidad"));
         }
 
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
     }
     
-    return detalle;
+    return compra;
 }
-     
-     
+          
      public List<DetalleCompra> listarDetalleCOmpra(int idCompra){    
         String  sql = "SELECT * FROM detallecompra JOIN compra ON (detallecompra.idCompra = compra.idCompra) WHERE compra.idCompra = ? AND detallecompra.estado = 1";
         List<DetalleCompra> detalles = new ArrayList<>();
@@ -83,15 +81,15 @@ public class DetalleCompraData {
      
         while(rs.next()){
             
-            DetalleCompra detalle = new DetalleCompra();
-            detalle.setIdDetalle(rs.getInt("idDetalle"));
-            int idProd=rs.getInt("idProducto");
-            Producto pro=productoData.consultaProductoPorID();
-            detalle.setIdProducto(pro);
-            detalle.setPrecioCosto(rs.getDouble("precioCosto"));
-            detalle.setCantidad(rs.getInt("cantidad"));
+            compra = new DetalleCompra();
+            compra.setIdDetalle(rs.getInt("idDetalle"));
+            int idProd = rs.getInt("idProducto");
+            producto = productoData.consultaProductoPorID(idProd);
+            compra.setIdProducto(producto);
+            compra.setPrecioCosto(rs.getDouble("precioCosto"));
+            compra.setCantidad(rs.getInt("cantidad"));
 
-            detalles.add(detalle);            
+            detalles.add(compra);            
         }
      
         }catch(SQLException ex){
@@ -100,6 +98,9 @@ public class DetalleCompraData {
          return detalles;
      }     
     
+     // debatir---------------------------------------------------------------
+     
+     
      public List<DetalleCompra> listarDetalleDelProducto (){
         String sql = "SELECT producto.idProducto, producto.nombre, producto.descripcion, producto.precio, detallecompra.cantidad FROM detallecompra "
                 + "JOIN producto ON (detallecompra.idProducto = producto.idProducto) WHERE producto.estado = 1 AND detallecompra.estado = 1";
@@ -163,6 +164,8 @@ public class DetalleCompraData {
      }
      */
     
+     // debatir -------------------------------------------------------------------
+     
      
      public List<DetalleCompra> actualizaCantidad(int idDetalle){
          String sql = "SELECT producto.nombre, producto.descripcion, detallecompra.cantidad FROM detallecompra JOIN producto ON (detallecompra.idProducto = producto.idProducto)"
@@ -212,7 +215,7 @@ public class DetalleCompraData {
                 compra.setIdCompra(comp);
                 
                 int idProducto = rs.getInt("idProducto");
-                Producto produ = productoData.consultaProductoPorID();
+                Producto produ = productoData.consultaProductoPorID(idProducto);
                 compra.setIdProducto(produ);
                 
                 compra.setPrecioCosto(rs.getDouble("precioCosto"));

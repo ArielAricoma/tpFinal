@@ -13,9 +13,7 @@ public class ProveedorData {
 
     public ProveedorData() {
         conexion = Conexion.conectar();
-    }
-
-    
+    }   
     
        //        METODO AGREGAR PROVEEDOR 
     
@@ -32,8 +30,7 @@ public class ProveedorData {
                 ps.setString(3, prove.getTelefono());
                 ps.setBoolean(4, prove.getEstado());
 
-                ps.executeUpdate();
-                
+                ps.executeUpdate();                
             } 
 
         } catch (SQLException ex) {
@@ -157,8 +154,7 @@ public class ProveedorData {
     public List<Proveedor> listarProveedoresNoActivos()  {
         String sql = "SELECT * FROM proveedor WHERE estado = 0";
         List<Proveedor> listaProveedor = new ArrayList();
-
-        //idProveedor, razonSocial, domicilio, telefono, estado
+   
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
 
@@ -184,27 +180,24 @@ public class ProveedorData {
     
     
     //          METODO PARA BUSCAR PROVEEDOR POR ID
-    //sacar prove y colocar proveedor
+    
   public Proveedor buscarProveedor(int id) {
     String sql = "SELECT * FROM proveedor WHERE idProveedor = ? AND estado = 1";
-    Proveedor prove = null; 
-
+    
     try {
         PreparedStatement ps = conexion.prepareStatement(sql);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            prove = new Proveedor();
+            proveedor = new Proveedor();
 
-            prove.setIdProveedor(rs.getInt("idProveedor"));
-            prove.setRazonSocial(rs.getString("razonSocial"));
-            prove.setDomicilio(rs.getString("domicilio"));
-            prove.setTelefono(rs.getString("telefono"));
-            prove.setEstado(rs.getBoolean("estado"));
-        }
-
-        
+            proveedor.setIdProveedor(rs.getInt("idProveedor"));
+            proveedor.setRazonSocial(rs.getString("razonSocial"));
+            proveedor.setDomicilio(rs.getString("domicilio"));
+            proveedor.setTelefono(rs.getString("telefono"));
+            proveedor.setEstado(rs.getBoolean("estado"));
+        }       
         
         ps.close();
 
@@ -212,7 +205,7 @@ public class ProveedorData {
         JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    return prove;
+    return proveedor;
 }
   
   //                  METODO PARA BUSCAR PROVEEDOR POR NOMBRE
@@ -228,8 +221,7 @@ public class ProveedorData {
             ResultSet rs = ps.executeQuery();
           
             while(rs.next()){
-                proveedor = new Proveedor();
-                
+                proveedor = new Proveedor();                
                 
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
@@ -241,8 +233,6 @@ public class ProveedorData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
         }
-      
-  
   
       return proveedor;
   } //se usa

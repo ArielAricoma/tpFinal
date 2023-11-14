@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 
 public class ProductoData {
-    private Producto producto= null;
+    private Producto producto = null;
     private Connection conexion = null;
     
     public ProductoData(){
@@ -22,15 +22,16 @@ public class ProductoData {
     }
     
     public void registroProducto(Producto produ){ 
-        String sql="INSERT INTO producto (nombre, descripcion, precio, estado) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO producto (nombre, descripcion, stock, precio, estado) VALUES(?, ?, ?, ?, ?)";
        
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
-            ps.setDouble(3, produ.getPrecio());           
-            ps.setBoolean(4, produ.isEstado());
+            ps.setInt(3, produ.getStock());
+            ps.setDouble(4, produ.getPrecio());           
+            ps.setBoolean(5, produ.isEstado());
             
             ps.executeUpdate();            
             
@@ -40,17 +41,17 @@ public class ProductoData {
     }
     
     public void modificarProducto(Producto produ){                
-        String sql="UPDATE producto SET nombre = ?, descripcion=?, precio=?, estado=? WHERE nombre = ?";
+        String sql = "UPDATE producto SET nombre = ?, descripcion = ?, stock = ?, precio = ?, estado = ? WHERE nombre = ?";
                 
         try{
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            
+            PreparedStatement ps = conexion.prepareStatement(sql);            
            
             ps.setString(1, produ.getNombre());
             ps.setString(2, produ.getDescripcion());
-            ps.setDouble(3, produ.getPrecio());            
-            ps.setBoolean(4, produ.isEstado());
-            ps.setString(5, produ.getNombre());
+            ps.setInt(3,produ.getStock());
+            ps.setDouble(4, produ.getPrecio());            
+            ps.setBoolean(5, produ.isEstado());
+            ps.setString(6, produ.getNombre());
             
             ps.executeUpdate();
            
@@ -60,7 +61,7 @@ public class ProductoData {
     }
     
     public void eliminarProducto(String nombre, String descripcion){
-        String sql="UPDATE producto SET estado = 0 WHERE nombre = ? AND descripcion = ?";
+        String sql = "UPDATE producto SET estado = 0 WHERE nombre = ? AND descripcion = ?";
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);
             
@@ -73,11 +74,12 @@ public class ProductoData {
         }
     }
        
-    public Producto consultaProductoPorID(){
-        String sql = " SELECT * FROM producto WHERE estado = 1";
+    public Producto consultaProductoPorID(int idProducto){
+        String sql = " SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
        
         try{
-            PreparedStatement ps = conexion.prepareStatement(sql);            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, idProducto);
             
             ResultSet rs = ps.executeQuery();
             
@@ -86,6 +88,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
+                producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));               
             }
         }catch(SQLException e){
@@ -107,8 +110,8 @@ public class ProductoData {
                 
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-               
+                producto.setStock(rs.getInt("stock"));
+                producto.setPrecio(rs.getDouble("precio"));              
                 
             }
         }catch(SQLException e){
@@ -118,12 +121,12 @@ public class ProductoData {
     }
     
     public List<Producto> listaProductos(){
-        String sql= "SELECT * FROM producto WHERE estado=1";
+        String sql = "SELECT * FROM producto WHERE estado=1";
         List<Producto> lista = new ArrayList<>();
             
         try {           
-            PreparedStatement ps=conexion.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 producto = new Producto();
@@ -131,6 +134,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
+                producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));               
                 producto.setEstado(rs.getBoolean("estado"));
                 
@@ -153,10 +157,8 @@ public class ProductoData {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Producto producto = new Producto();
+            producto = new Producto();
             producto.setNombre(rs.getString("nombre"));
-
-            // Puedes agregar otros campos si es necesario
 
             lista.add(producto);
         }
@@ -165,21 +167,21 @@ public class ProductoData {
     }
     return lista;
 }
-    
-    
+        
     public List<Producto> listaProductospoID(String nombre){
-        String sql= "SELECT * FROM producto WHERE nombre = ? AND estado = 1";
+        String sql = "SELECT * FROM producto WHERE nombre = ? AND estado = 1";
         List<Producto> listado = new ArrayList<>();
             
         try {           
-            PreparedStatement ps=conexion.prepareStatement(sql);
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, nombre);
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
+                producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));                
                 producto.setEstado(rs.getBoolean("estado"));
                 listado.add(producto);
@@ -192,14 +194,14 @@ public class ProductoData {
        
     }
     
-     public List<Producto> listaProductosMasComprado(String nombre){
-        String sql= "SELECT count(*) FROM producto WHERE estado=1 AND nombre = ?";
+    public List<Producto> listaProductosMasComprado(String nombre){
+        String sql = "SELECT count(*) FROM producto WHERE estado=1 AND nombre = ?";
         List<Producto> lista = new ArrayList<>();
             
         try {           
-            PreparedStatement ps=conexion.prepareStatement(sql);
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, nombre);
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 producto = new Producto();
@@ -207,6 +209,7 @@ public class ProductoData {
                 producto.setIdProducto(rs.getInt("idProducto"));
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));
+                producto.setStock(rs.getInt("stock"));
                 producto.setPrecio(rs.getDouble("precio"));               
                 producto.setEstado(rs.getBoolean("estado"));
                 
@@ -219,8 +222,12 @@ public class ProductoData {
         return lista; 
     }
     
+    
+    // debatir metodo----------------------------------------------------------------------
+    
+    
     public List<DetalleCompra> listarProductos(int idProveedor){
-        String sql="SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
+        String sql = "SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
                 " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 
                 " JOIN producto ON (detallecompra.idProducto = producto.idProducto)WHERE proveedor.idProveedor = ? AND producto.estado = 1"; 
         
@@ -230,11 +237,10 @@ public class ProductoData {
             ps.setInt(1, idProveedor);            
             ResultSet rs = ps.executeQuery();
             DetalleCompra detalleCompra = null;
-//nombre, precio, cantidad
+
             while(rs.next()){
-                
-                //producto = new Producto();
-                detalleCompra= new DetalleCompra();
+              
+                detalleCompra = new DetalleCompra();
                 producto = new Producto();
                 producto.setNombre(rs.getString("nombre"));
                 producto.setDescripcion(rs.getString("descripcion"));

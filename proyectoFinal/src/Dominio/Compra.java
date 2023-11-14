@@ -9,8 +9,6 @@ public class Compra {
     private Proveedor proveedor;
     private LocalDate fecha;
     private boolean estado;
-    
- 
             
     public Compra() {
     }

@@ -73,9 +73,7 @@ public class UsuarioData {
             ps.setString(2, user.getContrasena());
             ps.setString(3, user.getCorreoElec());
             
-            ps.executeUpdate();
-            
-            
+            ps.executeUpdate();          
             
         } catch (SQLException ex) {
             
@@ -84,7 +82,7 @@ public class UsuarioData {
     }
     
     public void cambiarContasena(String nombreUsuario, String newContrasena){  
-        String sql= "UPDATE  usuario SET contrasena = ? WHERE nombreCuenta = ? AND estado = 1";
+        String sql = "UPDATE  usuario SET contrasena = ? WHERE nombreCuenta = ? AND estado = 1";
         
         try {
             
@@ -96,8 +94,7 @@ public class UsuarioData {
             
             ps.close();
             
-        } catch (SQLException ex) {
-            
+        } catch (SQLException ex) {            
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             
         }
@@ -117,9 +114,7 @@ public class UsuarioData {
             
             Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             
-        }
-        
-        
+        }       
     }   
     
 }
