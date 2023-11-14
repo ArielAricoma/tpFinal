@@ -106,16 +106,15 @@ public class DetalleCompraData {
         List<DetalleCompra> list = new ArrayList<>();
             
         try {            
-            PreparedStatement ps = conexion.prepareStatement(sql);
-//            ps.setInt(1,idProducto);            
+            PreparedStatement ps = conexion.prepareStatement(sql);            
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                  compra = new DetalleCompra();
+                 producto = new Producto();
                  producto.setNombre(rs.getString("nombre"));
                  producto.setDescripcion(rs.getString("descripcion"));
                  producto.setPrecio(rs.getDouble("precio"));
-//                 producto.setIdProducto(rs.getInt("idProducto"));
                  compra.setIdProducto(producto);
                  compra.setCantidad(rs.getInt("cantidad"));                
                  

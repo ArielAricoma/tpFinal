@@ -117,10 +117,9 @@ public class ProveedorData {
                 proveedor.setTelefono(rs.getString("telefono"));
                 proveedor.setEstado(rs.getBoolean("estado"));
 
-                listaProveedor.add(proveedor);
-
-                ps.close();
+                listaProveedor.add(proveedor);               
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Tabla Proveedor.", "Error de Conexion.", JOptionPane.ERROR_MESSAGE);
         }

@@ -103,7 +103,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jtxBuscarProveedor = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnDeshabilitar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -117,6 +117,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jcbTelefono = new javax.swing.JComboBox<>();
         jtxTelefonoo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnHabilitar = new javax.swing.JButton();
@@ -142,10 +144,10 @@ public class MenuGeneral extends javax.swing.JFrame {
         jbGuardarProNuevo = new javax.swing.JButton();
         jbCancelarProNuevo = new javax.swing.JButton();
         jcbListaProductos = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
+        jbActualizarTProdu = new javax.swing.JButton();
         jpInicioCompra = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtTablaDetalle = new javax.swing.JTable();
@@ -519,10 +521,10 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Desabilitar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnDeshabilitar.setText("Deshabilitar");
+        btnDeshabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnDeshabilitarActionPerformed(evt);
             }
         });
 
@@ -563,6 +565,10 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jcbTelefono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+54 9" }));
 
+        jLabel7.setText("Cod. de Area:");
+
+        jLabel8.setText("Num. Telefono");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -580,23 +586,28 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel18)
                                     .addComponent(jLabel19))
-                                .addGap(76, 76, 76)
+                                .addGap(57, 57, 57)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel21)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(110, 110, 110)
-                                                .addComponent(btnCancelar)))
-                                        .addComponent(jtxRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtxDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnCancelar))))
+                                    .addComponent(jtxRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jcbTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jtxTelefono))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtxTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jtxTelefonoo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jtxTelefonoo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8)))
+                                    .addComponent(jtxDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,7 +622,11 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jtxDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jtxTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -679,7 +694,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnHabilitar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnEliminar))
+                                .addComponent(btnDeshabilitar))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpInivioProveedorLayout.createSequentialGroup()
                         .addGap(362, 362, 362)
@@ -697,8 +712,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGap(136, 136, 136)
                         .addComponent(jcbNoActivos)))
                 .addGap(125, 125, 125)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(393, Short.MAX_VALUE))
         );
         jpInivioProveedorLayout.setVerticalGroup(
             jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -721,7 +736,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminar)
+                            .addComponent(btnDeshabilitar)
                             .addComponent(btnModificar)
                             .addComponent(jButton2)
                             .addComponent(btnHabilitar)
@@ -861,13 +876,6 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         jCheckBox1.setText("Listar mas caro");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -886,6 +894,13 @@ public class MenuGeneral extends javax.swing.JFrame {
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox3ActionPerformed(evt);
+            }
+        });
+
+        jbActualizarTProdu.setText("Actualiazar Tabla");
+        jbActualizarTProdu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarTProduActionPerformed(evt);
             }
         });
 
@@ -912,35 +927,31 @@ public class MenuGeneral extends javax.swing.JFrame {
                                         .addComponent(jCheckBox1)
                                         .addGap(104, 104, 104)
                                         .addComponent(jCheckBox2)))
-                                .addGroup(jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpInicioProductoLayout.createSequentialGroup()
-                                        .addGap(62, 62, 62)
-                                        .addComponent(jToggleButton1))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioProductoLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jCheckBox3))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCheckBox3))
                             .addGroup(jpInicioProductoLayout.createSequentialGroup()
                                 .addComponent(jbNuevoP)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbModificarP)
+                                .addGap(125, 125, 125)
+                                .addComponent(jbActualizarTProdu)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbEliminarP))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addComponent(jpNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(524, Short.MAX_VALUE))
         );
         jpInicioProductoLayout.setVerticalGroup(
             jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInicioProductoLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jlProductoTitulo)
-                .addGap(55, 55, 55)
+                .addGap(58, 58, 58)
                 .addGroup(jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProductos)
-                    .addComponent(jcbListaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addGap(32, 32, 32)
+                    .addComponent(jcbListaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2)
@@ -951,10 +962,11 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGroup(jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevoP)
                     .addComponent(jbModificarP)
-                    .addComponent(jbEliminarP))
+                    .addComponent(jbEliminarP)
+                    .addComponent(jbActualizarTProdu))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioProductoLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jpNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
@@ -1292,15 +1304,14 @@ public class MenuGeneral extends javax.swing.JFrame {
         
         
         jtpEscritorio.setSelectedIndex(1);
-        jPanel1.setVisible(false); 
-        borrarFila2();
-        btnModificar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        btnHabilitar.setEnabled(false);
-       
+        jPanel1.setVisible(false);       
  
         List<Proveedor> listaTablaProveedor = new ArrayList<>(proveedorData.listarProveedores());
         cargarDatosEnTablaProveedor(listaTablaProveedor);
+        
+        btnModificar.setEnabled(false);
+        btnDeshabilitar.setEnabled(false);
+        btnHabilitar.setEnabled(false);
         
     }//GEN-LAST:event_jpProveedorMouseClicked
     
@@ -1316,10 +1327,10 @@ public class MenuGeneral extends javax.swing.JFrame {
             List<Producto> listaComboProducto = new ArrayList<>(productoData.listaProductos());
             listaComboProducto(listaComboProducto);
         }
-        if(!listaProducto){
+
             List<Producto> listaTablaProducto = new ArrayList<>(productoData.listaProductos());
             listaProducto(listaTablaProducto);
-        }
+  
         jbModificarP.setEnabled(false);
         jpNuevoProducto.setVisible(false);
         jbEliminarP.setEnabled(false);
@@ -1468,7 +1479,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnDeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshabilitarActionPerformed
        int filaSeleccionada = jtProveedor.getSelectedRow();
        
        
@@ -1476,20 +1487,20 @@ public class MenuGeneral extends javax.swing.JFrame {
         Boolean estado = (Boolean) modelo2.getValueAt(filaSeleccionada, 4);
         String razonSocial = (String) modelo2.getValueAt(filaSeleccionada, 1);
         if(estado == false){
-            JOptionPane.showMessageDialog(null, "El proveedor: "+razonSocial+" ya se encuentra Eliminado", razonSocial, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El proveedor: "+razonSocial+" ya se encuentra Deshabilitado", razonSocial, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
      // JOptionPane para confirmar
         int opcion = JOptionPane.showConfirmDialog( 
                 null,
-                "Estas seguro de ELIMINAR el proveedor: " + razonSocial,
+                "Estas seguro de Deshabilitar el proveedor: " + razonSocial,
                 "Confirmar", 
                 JOptionPane.YES_NO_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {
             
             proveedorData.eliminarProveedor(razonSocial);
-            JOptionPane.showMessageDialog(null, "Eliminado Correctamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Deshabilitado Correctamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
             List<Proveedor> prove = new ArrayList<>(proveedorData.listarProveedores());
             cargarDatosEnTablaProveedor(prove);
         } else {
@@ -1498,11 +1509,13 @@ public class MenuGeneral extends javax.swing.JFrame {
             
         }
     } else {
-        JOptionPane.showMessageDialog(null, "Seleccione un proveedor para ELIMINAR.", "Error", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Seleccione un proveedor para DESHABILITAR.", "Error", JOptionPane.INFORMATION_MESSAGE);
     }
-       
+       btnModificar.setEnabled(false);
+        btnHabilitar.setEnabled(false);
+        btnDeshabilitar.setEnabled(false);
         
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnDeshabilitarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
        int filaSeleccionada = jtProveedor.getSelectedRow();      
@@ -1534,6 +1547,9 @@ public class MenuGeneral extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(null, "Seleccione un proveedor para modificar.", "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+        btnModificar.setEnabled(false);
+        btnHabilitar.setEnabled(false);
+        btnDeshabilitar.setEnabled(false);
        
     }//GEN-LAST:event_btnModificarActionPerformed
     
@@ -1616,12 +1632,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Calcelado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
             listaProductoCompra();
             jpNuevoProducto.setVisible(false);
-        } 
-            
-            
-        
-        
-        
+        }        
     }//GEN-LAST:event_jbCancelarProNuevoActionPerformed
 
     private void jcbListaProductosActionPerformed(java.awt.event.ActionEvent evt) {                                                  
@@ -1670,11 +1681,16 @@ public class MenuGeneral extends javax.swing.JFrame {
                     
             productoData.modificarProducto(producto);
             JOptionPane.showMessageDialog(null, "Producto modificado Correctamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            
+           List<Producto> listaTablaProducto = new ArrayList<>(productoData.listaProductos());
+           listaProducto(listaTablaProducto);
         } else{
             JOptionPane.showMessageDialog(null, "El producto no se a modificado.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
         }
             
         }
+        jbModificarP.setEnabled(false);
+        jbEliminarP.setEnabled(false);
     }//GEN-LAST:event_jbModificarPActionPerformed
 
     
@@ -1763,7 +1779,7 @@ public class MenuGeneral extends javax.swing.JFrame {
        
        if(indice != -1){
           
-          String name = (String) modelo.getValueAt(indice, 1);
+         String name = (String) modelo.getValueAt(indice, 1);
          int opcion = JOptionPane.showConfirmDialog( 
                 null,
                 "Estas seguro de eliminar el producto "+name,
@@ -1773,16 +1789,21 @@ public class MenuGeneral extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             
            String id = (String) modelo.getValueAt(indice, 0);
-           productoData.eliminarProducto(id);
+           productoData.eliminarProducto(id);           
            
-            JOptionPane.showMessageDialog(null, "El producto a sido eliminado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null, "El producto a sido eliminado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+           
+           List<Producto> listaTablaProducto = new ArrayList<>(productoData.listaProductos());
+           listaProducto(listaTablaProducto);
         } else {
             
             JOptionPane.showMessageDialog(null, " No se ha eliminado el producto "+name+".", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
             
         }
         }
-        // TODO add your handling code here:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        jbModificarP.setEnabled(false);
+        jbEliminarP.setEnabled(false);
+        
     }//GEN-LAST:event_jbEliminarPActionPerformed
 
     private void jtTablaCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaCompraMouseClicked
@@ -1810,7 +1831,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     private void jtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProveedorMouseClicked
         btnModificar.setEnabled(true);
-        btnEliminar.setEnabled(true);
+        btnDeshabilitar.setEnabled(true);
         btnHabilitar.setEnabled(true);
     }//GEN-LAST:event_jtProveedorMouseClicked
 
@@ -1861,6 +1882,9 @@ public class MenuGeneral extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(null, "Seleccione un proveedor para HABILITAR.", "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+        btnModificar.setEnabled(false);
+        btnHabilitar.setEnabled(false);
+        btnDeshabilitar.setEnabled(false);
     }//GEN-LAST:event_btnHabilitarActionPerformed
 
     private void jcbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActivosActionPerformed
@@ -1901,8 +1925,14 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbNoActivosActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
         List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedores());
         cargarDatosEnTablaProveedor(listita);
+        jtxBuscarProveedor.setText("");
+        btnModificar.setEnabled(false);
+        btnHabilitar.setEnabled(false);
+        btnDeshabilitar.setEnabled(false);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1946,6 +1976,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar fechas validas", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        jdcCompraFecha1.setDate(null);
+        jdcCompraFecha2.setDate(null);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1959,11 +1991,10 @@ public class MenuGeneral extends javax.swing.JFrame {
          listaDetalle(detallito);
         }
         
+        jdcCompraFecha1.setDate(null);
+        jdcCompraFecha2.setDate(null);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -1986,6 +2017,17 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void jtRepositorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRepositorioMouseClicked
         jbtnRellenarStock.setEnabled(true);
     }//GEN-LAST:event_jtRepositorioMouseClicked
+
+    private void jbActualizarTProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarTProduActionPerformed
+        // TODO add your handling code here:        
+
+            List<Producto> carrito = new ArrayList<>(productoData.listaProductos());
+            listaProducto(carrito);
+            
+            jbModificarP.setEnabled(false);
+        jbEliminarP.setEnabled(false);
+
+    }//GEN-LAST:event_jbActualizarTProduActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2136,10 +2178,10 @@ public class MenuGeneral extends javax.swing.JFrame {
         listaRepoIni = true;        
     }
     
-    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {
+    private void cargarDatosEnTablaProveedor(List<Proveedor> proveedores) {        
         
-        modelo2.setRowCount(0);
         modelo2 = (DefaultTableModel) jtProveedor.getModel();
+        modelo2.setRowCount(0);
         
         for (Proveedor proveedor : proveedores) {
         
@@ -2156,15 +2198,18 @@ public class MenuGeneral extends javax.swing.JFrame {
     
     private void listaProducto(List<Producto> productos){
         
-        for(Producto prod : productos ){
-            Object[] rowData = {
-                prod.getNombre(),
-                prod.getDescripcion(),
-                prod.getPrecio()
-            };
-            modelo.addRow(rowData);
+        modelo.setRowCount(0);
+        modelo = (DefaultTableModel) jtTablaProducto.getModel();
+        
+        for (Producto produ : productos) {
+        
+        Object[] rowData = {
+            produ.getNombre(),
+            produ.getDescripcion(),
+            produ.getPrecio()
+        };        
+        modelo.addRow(rowData);
         }
-        listaProducto = true;
     }
     
     
@@ -2235,9 +2280,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void listaComboProveedor(){
-        
-        proveedores = new ArrayList<>();
-        proveedores = proveedorData.listarProveedores();
+        jcbNuevaCProveedor.removeAllItems();
+        proveedores = new ArrayList<>();        
+        proveedores.add(new Proveedor("---- SELECCIONAR ----","","",false));
+        proveedores.addAll(proveedorData.listarProveedores());
         
         for(Proveedor lista : proveedores){
             jcbNuevaCProveedor.addItem(lista);
@@ -2246,9 +2292,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     }
     
     private void listaProductoCompra(){
-        
+        jcbNuevaCProducto.removeAllItems();
         productos = new ArrayList<>();
-        productos = productoData.listaProductos();
+        productos.add(new Producto("---- SELECCIONAR ----","",0,false));
+        productos.addAll(productoData.listaProductos());
         
         for(Producto lista : productos){
             jcbNuevaCProducto.addItem(lista);
@@ -2346,7 +2393,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnDeshabilitar;
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
@@ -2368,6 +2415,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2375,7 +2424,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton jbActualizarTProdu;
     private javax.swing.JButton jbCancelarProNuevo;
     private javax.swing.JButton jbEliminarP;
     private javax.swing.JButton jbGuardarProNuevo;
