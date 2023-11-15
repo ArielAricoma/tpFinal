@@ -7,9 +7,13 @@ package Vistas;
 import AccesoADatos.UsuarioData;
 import Dominio.Usuario;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.font.TextAttribute;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -43,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jlNuevaContraseña = new javax.swing.JLabel();
         jlSuperior = new javax.swing.JLabel();
         jtLogoInicio = new javax.swing.JTabbedPane();
-        jpInicio = new javax.swing.JPanel();
+        jpInicio = new fondo();
         jlIcono = new javax.swing.JLabel();
         jpRegistro = new javax.swing.JPanel();
         jlUsuarioReg = new javax.swing.JLabel();
@@ -152,7 +156,7 @@ public class Login extends javax.swing.JFrame {
 
         jpInicio.setBackground(new java.awt.Color(2, 104, 66));
 
-        jlIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/logo icon(1).png"))); // NOI18N
+        jlIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/image.png"))); // NOI18N
 
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
         jpInicio.setLayout(jpInicioLayout);
@@ -519,4 +523,15 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuario;
     private javax.swing.JTextField jtUsuarioReg;
     // End of variables declaration//GEN-END:variables
+
+    class fondo extends JPanel{
+        private Image img;
+        
+        public void paint (Graphics g){
+            img = new ImageIcon(getClass().getResource("../RecursosVistas/s.jpg")).getImage();
+            g.drawImage(img, 0,0, getWidth(),getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }       
+    }    
 }

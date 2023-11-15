@@ -41,7 +41,7 @@ public class ProductoData {
     }
     
     public void modificarProducto(Producto produ){                
-        String sql = "UPDATE producto SET nombre = ?, descripcion = ?, stock = ?, precio = ?, estado = ? WHERE nombre = ?";
+        String sql = "UPDATE producto SET nombre = ?, descripcion = ?, stock = ?, precio = ?, estado = ? WHERE idProducto = ?";
                 
         try{
             PreparedStatement ps = conexion.prepareStatement(sql);            
@@ -51,7 +51,7 @@ public class ProductoData {
             ps.setInt(3,produ.getStock());
             ps.setDouble(4, produ.getPrecio());            
             ps.setBoolean(5, produ.isEstado());
-            ps.setString(6, produ.getNombre());
+            ps.setInt(6, produ.getIdProducto());
             
             ps.executeUpdate();
            
@@ -257,4 +257,24 @@ public class ProductoData {
         }
         return listaProducto;
     }
+    
+    public int ObtenerID (String nombre){
+        String sql = "SELECT idProducto FROM producto WHERE nombre = ?";
+        int id = 0;
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){             
+                id = rs.getInt("idProducto");
+            }     
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
 }
+    
+
