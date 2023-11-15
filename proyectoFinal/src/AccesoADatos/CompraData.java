@@ -80,6 +80,41 @@ public class CompraData {
         return listado;
         
     }
+    
+  public List<Compra> listarComprasPorProveedor(String razonSocial) {
+    String sql = "SELECT c.*, p.* FROM compra c " +
+                 "JOIN proveedor p ON c.idProveedor = p.idProveedor " +
+                 "WHERE p.razonSocial = ? AND p.estado = 1";
+
+    List<Compra> listaCompras = new ArrayList<>();
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setString(1, razonSocial);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int idCompra = rs.getInt("idCompra");
+            int idProveedor = rs.getInt("idProveedor");
+            LocalDate fecha = rs.getDate("fecha").toLocalDate();
+            boolean estadoCompra = rs.getBoolean("estado");
+
+            
+            Proveedor proveedor = new Proveedor(idProveedor,rs.getString("razonSocial"),rs.getString("domicilio"),rs.getString("telefono"),rs.getBoolean("estado"));
+  
+            Compra compra = new Compra(proveedor, fecha, estadoCompra);
+            listaCompras.add(compra);
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al listar compras por proveedor");
+    }
+
+    return listaCompras;
+}
+    
      
     public List<Compra> entreFechas(LocalDate inicio, LocalDate fin){        
         String sql = "SELECT * FROM compra WHERE fecha BETWEEN ? AND ?";
