@@ -183,8 +183,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlCompraSeleccionar = new javax.swing.JLabel();
         jlCompraY = new javax.swing.JLabel();
         jbNuevaCompra = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnBuscarFecha = new javax.swing.JButton();
+        jbtnActualizaTabla = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnComprasXProveedor = new javax.swing.JButton();
@@ -1163,17 +1163,17 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Buscar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarFecha.setText("Buscar");
+        btnBuscarFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBuscarFechaActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Actualizar Tablas");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jbtnActualizaTabla.setText("Actualizar Tablas");
+        jbtnActualizaTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jbtnActualizaTablaActionPerformed(evt);
             }
         });
 
@@ -1189,6 +1189,12 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jtfCompraXProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtfCompraXProductoMouseClicked(evt);
+            }
+        });
+
         jtfComprasXProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtfComprasXProveedorMouseClicked(evt);
@@ -1201,6 +1207,12 @@ public class MenuGeneral extends javax.swing.JFrame {
         });
 
         btnComprasXProducto.setText("Buscar");
+        btnComprasXProducto.setEnabled(false);
+        btnComprasXProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasXProductoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpInicioCompraLayout = new javax.swing.GroupLayout(jpInicioCompra);
         jpInicioCompra.setLayout(jpInicioCompraLayout);
@@ -1220,7 +1232,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                             .addGroup(jpInicioCompraLayout.createSequentialGroup()
                                 .addComponent(jbNuevaCompra)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5))))
+                                .addComponent(jbtnActualizaTabla))))
                     .addGroup(jpInicioCompraLayout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1247,7 +1259,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addGap(21, 21, 21)
                                 .addComponent(jdcCompraFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton4)))))
+                                .addComponent(btnBuscarFecha)))))
                 .addGap(122, 122, 122)
                 .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(671, Short.MAX_VALUE))
@@ -1265,7 +1277,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                             .addComponent(jdcCompraFecha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jdcCompraFecha2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlCompraY, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnBuscarFecha, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(38, 38, 38)
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -1281,13 +1293,13 @@ public class MenuGeneral extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlCompraTabla))
                 .addGap(35, 35, 35)
-                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCompraDetalleCTabla, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbNuevaCompra)
-                        .addComponent(jButton5)))
+                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbNuevaCompra)
+                    .addComponent(jbtnActualizaTabla))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlCompraDetalleCTabla))
                 .addGap(62, 62, 62))
             .addGroup(jpInicioCompraLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
@@ -1929,8 +1941,14 @@ public class MenuGeneral extends javax.swing.JFrame {
             detalleData.registrarDetalleCompra(detalle);
 
             JOptionPane.showMessageDialog(null, "Compra realizada con EXITO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            jbtnActualizaTabla.setEnabled(true);
+            btnBuscarFecha.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(null, "Compra cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+            jbtnActualizaTabla.setEnabled(true);
+            btnBuscarFecha.setEnabled(true);
+            jtfCompraXProducto.setEnabled(true);
+            jtfComprasXProveedor.setEnabled(true);
         }
 
         limpiarCompra();
@@ -1944,18 +1962,28 @@ public class MenuGeneral extends javax.swing.JFrame {
             listaCompra(listaAux);
             List<DetalleCompra> listaAuxDetalle = new ArrayList<>(detalleData.listaDetalles());
             listaDetalle(listaAuxDetalle);
+            jbtnActualizaTabla.setEnabled(true);
+        btnBuscarFecha.setEnabled(true);
+        jtfCompraXProducto.setEnabled(true);
+        jtfComprasXProveedor.setEnabled(true);
         }
-
+        jbtnActualizaTabla.setEnabled(true);
+        btnBuscarFecha.setEnabled(true);
+        jtfCompraXProducto.setEnabled(true);
+        jtfComprasXProveedor.setEnabled(true);
         jpnewCompra.setVisible(false);
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Error en formato de precio o cantidad. Deben ser numeros validos.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
     }//GEN-LAST:event_jbNuevaCComprarActionPerformed
 
     private void jbNuevaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCompraActionPerformed
-        // TODO add your handling code here:
-        jpnewCompra.setVisible(true);
         
+        jpnewCompra.setVisible(true);
+        desactivarBotonesProducto();
+        modelo4.setRowCount(0);
+        modelo2.setRowCount(0);
         if(!comboProveedor && !comboProducto){
              listaComboProveedor(); 
              listaProductoCompra();
@@ -2141,7 +2169,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnActualizarTablaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBuscarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFechaActionPerformed
         Date date1 = jdcCompraFecha1.getDate();
         Date date2 = jdcCompraFecha2.getDate();
 
@@ -2185,9 +2213,9 @@ public class MenuGeneral extends javax.swing.JFrame {
         jdcCompraFecha1.setDate(null);
         jdcCompraFecha2.setDate(null);
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnBuscarFechaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jbtnActualizaTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnActualizaTablaActionPerformed
         listaCompra = false; listaDetalle = false;
         if(!listaCompra && !listaDetalle){
           borrarFilaCompra();  
@@ -2200,7 +2228,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jdcCompraFecha1.setDate(null);
         jdcCompraFecha2.setDate(null);
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jbtnActualizaTablaActionPerformed
 
     private void jcbMasBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMasBajoActionPerformed
         List<Producto> listita = productoData.listarProductoMenor();  
@@ -2321,6 +2349,41 @@ public class MenuGeneral extends javax.swing.JFrame {
         btnHabilitar.setEnabled(false);
         btnDeshabilitar.setEnabled(false);
     }//GEN-LAST:event_jtxBuscarProveedorMouseClicked
+
+    private void btnComprasXProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasXProductoActionPerformed
+        String productoIngresado = jtfCompraXProducto.getText();
+
+            if(productoIngresado.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe ingresar un produto para poder buscar.", "Error", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else if (productoIngresado.length() > 20) {           
+                JOptionPane.showMessageDialog(null, "Debe ingresar un producto valido", "Error", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else if(contieneLetrasYEspacios(productoIngresado)) {
+                proveedor = new Proveedor();
+                proveedor = proveedorData.buscarProveedorNombre(productoIngresado);
+
+                if(proveedor == null){
+                    JOptionPane.showMessageDialog(null, "El producto ingresado no existe.", "Inexistente", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                try {
+                    List<Compra> listita = new ArrayList<>();
+                    modelo3.setRowCount(0);
+                    listita = compraData.listarComprasPorProveedor(productoIngresado);
+                    listaCompra(listita);
+                } catch (NullPointerException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al procesar la lista de compras. " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "El proveedor contiene caracteres invalidos.", "Error!", JOptionPane.INFORMATION_MESSAGE);
+            }
+    }//GEN-LAST:event_btnComprasXProductoActionPerformed
+
+    private void jtfCompraXProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfCompraXProductoMouseClicked
+        btnComprasXProducto.setEnabled(true);
+    }//GEN-LAST:event_jtfCompraXProductoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2744,8 +2807,16 @@ public class MenuGeneral extends javax.swing.JFrame {
         jcbNoActivos.setEnabled(false);
         btnBuscarProveedor.setEnabled(false); 
     }
-    
    
+   private void desactivarBotonesProducto(){
+        jbtnActualizaTabla.setEnabled(false);
+        jtfCompraXProducto.setEnabled(false);
+        jtfComprasXProveedor.setEnabled(false);
+        btnBuscarFecha.setEnabled(false);
+        jtTablaCompra.setEnabled(false);
+        jtTablaDetalle.setEnabled(false);
+   
+   }
     
      private void cerrarSesion() {
         int opcion = JOptionPane.showConfirmDialog(
@@ -2766,6 +2837,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarTabla;
+    private javax.swing.JButton btnBuscarFecha;
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnComprasXProducto;
@@ -2775,8 +2847,6 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2809,6 +2879,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JButton jbNuevaCComprar;
     private javax.swing.JButton jbNuevaCompra;
     private javax.swing.JButton jbNuevoP;
+    private javax.swing.JButton jbtnActualizaTabla;
     private javax.swing.JButton jbtnGuardarNewProveedor;
     private javax.swing.JButton jbtnRellenarStock;
     private javax.swing.JCheckBox jcbActivos;

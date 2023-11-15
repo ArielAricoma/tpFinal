@@ -24,7 +24,8 @@ public class CompraData {
     private Compra compra = null;
     private Proveedor proveedor = null;
     private ProveedorData proveedorData = new ProveedorData();
-    
+    private DetalleCompra detalleCompra = null;
+    private Producto producto = null;
     public CompraData() {
        conexion= Conexion.conectar();
     }
@@ -106,10 +107,15 @@ public class CompraData {
       return compra; 
     }   
     
+  
+
+
+    
+    
   public List<Compra> listarComprasPorProveedor(String razonSocial) {
-    String sql = "SELECT c.*, p.* FROM compra c " +
-                 "JOIN proveedor p ON c.idProveedor = p.idProveedor " +
-                 "WHERE p.razonSocial = ? AND p.estado = 1";
+    String sql = "SELECT compra.*, proveedor.* FROM compra  " +
+                 "JOIN proveedor ON (compra.idProveedor = proveedor.idProveedor) " +
+                 "WHERE proveedor.razonSocial = ? AND proveedor.estado = 1";
 
     List<Compra> listaCompras = new ArrayList<>();
 
