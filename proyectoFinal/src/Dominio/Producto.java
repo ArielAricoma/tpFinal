@@ -6,8 +6,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private int stock;
-    private double precio;
-    
+    private double precio;    
     private boolean estado;
 
     public Producto(int idProducto, String nombre, String descripcion, int stock, double precio, boolean estado) {

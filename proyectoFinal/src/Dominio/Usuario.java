@@ -9,7 +9,7 @@ public class Usuario {
     private String contrasena;
     private String correoElec;
     private boolean estado;
-//idUsuario, nombreCuenta, contrasena, correoElec, estado
+
     public Usuario(int idUsuario, String nombreCuenta, String contrasena, String correoElec, boolean estado) {
         this.idUsuario = idUsuario;
         this.nombreCuenta = nombreCuenta;

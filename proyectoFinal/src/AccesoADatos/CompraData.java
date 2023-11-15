@@ -104,10 +104,7 @@ public class CompraData {
         }
     
       return compra; 
-    }
-    
-    
-    
+    }   
     
   public List<Compra> listarComprasPorProveedor(String razonSocial) {
     String sql = "SELECT c.*, p.* FROM compra c " +
@@ -226,14 +223,14 @@ public class CompraData {
         
     }
     
-    public List<Producto> listarCompraporProducto(int idProveedor){
+    public List<Producto> listarCompraporProducto(int idProducto){
         String sql = "SELECT * FROM producto WHERE idProducto = ? AND estado = 1";
         ArrayList<Producto> listado = new ArrayList<>();
         
         try {
             
             PreparedStatement lista = conexion.prepareStatement(sql);
-            lista.setInt(1,idProveedor);
+            lista.setInt(1,idProducto);
             ResultSet rs = lista.executeQuery();
             
             while(rs.next()){

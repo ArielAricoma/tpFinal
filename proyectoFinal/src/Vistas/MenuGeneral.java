@@ -1977,8 +1977,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNuevaCCancelarActionPerformed
 
     private void jbEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarPActionPerformed
-       int indice = jtTablaProducto.getSelectedRow();
-      
+       int indice = jtTablaProducto.getSelectedRow();      
        
        if(indice != -1){
           
