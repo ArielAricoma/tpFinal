@@ -81,6 +81,34 @@ public class CompraData {
         
     }
     
+    public Compra ultimaCompra(){
+       String sql = "SELECT * FROM Compra WHERE idCompra = (SELECT MAX(idCompra) FROM Compra)";
+        
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idProveedor = rs.getInt("idProveedor");
+                LocalDate fecha = LocalDate.parse(rs.getString("fecha")); 
+                boolean estado = rs.getBoolean("estado");
+
+                
+                Proveedor proveedor = proveedorData.buscarProveedor(idProveedor);
+
+                compra = new Compra(proveedor, fecha, estado);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+      return compra; 
+    }
+    
+    
+    
+    
   public List<Compra> listarComprasPorProveedor(String razonSocial) {
     String sql = "SELECT c.*, p.* FROM compra c " +
                  "JOIN proveedor p ON c.idProveedor = p.idProveedor " +

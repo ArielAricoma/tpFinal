@@ -1457,7 +1457,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbtnGuardarNewProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarNewProveedorActionPerformed
-       
+      
+        // Obtencion de los datos del proveedor desde los textfield.
         String razonSocial = jtxRazonSocial.getText();
         String domicilio = jtxDomicilio.getText();
         String numeroTelefono = jtxTelefonoo.getText();
@@ -1465,34 +1466,37 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         int codigoAreaPais = jcbTelefono.getSelectedIndex();
 
-        // verificaciones de campos.
+        // // Verificaciones de camposs
+        
+        //PRimera verificacion: verifica que los campos esten lenos, si estos estan vacios entra al if.
         if (razonSocial.isEmpty() || domicilio.isEmpty() || numeroTelefono.isEmpty() || codigoDeArea.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Es necesario llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //el try, esta por que toma la exception: NumberFormatException.
         try {
+            //Segunda: verifica si contiene numeros el campo de razonSocial
             if (verificarSiHayNumeros(razonSocial)) {
                 JOptionPane.showMessageDialog(null, "La razon social no debe contener numeros.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            //tercera: verifica el tamaño del string ingresado
             if (numeroTelefono.length() != 7) {
                 JOptionPane.showMessageDialog(null, "El numero de telefono debe contener exactamente 7 digitos.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            //cuarta: verificacion para que el numero ingresado sea mayot que 0
             int numeroTelefonoEntero = Integer.parseInt(numeroTelefono);
             if (numeroTelefonoEntero < 0) {
                 JOptionPane.showMessageDialog(null, "El numero de telefono debe ser un numero positivo.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            //quintaa: verifica el tamaño del string ingresado
             if (codigoDeArea.length() != 3) {
                 JOptionPane.showMessageDialog(null, "El codigo de area debe contener exactamente 3 digitos.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            //sexta: verificacion para que el numero ingresado sea mayot que 0
             int codigoDeAreaEntero = Integer.parseInt(codigoDeArea);
             if (codigoDeAreaEntero < 0) {
                 JOptionPane.showMessageDialog(null, "El codigo de area debe ser un numero positivo.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1502,7 +1506,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El codigo de area o el numero de telefono no deben contener caracteres no numericos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //Verificacion del limite de domicilio.
         if (domicilio.length() > 100) {
             JOptionPane.showMessageDialog(null, "Usted a ingresado: " + domicilio.length() + " caracteres y el limite es de 100.", "Error", JOptionPane.ERROR_MESSAGE);
             jtxDomicilio.setText(" ");
@@ -1516,13 +1520,15 @@ public class MenuGeneral extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (opcion == JOptionPane.YES_OPTION) {
+            //busca proveedor
             proveedor = proveedorData.buscarProveedorNombre(razonSocial);
-
-            if (proveedor != null && proveedor.getRazonSocial().equals(razonSocial)) {
+             // Basicamente el if es para verificar si existe o no el proveedor, si existe muestrar un mensaje de error si no, continua con else
+            if (proveedor != null && razonSocial.equals(proveedor.getRazonSocial())) {
                 JOptionPane.showMessageDialog(null, "Ya existe un proveedor: " + razonSocial, "Error", JOptionPane.ERROR_MESSAGE);
                 List<Proveedor> lista = new ArrayList<>(proveedorData.listarProveedores());
                 cargarDatosEnTablaProveedor(lista);
-            } else {
+                //crea el nuevo proveedor, carga los datos y actualiza la tabla
+             } else {
                 String telefono = "+54 9-" + codigoDeArea + "-" + numeroTelefono;
                 proveedor = new Proveedor(razonSocial, domicilio, telefono, true);
                 proveedorData.agregarProveedor(proveedor);
@@ -1540,6 +1546,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cambios cancelados.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
 
         }
+        //una vez realizado todo se vuelven a habilitar los bontones.
         btnActualizarTabla.setEnabled(true);
         jcbActivos.setEnabled(true);  
         jcbNoActivos.setEnabled(true);
@@ -2204,7 +2211,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbMasBajoActionPerformed
 
     private void jcbListarAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbListarAltoActionPerformed
-        // TODO add your handling code here:
+        System.out.println("");
+        
+       compra = new Compra();
+       compraData.ultimaCompra();
     }//GEN-LAST:event_jcbListarAltoActionPerformed
 
     private void jcbMasCompradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMasCompradoActionPerformed
