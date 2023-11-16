@@ -6,6 +6,7 @@ package Vistas;
 
 import AccesoADatos.UsuarioData;
 import Dominio.Usuario;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,6 +15,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -446,6 +448,9 @@ public class Login extends javax.swing.JFrame {
             
             MenuGeneral menugeneral = new MenuGeneral();
             menugeneral.setVisible(true); 
+            UIManager.put("nimbusBase", new Color(17,120,100));
+            UIManager.put("nimbusSelectionBackground", new Color(115, 198, 182 ));
+            UIManager.put("control", new Color(223, 243, 237  ));
             menugeneral.labelUsuario(nombre);
         }      
     }//GEN-LAST:event_jbIniciarActionPerformed
