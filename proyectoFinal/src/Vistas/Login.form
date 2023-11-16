@@ -165,6 +165,10 @@
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(){&#xa;public void paintComponent(Graphics g){&#xa;        g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono=new ImageIcon(getClass().getResource(&quot;../RecursosVistas/sd.jpg&quot;));&#xa;Image miImagen=icono.getImage();"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jtLogoInicio">
 
@@ -177,7 +181,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fondo()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">

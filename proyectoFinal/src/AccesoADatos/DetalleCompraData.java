@@ -36,7 +36,7 @@ public class DetalleCompraData {
             ps.executeUpdate();
             
         } catch (SQLException ex) {           
-            JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
+            JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra");
         }    
      }
     
@@ -64,7 +64,7 @@ public class DetalleCompraData {
         }
 
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra", "Error", 0);
+        JOptionPane.showMessageDialog(null, "Error al conectar con DetalleCompra");
     }
     
     return compra;

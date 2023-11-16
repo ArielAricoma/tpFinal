@@ -45,9 +45,16 @@ public class Login extends javax.swing.JFrame {
         jbIniciar = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
         jlNuevaContraseña = new javax.swing.JLabel();
-        jlSuperior = new javax.swing.JLabel();
+        ImageIcon icono=new ImageIcon(getClass().getResource("../RecursosVistas/sd.jpg"));
+        Image miImagen=icono.getImage();
+        jlSuperior = new javax.swing.JLabel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jtLogoInicio = new javax.swing.JTabbedPane();
-        jpInicio = new fondo();
+        jpInicio = new Fondo();
         jlIcono = new javax.swing.JLabel();
         jpRegistro = new javax.swing.JPanel();
         jlUsuarioReg = new javax.swing.JLabel();
@@ -524,14 +531,15 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuarioReg;
     // End of variables declaration//GEN-END:variables
 
-    class fondo extends JPanel{
+    class Fondo extends JPanel{
         private Image img;
         
         public void paint (Graphics g){
-            img = new ImageIcon(getClass().getResource("../RecursosVistas/s.jpg")).getImage();
+            img = new ImageIcon(getClass().getResource("../RecursosVistas/sd.jpg")).getImage();
             g.drawImage(img, 0,0, getWidth(),getHeight(),this);
             setOpaque(false);
             super.paint(g);
         }       
     }    
+   
 }

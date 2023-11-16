@@ -66,7 +66,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fondo()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
       </AuxValues>
 
       <Layout>
@@ -137,7 +137,7 @@
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpPrincipalMouseExited"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fondo()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
           </AuxValues>
 
           <Layout>
@@ -196,6 +196,9 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpProveedorMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpProveedorMouseExited"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -249,6 +252,9 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpProductoMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpProductoMouseExited"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -302,6 +308,9 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpCompraMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpCompraMouseExited"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -357,7 +366,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new fondo()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Fondo()"/>
       </AuxValues>
 
       <Layout>
@@ -367,13 +376,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel9" pref="1285" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel5" min="-2" pref="110" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jlabelUsuario" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlabelUsuario" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jButton6" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -393,13 +402,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" pref="54" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jlabelUsuario" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlabelUsuario" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -435,7 +444,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jLabel7"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
@@ -1004,9 +1012,9 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="157" max="32767" attributes="0"/>
+                      <EmptySpace pref="156" max="32767" attributes="0"/>
                       <Component id="jpNuevoProducto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="532" max="32767" attributes="0"/>
+                      <EmptySpace pref="530" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1171,8 +1179,8 @@
                               <Component id="jtNuevoPDescripcion" min="-2" pref="196" max="-2" attributes="0"/>
                               <Component id="jtNuevoPNombre" min="-2" pref="143" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jtNuevoPPrecio" alignment="0" pref="56" max="32767" attributes="0"/>
                                   <Component id="jtNuevoPStock" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtNuevoPPrecio" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
