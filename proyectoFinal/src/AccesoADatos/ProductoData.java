@@ -314,58 +314,10 @@ public class ProductoData {
     }
     
     
-    // debatir metodo----------------------------------------------------------------------
+  
     
     
-    public List<DetalleCompra> listarProductos(int idProveedor){
-        String sql = "SELECT producto.nombre, producto.descripcion, producto.precio, detalleCompra.cantidad" +
-                " FROM proveedor JOIN compra ON (proveedor.idProveedor = compra.idProveedor) JOIN detallecompra ON (compra.idCompra = detallecompra.idCompra )" + 
-                " JOIN producto ON (detallecompra.idProducto = producto.idProducto)WHERE proveedor.idProveedor = ? AND producto.estado = 1"; 
-        
-        List<DetalleCompra>listaProducto = new ArrayList(); 
-        try{
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idProveedor);            
-            ResultSet rs = ps.executeQuery();
-            DetalleCompra detalleCompra = null;
-
-            while(rs.next()){
-              
-                detalleCompra = new DetalleCompra();
-                producto = new Producto();
-                producto.setNombre(rs.getString("nombre"));
-                producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-                detalleCompra.setCantidad(rs.getInt("cantidad"));
-                
-                detalleCompra.setIdProducto(producto);               
-                
-                listaProducto.add(detalleCompra);
-                
-            }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"No hay Productos");
-        }
-        return listaProducto;
-    }
     
-    public int ObtenerID (String nombre){
-        String sql = "SELECT idProducto FROM producto WHERE nombre = ?";
-        int id = 0;
-        try {
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre);
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){             
-                id = rs.getInt("idProducto");
-            }     
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return id;
-    }
 }
     
 

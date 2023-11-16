@@ -108,9 +108,6 @@ public class CompraData {
     }   
     
   
-
-
-    
     
   public List<Compra> listarComprasPorProveedor(String razonSocial) {
     String sql = "SELECT compra.*, proveedor.* FROM compra  " +

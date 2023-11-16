@@ -1832,10 +1832,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                     lista.getStock(),
                     lista.getPrecio()});
             }
-        } else {
-            
-            JOptionPane.showMessageDialog(null,"No se a seleccionado ningun Producto","",JOptionPane.INFORMATION_MESSAGE);
-        }    
+        }  
         }                                                     
 
     private void jtTablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaProductoMouseClicked
@@ -2307,7 +2304,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     
     
-    
+    //-----------------------------------------------------------------------------------------------------------------------PRINCIPAL
     private void jbtnRellenarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRellenarStockActionPerformed
         jtpEscritorio.setSelectedIndex(3);
         jpnewCompra.setVisible(true);
@@ -2886,7 +2883,8 @@ public class MenuGeneral extends javax.swing.JFrame {
        jtfComprasXProveedor.setEnabled(true);       
        jbtnActualizaTabla.setEnabled(true);
    }
-    
+        
+    //-----------------------------------------------------------------------------------------------------------------------PRINCIPAL
     private void cerrarSesion() {
         int opcion = JOptionPane.showConfirmDialog(
                 null,
