@@ -3,61 +3,74 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template|
  */
 package Vistas;
-
+//librerias que contienen los metodos con las sentencias sql
 import AccesoADatos.CompraData;
 import AccesoADatos.DetalleCompraData;
 import AccesoADatos.ProductoData;
 import AccesoADatos.ProveedorData;
+
+//librerias necesarias para poder crear los objetos de la BD
 import Dominio.Compra;
 import Dominio.DetalleCompra;
 import Dominio.Producto;
 import Dominio.Proveedor;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+
+
+import java.awt.Color;//libreria necesaria para poder utilizar Nimbus(es lo que usamos para los colores)
+import java.awt.Graphics;//Esta libreria se utiliza para colocar una imagen de fondo
+import java.awt.Image;//libreria necesaria para colocar las imagenes, va de la mano con el Grapthics(Jpanel-imagenes de fondo)
+import javax.swing.ImageIcon;//necesario para realizar un objeto de tipo Icon
+
+//librerias necesarias para el uso de LocalDate y Date. 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
+
+//Necesario para crear listas
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuGeneral extends javax.swing.JFrame {
+    //son los modelos de las tablas utilizadas
     private DefaultTableModel modelo;    
     private DefaultTableModel modelo2;
     private DefaultTableModel modelo3;
     private DefaultTableModel modelo4;
     private DefaultTableModel modelo5;
+    
+    //objetos necesarios de cada AccesoADatos para poder utilizar los metodos
     private ProveedorData proveedorData = new ProveedorData();
+    private DetalleCompraData detalleData = new DetalleCompraData();  
+    private ProductoData productoData = new ProductoData();
+    private CompraData compraData = new CompraData();
+    
+    //objetos para poder utilizar los atributos de Dominio-Base Datos
     private Proveedor proveedor = null;
+    private DetalleCompra detalle = null;
+    private Compra compra = null;  
+    private Producto producto = null;
+    
+    //listas utilizadas para guardar datos
     List<Producto> productos = null;  
     List<Proveedor> proveedores = null;
-    private ProductoData productoData = new ProductoData();
-    private Producto producto = null;
+    
+    
+    //La mayoria de booleanos, los utilizamos para que las tablas se carguen una sola vez. 
     private boolean cabeceraProdIni = false;
     private boolean cabeceraCompraIni = false;
     private boolean cabeceraDetalleIni = false;
     private boolean cabeceraRepoIni = false;
-    private boolean listaProducto = false;
     private boolean listaCompra = false;
     private boolean listaDetalle = false;
     private boolean listaRepoIni = false;
     private boolean comboProveedor = false;
     private boolean comboProducto = false;
-    private boolean btnModifiProve = false;
     private boolean listaProductosCargada = false;
-    private Compra compra = null;
-    private CompraData compraData = new CompraData();
-    private DetalleCompra detalle = null;
-    private DetalleCompraData detalleData = new DetalleCompraData();    
-    private LocalDate fc = null;
-    
     
     public MenuGeneral() {        
         initComponents();         
@@ -66,7 +79,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         modelo3 = new DefaultTableModel(); 
         modelo4 = new DefaultTableModel(); 
         modelo5 = new DefaultTableModel();
-        cargaTablaIni();        
+        cargaTablaIni(); //carga la tabla principal desde que ejecuta el programa      
     }      
    
     @SuppressWarnings("unchecked")
@@ -93,7 +106,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jlabelUsuario = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
         jtpEscritorio = new javax.swing.JTabbedPane();
         jpInicio = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -106,7 +119,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         jtProveedor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jtxBuscarProveedor = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnNuevoProve = new javax.swing.JButton();
         btnDeshabilitar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -406,11 +419,11 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/electrodomestico (2).png"))); // NOI18N
 
-        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jButton6.setText("Cerrar Sesion");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSesion.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -432,7 +445,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)))
+                        .addComponent(btnCerrarSesion)))
                 .addGap(95, 330, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -451,7 +464,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jlabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6))))
+                        .addComponent(btnCerrarSesion))))
         );
 
         jtRepositorio.setModel(new javax.swing.table.DefaultTableModel(
@@ -547,10 +560,10 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Nuevo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevoProve.setText("Nuevo");
+        btnNuevoProve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNuevoProveActionPerformed(evt);
             }
         });
 
@@ -714,7 +727,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jpInivioProveedorLayout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnNuevoProve)
                                 .addGap(53, 53, 53)
                                 .addComponent(btnModificar)
                                 .addGap(104, 104, 104)
@@ -766,7 +779,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addGroup(jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDeshabilitar)
                             .addComponent(btnModificar)
-                            .addComponent(jButton2)
+                            .addComponent(btnNuevoProve)
                             .addComponent(btnHabilitar)
                             .addComponent(btnActualizarTabla))))
                 .addContainerGap(187, Short.MAX_VALUE))
@@ -1455,13 +1468,13 @@ public class MenuGeneral extends javax.swing.JFrame {
       // ------- METODOS PARA LA VENTANA PROVEEDOR ------------------------------------------
     
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnNuevoProveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveActionPerformed
         desactivarBotonesProveedor();  
         jPanel1.setVisible(true);
         jcbTelefono.setSelectedIndex(-1);
         borrarFila2();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    }//GEN-LAST:event_btnNuevoProveActionPerformed
+  
     private void jbtnGuardarNewProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarNewProveedorActionPerformed
       
         // Obtencion de los datos del proveedor desde los textfield.
@@ -1802,8 +1815,7 @@ public class MenuGeneral extends javax.swing.JFrame {
        
         activaBotonesProducto();
     }//GEN-LAST:event_jbCancelarProNuevoActionPerformed
-
-    
+  
     private void jcbListaProductosActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         
         borrarFilaProducto();        
@@ -1892,8 +1904,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_jbModificarPActionPerformed
 
     
-      // ------- METODOS PARA LA VENTANA COMPRA ---------------------------------------------
     
+      // ------- METODOS PARA LA VENTANA COMPRA ---------------------------------------------
     
     private void jbNuevaCComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaCComprarActionPerformed
     proveedor = (Proveedor) jcbNuevaCProveedor.getSelectedItem();
@@ -2034,7 +2046,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         listaProductoCompra();         
         activarBotonesCompra();        
     }//GEN-LAST:event_jbNuevaCCancelarActionPerformed
-
+ //-----------------------------------------------------------------------------------------------------------------------Producto
     private void jbEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarPActionPerformed
        int indice = jtTablaProducto.getSelectedRow();      
        
@@ -2092,12 +2104,14 @@ public class MenuGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtTablaCompraMouseClicked
 
+        //-----------------------------------------------------------------------------------------------------------------------PRoveedor
     private void jtProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProveedorMouseClicked
         btnModificar.setEnabled(true);
         btnDeshabilitar.setEnabled(true);
         btnHabilitar.setEnabled(true);
     }//GEN-LAST:event_jtProveedorMouseClicked
 
+      //-----------------------------------------------------------------------------------------------------------------------Proveedor
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
                 
         int opcion = JOptionPane.showConfirmDialog( 
@@ -2154,7 +2168,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         btnHabilitar.setEnabled(false);
         btnDeshabilitar.setEnabled(false);
     }//GEN-LAST:event_btnHabilitarActionPerformed
-
+  //-----------------------------------------------------------------------------------------------------------------------Proveedor
     private void jcbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbActivosActionPerformed
         jtxBuscarProveedor.setText("");
         btnModificar.setEnabled(false);
@@ -2178,6 +2192,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jcbActivosActionPerformed
 
+      //-----------------------------------------------------------------------------------------------------------------------Proveedor
     private void jcbNoActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNoActivosActionPerformed
             boolean activosSeleccionados = jcbNoActivos.isSelected();
             
@@ -2195,6 +2210,7 @@ public class MenuGeneral extends javax.swing.JFrame {
            }
     }//GEN-LAST:event_jcbNoActivosActionPerformed
 
+        //-----------------------------------------------------------------------------------------------------------------------Proveedor
     private void btnActualizarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTablaActionPerformed
         
         List<Proveedor> listita = new ArrayList<>(proveedorData.listarProveedores());
@@ -2272,6 +2288,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtnActualizaTablaActionPerformed
 
+    //-----------------------------------------------------------------------------------------------------------------------Producto
     private void jcbMasBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMasBajoActionPerformed
         List<Producto> listita = productoData.listarProductoMenor();  
         listaProducto(listita);
@@ -2279,6 +2296,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         btnBuscarProducto.setEnabled(false);
     }//GEN-LAST:event_jcbMasBajoActionPerformed
 
+    //-----------------------------------------------------------------------------------------------------------------------Producto
     private void jcbListarAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbListarAltoActionPerformed
       
         List<Producto> listita = productoData.listarProductoMayor();  
@@ -2315,7 +2333,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void jtRepositorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRepositorioMouseClicked
         jbtnRellenarStock.setEnabled(true);
     }//GEN-LAST:event_jtRepositorioMouseClicked
-
+//-----------------------------------------------------------------------------------------------------------------------Producto
     private void jbActualizarTProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarTProduActionPerformed
         // TODO add your handling code here:        
            
@@ -2368,6 +2386,7 @@ public class MenuGeneral extends javax.swing.JFrame {
           
     }//GEN-LAST:event_btnComprasXProveedorActionPerformed
 
+   
     private void jtfComprasXProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfComprasXProveedorMouseClicked
         btnComprasXProveedor.setEnabled(true);
     }//GEN-LAST:event_jtfComprasXProveedorMouseClicked
@@ -2380,11 +2399,12 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jdcCompraFecha1MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    //------------------------------------------------------------------------------------------------------------------------METODO CERRAR SESION
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
   
        cerrarSesion();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+      //-----------------------------------------------------------------------------------------------------------------------Proveedor
     private void jtxBuscarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtxBuscarProveedorMouseClicked
         btnBuscarProveedor.setEnabled(true);
         jcbActivos.setSelected(false);
@@ -2397,10 +2417,11 @@ public class MenuGeneral extends javax.swing.JFrame {
         btnDeshabilitar.setEnabled(false);
     }//GEN-LAST:event_jtxBuscarProveedorMouseClicked
 
+      //-----------------------------------------------------------------------------------------------------------------------Producto
     private void jtfBuscarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfBuscarProductoMouseClicked
         btnBuscarProducto.setEnabled(true);
     }//GEN-LAST:event_jtfBuscarProductoMouseClicked
-
+//-----------------------------------------------------------------------------------------------------------------------Producto
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
          String name = jtfBuscarProducto.getText();
         
@@ -2540,7 +2561,6 @@ public class MenuGeneral extends javax.swing.JFrame {
       // ------- Metodos para cargar datos dentro de las tablas -----------------------------
     
     
-    
     private void actualizarTablaInicio() {
         modelo5.setRowCount(0);
         
@@ -2560,18 +2580,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         }        
     }
     
-    private DetalleCompra listaProductoUnico(DetalleCompra detalle){
-        DetalleCompra ss = new DetalleCompra();
-        Producto pd = new Producto(); 
-          if(detalle != null){
-                ss.getIdProducto().getNombre();
-                ss.getIdProducto().getDescripcion();
-                ss.getIdProducto().getPrecio();
-                ss.getCantidad();
-                
-            }
-        return ss;
-    }
+    
     private void listaProductoIni(List<Producto> productos){
         
         for(Producto pr : productos){
@@ -2674,10 +2683,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     
       // ------- Metodos para carga de CombosBoxs -------------------------------------------
     
-     
-    
-  
-     
+
     private void listaComboProducto(List<Producto> productos){
                 
         jcbListaProductos.removeAllItems();
@@ -2717,7 +2723,6 @@ public class MenuGeneral extends javax.swing.JFrame {
     
      
       // ------- Metodos para borrar filas de las tablas ---------------------------------
-    
     
     private void borrarFilaProducto(){        
         int indice = modelo.getRowCount()-1;
@@ -2823,7 +2828,6 @@ public class MenuGeneral extends javax.swing.JFrame {
       
       // ------- Metodos para Seleccion (cambia de color al pasar el mouse) -----------------
     
-    
     private void seleccion(JPanel panel){
         panel.setBackground(new Color(0,157,113));        
     }
@@ -2831,8 +2835,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void sinSeleccionar(JPanel panel){
         panel.setBackground(new Color(2,104,66));
     }
-    //MEOTOD SUPER AUXILIAR
     
+    //MEOTOD SUPER AUXILIAR
     
     //auxiliar para activar o desactivar botones PROVEEDOR
     
@@ -2848,34 +2852,34 @@ public class MenuGeneral extends javax.swing.JFrame {
         
     }
    
-   private void desactivarBotonesProducto(){
-        jcbListaProductos.setEnabled(false);
-        jcbMasBajo.setEnabled(false);
-        jcbListarAlto.setEnabled(false);         
-        jbActualizarTProdu.setEnabled(false);
-        jbModificarP.setEnabled(false);
-        jbEliminarP.setEnabled(false);
-   
-   }
-   
-   private void activaBotonesProducto(){
-        jcbListaProductos.setEnabled(true);
-        jcbMasBajo.setEnabled(true);
-        jcbListarAlto.setEnabled(true);        
-        jbActualizarTProdu.setEnabled(true);
-   }
-   
-   private void desactivarBotonesCompra(){
-       jdcCompraFecha1.setEnabled(false);
-       jdcCompraFecha2.setEnabled(false);
-       btnBuscarFecha.setEnabled(false);
-       jtfComprasXProveedor.setEnabled(false);       
-       jbtnActualizaTabla.setEnabled(false);
-       btnComprasXProveedor.setEnabled(false);
-          
-   }
-   
-   private void activarBotonesCompra(){
+    private void desactivarBotonesProducto(){
+         jcbListaProductos.setEnabled(false);
+         jcbMasBajo.setEnabled(false);
+         jcbListarAlto.setEnabled(false);         
+         jbActualizarTProdu.setEnabled(false);
+         jbModificarP.setEnabled(false);
+         jbEliminarP.setEnabled(false);
+
+    }
+
+    private void activaBotonesProducto(){
+         jcbListaProductos.setEnabled(true);
+         jcbMasBajo.setEnabled(true);
+         jcbListarAlto.setEnabled(true);        
+         jbActualizarTProdu.setEnabled(true);
+    }
+
+    private void desactivarBotonesCompra(){
+        jdcCompraFecha1.setEnabled(false);
+        jdcCompraFecha2.setEnabled(false);
+        btnBuscarFecha.setEnabled(false);
+        jtfComprasXProveedor.setEnabled(false);       
+        jbtnActualizaTabla.setEnabled(false);
+        btnComprasXProveedor.setEnabled(false);
+
+    }
+
+    private void activarBotonesCompra(){
        jdcCompraFecha1.setEnabled(true);
        jdcCompraFecha2.setEnabled(true);
        btnBuscarFecha.setEnabled(true);
@@ -2883,7 +2887,7 @@ public class MenuGeneral extends javax.swing.JFrame {
        jbtnActualizaTabla.setEnabled(true);
    }
     
-     private void cerrarSesion() {
+    private void cerrarSesion() {
         int opcion = JOptionPane.showConfirmDialog(
                 null,
                 "¿Esta seguro de cerrar la sesion?",
@@ -2906,13 +2910,13 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnComprasXProveedor;
     private javax.swing.JButton btnDeshabilitar;
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevoProve;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
