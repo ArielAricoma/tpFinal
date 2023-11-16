@@ -192,7 +192,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jpMenu.setBackground(new java.awt.Color(2, 104, 66));
 
-        jlTitulo.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 14)); // NOI18N
+        jlTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jlTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jlTitulo.setText("Administracion");
 
@@ -213,6 +213,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jlIconoPrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Principal.png"))); // NOI18N
 
+        jlPrincipal.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         jlPrincipal.setText("Principal");
 
@@ -254,6 +255,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jlIconoProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Proveedor.png"))); // NOI18N
 
+        jlProveedores.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlProveedores.setForeground(new java.awt.Color(255, 255, 255));
         jlProveedores.setText("Proveedores");
 
@@ -265,8 +267,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlIconoProv)
                 .addGap(18, 18, 18)
-                .addComponent(jlProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addComponent(jlProveedores)
+                .addGap(26, 26, 26))
         );
         jpProveedorLayout.setVerticalGroup(
             jpProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,6 +294,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jlIconoProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Producto.png"))); // NOI18N
 
+        jlProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlProducto.setForeground(new java.awt.Color(255, 255, 255));
         jlProducto.setText("Producto");
 
@@ -330,6 +333,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jlIconoCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/Compra.png"))); // NOI18N
 
+        jlCompra.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlCompra.setForeground(new java.awt.Color(255, 255, 255));
         jlCompra.setText("Compra");
 
@@ -391,16 +395,18 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(2, 104, 66));
 
-        jLabel5.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Bienvenido:");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/usuario.png"))); // NOI18N
 
+        jlabelUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jlabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RecursosVistas/electrodomestico (2).png"))); // NOI18N
 
+        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jButton6.setText("Cerrar Sesion");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,16 +421,19 @@ public class MenuGeneral extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 1285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(352, Short.MAX_VALUE))
+                        .addComponent(jlabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)))
+                .addGap(95, 330, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,7 +450,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jlabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton6))))
         );
 
@@ -1295,7 +1304,7 @@ public class MenuGeneral extends javax.swing.JFrame {
 
         jtpEscritorio.addTab("tab4", jpInicioCompra);
 
-        jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Sistema de PROVEMAX");
 
