@@ -81,12 +81,16 @@ public class Login extends javax.swing.JFrame {
 
         jpLogin.setBackground(new java.awt.Color(255, 255, 255));
 
-        jlTitulo.setText("LOGIN");
+        jlTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        jlTitulo.setText("INICIO DE SESION");
 
+        jlUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlUsuario.setText("Usuario: ");
 
+        jlContraseña.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlContraseña.setText("Contraseña: ");
 
+        jbIniciar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbIniciar.setText("Iniciar");
         jbIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +98,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jbRegistrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbRegistrar.setText("Registrase");
         jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +106,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlNuevaContraseña.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlNuevaContraseña.setText("¿Olvidaste la Contraseña?");
         jlNuevaContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,24 +125,28 @@ public class Login extends javax.swing.JFrame {
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLoginLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlNuevaContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jpLoginLayout.createSequentialGroup()
-                            .addComponent(jbRegistrar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                            .addComponent(jbIniciar))
-                        .addGroup(jpLoginLayout.createSequentialGroup()
-                            .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jlContraseña)
-                                .addComponent(jlUsuario))
-                            .addGap(29, 29, 29)
-                            .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jlTitulo)
-                                .addComponent(jtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                .addComponent(jpContraseña)))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jpLoginLayout.createSequentialGroup()
+                                .addComponent(jbRegistrar)
+                                .addGap(62, 62, 62)
+                                .addComponent(jbIniciar))
+                            .addGroup(jpLoginLayout.createSequentialGroup()
+                                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlContraseña)
+                                    .addComponent(jlUsuario))
+                                .addGap(29, 29, 29)
+                                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                    .addComponent(jpContraseña)))))
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlTitulo)
+                            .addComponent(jlNuevaContraseña))))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +184,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpInicioLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(jlIcono)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,16 +196,21 @@ public class Login extends javax.swing.JFrame {
 
         jtLogoInicio.addTab("tab1", jpInicio);
 
-        jpRegistro.setBackground(new java.awt.Color(172, 235, 198));
+        jpRegistro.setBackground(new java.awt.Color(223, 243, 237));
 
+        jlUsuarioReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlUsuarioReg.setText("Usuario:");
 
+        jlCorreoReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlCorreoReg.setText("Correo: ");
 
+        jlConReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlConReg.setText("Contraseña:");
 
+        jlConfirConReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlConfirConReg.setText("Confirmar Contraseña:");
 
+        jbGuardarReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbGuardarReg.setText("Guardar");
         jbGuardarReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,6 +218,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jbCancelarReg.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbCancelarReg.setText("Cancelar");
         jbCancelarReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,26 +233,24 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpRegistroLayout.createSequentialGroup()
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jpRegistroLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addContainerGap()
                         .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlConReg)
-                            .addGroup(jpRegistroLayout.createSequentialGroup()
-                                .addComponent(jlUsuarioReg)
-                                .addGap(6, 6, 6))
+                            .addComponent(jlConfirConReg)
                             .addComponent(jlCorreoReg)
-                            .addComponent(jlConfirConReg))
-                        .addGap(24, 24, 24)
-                        .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtCorreoReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlUsuarioReg))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtConfirContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtCorreoReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtUsuarioReg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpRegistroLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jbCancelarReg)
+                        .addGap(40, 40, 40)
+                        .addComponent(jbGuardarReg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGuardarReg)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addComponent(jbCancelarReg)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jpRegistroLayout.setVerticalGroup(
             jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,25 +267,28 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlConReg)
                     .addComponent(jtContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtConfirContraReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlConfirConReg))
-                .addGap(68, 68, 68)
+                .addGap(76, 76, 76)
                 .addGroup(jpRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardarReg)
-                    .addComponent(jbCancelarReg))
-                .addGap(61, 61, 61))
+                    .addComponent(jbCancelarReg)
+                    .addComponent(jbGuardarReg))
+                .addGap(53, 53, 53))
         );
 
         jtLogoInicio.addTab("tab2", jpRegistro);
 
-        jpCambioContraseña.setBackground(new java.awt.Color(172, 235, 198));
+        jpCambioContraseña.setBackground(new java.awt.Color(223, 243, 237));
 
+        jlContraNuevaCambio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlContraNuevaCambio.setText("Contraseña Nueva: ");
 
+        jlConfirContraCambio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jlConfirContraCambio.setText("Confirme Contraseña: ");
 
+        jbGuardarCambio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbGuardarCambio.setText("Guardar");
         jbGuardarCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +296,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jbCancelarCambio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jbCancelarCambio.setText("Cancelar");
         jbCancelarCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,22 +309,22 @@ public class Login extends javax.swing.JFrame {
         jpCambioContraseñaLayout.setHorizontalGroup(
             jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCambioContraseñaLayout.createSequentialGroup()
-                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpCambioContraseñaLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCambioContraseñaLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlContraNuevaCambio)
                             .addComponent(jlConfirContraCambio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtConfirmarContraCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtNuevaContraCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpCambioContraseñaLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jbCancelarCambio)
+                            .addComponent(jtNuevaContraCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtConfirmarContraCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCambioContraseñaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jbGuardarCambio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGuardarCambio)))
-                .addGap(51, 51, 51))
+                        .addComponent(jbCancelarCambio)))
+                .addGap(51, 89, Short.MAX_VALUE))
         );
         jpCambioContraseñaLayout.setVerticalGroup(
             jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,11 +337,11 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlConfirContraCambio)
                     .addComponent(jtConfirmarContraCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGap(67, 67, 67)
                 .addGroup(jpCambioContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardarCambio)
-                    .addComponent(jbCancelarCambio))
-                .addContainerGap(204, Short.MAX_VALUE))
+                    .addComponent(jbCancelarCambio)
+                    .addComponent(jbGuardarCambio))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         jtLogoInicio.addTab("tab3", jpCambioContraseña);
@@ -352,14 +370,17 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+      // ------------------------------------------ METODOS DE REGISTRO USUARIO -----------------------------------------------------
+    
+    
     private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
         // TODO add your handling code here: 
         jtLogoInicio.setSelectedIndex(1);
-        limpiarRegistro();
-         
+        limpiarRegistro();         
     }//GEN-LAST:event_jbRegistrarActionPerformed
     
-    private void jbGuardarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarRegActionPerformed
+    private void jbGuardarRegActionPerformed(java.awt.event.ActionEvent evt) {                                             
        // TODO add your handling code here: 
        String nombre = jtUsuarioReg.getText();
        String correo = jtCorreoReg.getText();
@@ -375,20 +396,23 @@ public class Login extends javax.swing.JFrame {
            usuarioData.crearUsuario(usuario);
            JOptionPane.showMessageDialog(null,"Nuevo Usuario Registrado "," ",JOptionPane.INFORMATION_MESSAGE);
            jtLogoInicio.setSelectedIndex(0);
-       }          
-       
-    }//GEN-LAST:event_jbGuardarRegActionPerformed
-
-    private void jlNuevaContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseClicked
-        // TODO add your handling code here:
-        jtLogoInicio.setSelectedIndex(2); 
-        limpiarNuevaContra();
-    }//GEN-LAST:event_jlNuevaContraseñaMouseClicked
+       }       
+    }                                                
 
     private void jbCancelarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarRegActionPerformed
         // TODO add your handling code here:
         jtLogoInicio.setSelectedIndex(0);
     }//GEN-LAST:event_jbCancelarRegActionPerformed
+
+    
+      // ------------------------------------------ METODOS DE CAMBIO DE CONTRASEÑA --------------------------------------------------
+    
+    
+    private void jlNuevaContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseClicked
+        // TODO add your handling code here:
+        jtLogoInicio.setSelectedIndex(2); 
+        limpiarNuevaContra();
+    }//GEN-LAST:event_jlNuevaContraseñaMouseClicked
 
     private void jbGuardarCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarCambioActionPerformed
         // TODO add your handling code here:        
@@ -403,8 +427,7 @@ public class Login extends javax.swing.JFrame {
         }else {
             usuarioData.cambiarContasena(nombre, nuevaContraseña);
             jtLogoInicio.setSelectedIndex(0);
-        } 
-        
+        }         
     }//GEN-LAST:event_jbGuardarCambioActionPerformed
 
     private void jbCancelarCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarCambioActionPerformed
@@ -412,6 +435,10 @@ public class Login extends javax.swing.JFrame {
         jtLogoInicio.setSelectedIndex(0);
     }//GEN-LAST:event_jbCancelarCambioActionPerformed
 
+    
+      // ------------------------------------------ METODOS PARA SUBRAYAR TEXTO "OLVIDASTE CONTRASEÑA" -------------------------------
+    
+    
     private void jlNuevaContraseñaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlNuevaContraseñaMouseEntered
         // TODO add your handling code here:
         Font font = jlNuevaContraseña.getFont();
@@ -431,6 +458,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jlNuevaContraseñaMouseExited
 
    
+      // ------------------------------------------ INICIO DE SESION -----------------------------------------------------------------
+    
     
     private void jbIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIniciarActionPerformed
         // TODO add your handling code here:
@@ -464,6 +493,8 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+          UIManager.put("nimbusBase", new Color(17,120,100));
+                   
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -489,6 +520,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+      // ---------------------------------------------- METODOS AUXILIARES --------------------------------------------------------------
     
     private void limpiarRegistro(){
         jtUsuarioReg.setText("");
@@ -536,6 +570,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuarioReg;
     // End of variables declaration//GEN-END:variables
 
+    
+       // -------------------------------------- CLASE CREADA PARA SETTEAR UNA IMAGEN A UN JPANEL -------------------------------------
+    
+    
     class Fondo extends JPanel{
         private Image img;
         
