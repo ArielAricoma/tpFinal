@@ -74,6 +74,68 @@ public class ProductoData {
         }
     }
     
+    public List<Producto> listarProductoMayor() {
+    String sql ="SELECT * FROM producto WHERE estado = 1 ORDER BY precio DESC";
+    List<Producto> listita = new ArrayList<>();
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+            Producto producto = new Producto();
+            producto.setIdProducto(rs.getInt("idProducto"));
+            producto.setNombre(rs.getString("nombre"));
+            producto.setDescripcion(rs.getString("descripcion"));
+            producto.setStock(rs.getInt("stock"));
+            producto.setPrecio(rs.getDouble("precio"));
+            producto.setEstado(rs.getBoolean("estado"));
+
+            listita.add(producto);
+        }
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectar con la tabla producto", "sql", 0);
+    }
+
+    return listita;
+}
+    
+    
+    
+    public List<Producto> buscarProductosPorNombreOLetra(String filtro) {
+    String sql = "SELECT * FROM producto WHERE estado = 1 AND nombre LIKE ?";
+    
+    List<Producto> listaProductos = new ArrayList<>();
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        
+        ps.setString(1, filtro + "%");
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Producto producto = new Producto();
+            producto.setIdProducto(rs.getInt("idProducto"));
+            producto.setNombre(rs.getString("nombre"));
+            producto.setDescripcion(rs.getString("descripcion"));
+            producto.setStock(rs.getInt("stock"));
+            producto.setPrecio(rs.getDouble("precio"));
+            producto.setEstado(rs.getBoolean("estado"));
+
+            listaProductos.add(producto);
+        }
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectar con la tabla producto", "sql", 0);
+    }
+
+    return listaProductos;
+}
+
+    
+    
     
     public List<Producto> listarProductoMenor() {
     String sql ="SELECT * FROM producto WHERE estado = 1 ORDER BY precio";

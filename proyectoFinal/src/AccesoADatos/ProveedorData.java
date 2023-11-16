@@ -210,8 +210,36 @@ public class ProveedorData {
   
   //                  METODO PARA BUSCAR PROVEEDOR POR NOMBRE
   
+  
+  public List<Proveedor> buscarProveedorLetra(String rSocial){
+      String sql = "SELECT * FROM proveedor WHERE razonSocial LIKE ?";
+       List<Proveedor> lista = new ArrayList<>();
+        try {
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, rSocial + "%");
+            
+            ResultSet rs = ps.executeQuery();
+          
+            while(rs.next()){
+                proveedor = new Proveedor();                
+                
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                proveedor.setEstado(rs.getBoolean("estado"));
+                lista.add(proveedor);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con Proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+  
+      return lista;
+  }
+  
   public Proveedor buscarProveedorNombre(String rSocial){
-      String sql = "SELECT * FROM proveedor WHERE razonSocial = ?";
+      String sql = "SELECT * FROM proveedor WHERE razonSocial = rSocial";
       
         try {
             
