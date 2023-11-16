@@ -239,7 +239,7 @@ public class ProveedorData {
   }
   
   public Proveedor buscarProveedorNombre(String rSocial){
-      String sql = "SELECT * FROM proveedor WHERE razonSocial = rSocial";
+      String sql = "SELECT * FROM proveedor WHERE razonSocial = ?";
       
         try {
             
