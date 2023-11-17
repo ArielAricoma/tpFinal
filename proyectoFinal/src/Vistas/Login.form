@@ -88,6 +88,11 @@
                   </Group>
                   <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                  <Component id="jlPie" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -113,6 +118,8 @@
                       <Component id="jbRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jlPie" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -180,6 +187,14 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlNuevaContrase&#xf1;aMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlNuevaContrase&#xf1;aMouseExited"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlPie">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Rounded MT Bold" size="10" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="by - EJARQUE and ROMERO -"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

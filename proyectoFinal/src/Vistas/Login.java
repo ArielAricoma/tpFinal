@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         jbIniciar = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
         jlNuevaContraseña = new javax.swing.JLabel();
+        jlPie = new javax.swing.JLabel();
         ImageIcon icono=new ImageIcon(getClass().getResource("../RecursosVistas/sd.jpg"));
         Image miImagen=icono.getImage();
         jlSuperior = new javax.swing.JLabel(){
@@ -120,6 +121,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jlPie.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 10)); // NOI18N
+        jlPie.setText("by - EJARQUE and ROMERO -");
+
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
@@ -147,6 +151,10 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jlTitulo)
                             .addComponent(jlNuevaContraseña))))
                 .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(jpLoginLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jlPie)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +175,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbIniciar)
                     .addComponent(jbRegistrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlPie)
+                .addGap(23, 23, 23))
         );
 
         jlSuperior.setBackground(new java.awt.Color(2, 104, 66));
@@ -551,6 +561,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jlCorreoReg;
     private javax.swing.JLabel jlIcono;
     private javax.swing.JLabel jlNuevaContraseña;
+    private javax.swing.JLabel jlPie;
     private javax.swing.JLabel jlSuperior;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JLabel jlUsuario;
