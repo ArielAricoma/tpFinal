@@ -1839,7 +1839,7 @@
                       </Group>
                       <EmptySpace pref="75" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jpnewCompra" min="-2" pref="483" max="-2" attributes="0"/>
+                          <Component id="jpnewCompra" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -1988,7 +1988,7 @@
                               <Component id="jlNuevaCProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jcbNuevaCProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jdcNuevaCFecha" min="-2" max="-2" attributes="0"/>
                               <Component id="jlNuevaCFecha" min="-2" max="-2" attributes="0"/>

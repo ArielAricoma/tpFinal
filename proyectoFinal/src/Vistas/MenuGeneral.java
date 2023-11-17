@@ -2161,8 +2161,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         int stock = 0;
         double precio = 0.0;
 
-        Object stockObject = modelo.getValueAt(indice, 3);
-        Object precioObject = modelo.getValueAt(indice, 4);
+        Object stockObjecto = modelo.getValueAt(indice, 3);
+        Object precioObjecto = modelo.getValueAt(indice, 4);
 
         
         producto = new Producto(id, nombre, descripcion, stock, precio, true);
@@ -2176,14 +2176,14 @@ public class MenuGeneral extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
            
             try {
-                stock = Integer.parseInt(stockObject.toString());
+                stock = Integer.parseInt(stockObjecto.toString());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error modificar stock.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             try {
-                precio = Double.parseDouble(precioObject.toString());
+                precio = Double.parseDouble(precioObjecto.toString());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error al modificar precio."+"\n"+"Ingrese formato correcto (00.00)", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -2986,13 +2986,13 @@ public class MenuGeneral extends javax.swing.JFrame {
     return (c >= 'a' && c <= 'z') ||
            (c >= 'A' && c <= 'Z') ||
            (c >= '0' && c <= '9') ||
-           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')';
+           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')'|| c == ':' || c == '@';
     }
     
     public static boolean esCaracterSinNumero(char c) {
     return (c >= 'a' && c <= 'z') ||
            (c >= 'A' && c <= 'Z') ||
-           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')' || c == ':';
+           c == ' ' || c == ',' || c == '.' || c == '-' || c == '(' || c == ')' || c == ':' || c == '@';
     }
     
       // -------- Metodo para settear el usuario en el menuGeneral --------------------------

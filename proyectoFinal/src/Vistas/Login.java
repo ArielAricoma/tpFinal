@@ -6,6 +6,8 @@ package Vistas;
 
 import AccesoADatos.UsuarioData;
 import Dominio.Usuario;
+import static Vistas.MenuGeneral.contieneLetrasEspaciosNumeros;
+import static Vistas.MenuGeneral.contieneLetrasYEspacios;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -388,6 +390,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here: 
         jtLogoInicio.setSelectedIndex(1);
         limpiarRegistro();         
+
+        jtUsuario.setEnabled(false);
+        jpContraseña.setEnabled(false);
+        jbIniciar.setEnabled(false);
+        jbRegistrar.setEnabled(false);
     }//GEN-LAST:event_jbRegistrarActionPerformed
     
     private void jbGuardarRegActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -397,21 +404,64 @@ public class Login extends javax.swing.JFrame {
        String contraseña = jtContraReg.getText();
        String confirma = jtConfirContraReg.getText();
        
-       if(nombre.isEmpty() || correo.isEmpty() || contraseña.isEmpty() || confirma.isEmpty()){
-            JOptionPane.showMessageDialog(null,"Campos Vacios"," ",JOptionPane.INFORMATION_MESSAGE);
-       }else if(!contraseña.equals(confirma) ){
-            JOptionPane.showMessageDialog(null,"Contraseñas no coinciden"," ",JOptionPane.INFORMATION_MESSAGE);
+       if(nombre.isEmpty() && correo.isEmpty() && contraseña.isEmpty() && confirma.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor, debe completar todos los campos."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+       }
+       if(nombre.isEmpty()){
+           JOptionPane.showMessageDialog(null,"Por favor, debe completar el campo de nombre."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+       }else if(nombre.length()> 20){
+           JOptionPane.showMessageDialog(null,"Supera el limite de caracteres<20>."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       }else if(contieneLetrasYEspacios(nombre) != true){
+           JOptionPane.showMessageDialog(null,"Por favor, debe ingresar caracteres validos."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       }
+       
+       if(correo.isEmpty()){
+           JOptionPane.showMessageDialog(null,"Por favor, debe completar el campo de nombre."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+       }else if(correo.length()> 35){
+           JOptionPane.showMessageDialog(null,"Supera el limite de caracteres<20>."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       }else if(contieneLetrasEspaciosNumeros(nombre) != true){
+           JOptionPane.showMessageDialog(null,"Por favor, debe ingresar caracteres validos."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       }
+       
+       if(contraseña.isEmpty()){
+           JOptionPane.showMessageDialog(null,"Por favor, debe completar el campo de nombre."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+       }else if(contraseña.length()<= 6){
+           JOptionPane.showMessageDialog(null,"La contraseña es muy corta. Por favor, ingrese un minimo de 8 caracteres."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       }else if(contraseña.length() > 16){
+           JOptionPane.showMessageDialog(null,"La contraseña es muy larga. Por favor, ingresa un  maximo de 16 caracteres."," ",JOptionPane.INFORMATION_MESSAGE);
+           return;
+       } else if(!contraseña.equals(confirma) ){
+            JOptionPane.showMessageDialog(null,"Las Contraseñas deben coincidir."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
        }else{
            usuario = new Usuario(nombre,contraseña,correo,true);
            usuarioData.crearUsuario(usuario);
-           JOptionPane.showMessageDialog(null,"Nuevo Usuario Registrado "," ",JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null,"Nuevo Usuario Registrado"," ",JOptionPane.INFORMATION_MESSAGE);
            jtLogoInicio.setSelectedIndex(0);
+           jtUsuario.setText(nombre);
+           jtUsuario.setEnabled(true);
+           jpContraseña.setEnabled(true);
+           jbIniciar.setEnabled(true);
+           jbRegistrar.setEnabled(true);
        }       
     }                                                
 
     private void jbCancelarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarRegActionPerformed
         // TODO add your handling code here:
         jtLogoInicio.setSelectedIndex(0);
+        jtUsuario.setEnabled(true);
+           jpContraseña.setEnabled(true);
+           jbIniciar.setEnabled(true);
+           jbRegistrar.setEnabled(true);
     }//GEN-LAST:event_jbCancelarRegActionPerformed
 
     
@@ -477,12 +527,19 @@ public class Login extends javax.swing.JFrame {
         String contraseña =String.valueOf(jpContraseña.getPassword());        
         usuario = usuarioData.buscarUsuario(nombre);
         
-        if(nombre.isEmpty() || contraseña.isEmpty()){
-            JOptionPane.showMessageDialog(null,"Campos vacios"," ",JOptionPane.INFORMATION_MESSAGE);
-        }else if(usuario == null){
-            JOptionPane.showMessageDialog(null,"No existe el Usuario");            
+        if(nombre.isEmpty() && contraseña.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor, es necesario llenar los campos."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }else if(nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor, es necesario llenar el campo de nombre"," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }else if(contraseña.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Por favor, es necesario llenar el campo de contraseña."," ",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } else if(usuario == null){
+            JOptionPane.showMessageDialog(null,"No existe el Usuario: "+nombre);            
         }else if(!contraseña.equals(usuario.getContrasena())){ 
-            JOptionPane.showMessageDialog(null,"Contraseña invalida");
+            JOptionPane.showMessageDialog(null,"La contraseña es invalida.");
         }else{
             
             MenuGeneral menugeneral = new MenuGeneral();
