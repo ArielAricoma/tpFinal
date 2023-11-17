@@ -17,6 +17,7 @@ import Dominio.Proveedor;
 
 
 import java.awt.Color;//libreria necesaria para poder utilizar Nimbus(es lo que usamos para los colores)
+import java.awt.Component;
 import java.awt.Graphics;//Esta libreria se utiliza para colocar una imagen de fondo
 import java.awt.Image;//libreria necesaria para colocar las imagenes, va de la mano con el Grapthics(Jpanel-imagenes de fondo)
 import javax.swing.ImageIcon;//necesario para realizar un objeto de tipo Icon
@@ -33,6 +34,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuGeneral extends javax.swing.JFrame {
@@ -115,6 +118,14 @@ public class MenuGeneral extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jbtnRellenarStock = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jlAlto = new javax.swing.JLabel();
+        jlMedio = new javax.swing.JLabel();
+        jlReferencia = new javax.swing.JLabel();
+        jlBajo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jpInivioProveedor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtProveedor = new javax.swing.JTable();
@@ -503,41 +514,137 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jLabel3.setText("by -EJARQUE and ROMERO -");
+
+        jLabel15.setText("jLabel14");
+
+        jlAlto.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jlAlto.setText("Stock Alto:");
+
+        jlMedio.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jlMedio.setText("Stock Medio:");
+
+        jlReferencia.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        jlReferencia.setText("Referencias:");
+
+        jlBajo.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        jlBajo.setText("Stock Bajo:");
+
+        jPanel3.setBackground(new java.awt.Color(130, 224, 170));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 28, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(249, 231, 159));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(205, 97, 85));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 28, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 31, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
         jpInicio.setLayout(jpInicioLayout);
         jpInicioLayout.setHorizontalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(57, 57, 57))
             .addGroup(jpInicioLayout.createSequentialGroup()
-                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpInicioLayout.createSequentialGroup()
-                        .addGap(497, 497, 497)
-                        .addComponent(jLabel2))
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jpInicioLayout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jbtnRellenarStock))
+                        .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpInicioLayout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jbtnRellenarStock))
+                            .addGroup(jpInicioLayout.createSequentialGroup()
+                                .addGap(91, 91, 91)
+                                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlBajo)
+                                    .addComponent(jlAlto)
+                                    .addComponent(jlMedio))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jpInicioLayout.createSequentialGroup()
-                        .addGap(571, 571, 571)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(736, Short.MAX_VALUE))
+                        .addGap(497, 497, 497)
+                        .addComponent(jLabel2)
+                        .addGap(454, 454, 454)
+                        .addComponent(jlReferencia)))
+                .addContainerGap(750, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(57, 57, 57))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)))
+            .addGroup(jpInicioLayout.createSequentialGroup()
+                .addGap(571, 571, 571)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel2)
-                .addGap(117, 117, 117)
                 .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRellenarStock))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                    .addGroup(jpInicioLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel2))
+                    .addGroup(jpInicioLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jlReferencia)))
+                .addGap(40, 40, 40)
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlAlto)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel15)
+                .addGap(22, 22, 22)
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpInicioLayout.createSequentialGroup()
+                        .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpInicioLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jlMedio))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlBajo)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(112, 112, 112)
+                        .addComponent(jbtnRellenarStock))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(50, 50, 50)
                 .addComponent(jButton1)
@@ -759,6 +866,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jLabel11.setText("by -EJARQUE and ROMERO -");
 
         javax.swing.GroupLayout jpInivioProveedorLayout = new javax.swing.GroupLayout(jpInivioProveedor);
@@ -802,8 +910,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpInivioProveedorLayout.createSequentialGroup()
                         .addGap(634, 634, 634)
-                        .addComponent(jLabel11)))
-                .addContainerGap(559, Short.MAX_VALUE))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(609, Short.MAX_VALUE))
         );
         jpInivioProveedorLayout.setVerticalGroup(
             jpInivioProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -831,7 +939,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                             .addComponent(btnNuevoProve)
                             .addComponent(btnHabilitar)
                             .addComponent(btnActualizarTabla))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(135, 135, 135))
         );
@@ -1036,6 +1144,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jLabel12.setText("by -EJARQUE and ROMERO -");
 
         javax.swing.GroupLayout jpInicioProductoLayout = new javax.swing.GroupLayout(jpInicioProducto);
@@ -1080,8 +1189,8 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jpNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpInicioProductoLayout.createSequentialGroup()
                         .addGap(461, 461, 461)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(603, Short.MAX_VALUE))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(653, Short.MAX_VALUE))
         );
         jpInicioProductoLayout.setVerticalGroup(
             jpInicioProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1111,7 +1220,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                     .addGroup(jpInicioProductoLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jpNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(121, 121, 121))
         );
@@ -1318,6 +1427,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
         jLabel13.setText("by -EJARQUE and ROMERO -");
 
         javax.swing.GroupLayout jpInicioCompraLayout = new javax.swing.GroupLayout(jpInicioCompra);
@@ -1400,7 +1510,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addComponent(jtfComprasXProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnComprasXProveedor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(jpInicioCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnewCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInicioCompraLayout.createSequentialGroup()
@@ -1578,6 +1688,7 @@ public class MenuGeneral extends javax.swing.JFrame {
              listaComboProveedor(); 
              listaProductoCompra();
         }  
+         actualizarTablaInicio();
     }                                                           
 
         
@@ -2568,6 +2679,8 @@ public class MenuGeneral extends javax.swing.JFrame {
         jtRepositorio.getColumnModel().getColumn(0).setMaxWidth(0);
         jtRepositorio.getColumnModel().getColumn(0).setMinWidth(0);
         jtRepositorio.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+         jtRepositorio.getColumnModel().getColumn(4).setCellRenderer(new StockCellRenderer());
         cabeceraRepoIni = true;       
     }
     
@@ -2656,6 +2769,7 @@ public class MenuGeneral extends javax.swing.JFrame {
             };
           
             modelo5.addRow(rowData);
+            
         }
         listaRepoIni = true;        
     }
@@ -2891,14 +3005,7 @@ public class MenuGeneral extends javax.swing.JFrame {
       
       // ------- Metodos para Seleccion (cambia de color al pasar el mouse) -----------------
     
-    private void seleccion(JPanel panel){
-        panel.setBackground(new Color(0,157,113));        
-    }
-    
-    private void sinSeleccionar(JPanel panel){
-        panel.setBackground(new Color(2,104,66));
-    }
-    
+   
     //MEOTOD SUPER AUXILIAR
     
     //------------- auxiliar para activar o desactivar botones PROVEEDOR  -------------------
@@ -2988,6 +3095,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -3002,6 +3110,9 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3030,6 +3141,8 @@ public class MenuGeneral extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdcCompraFecha1;
     private com.toedter.calendar.JDateChooser jdcCompraFecha2;
     private com.toedter.calendar.JDateChooser jdcNuevaCFecha;
+    private javax.swing.JLabel jlAlto;
+    private javax.swing.JLabel jlBajo;
     private javax.swing.JLabel jlCompra;
     private javax.swing.JLabel jlCompraDetalleCTabla;
     private javax.swing.JLabel jlCompraSeleccionar;
@@ -3040,6 +3153,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jlIconoPrin;
     private javax.swing.JLabel jlIconoProd;
     private javax.swing.JLabel jlIconoProv;
+    private javax.swing.JLabel jlMedio;
     private javax.swing.JLabel jlNuevaCCantidad;
     private javax.swing.JLabel jlNuevaCFecha;
     private javax.swing.JLabel jlNuevaCPrecio;
@@ -3056,6 +3170,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jlProductoTitulo;
     private javax.swing.JLabel jlProductos;
     private javax.swing.JLabel jlProveedores;
+    private javax.swing.JLabel jlReferencia;
     private javax.swing.JLabel jlTITULOPRINCIPAL;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JLabel jlabelUsuario;
@@ -3102,6 +3217,30 @@ public class MenuGeneral extends javax.swing.JFrame {
             setOpaque(false);
             super.paint(g);
         }       
-    }    
+    }  
+     
+    public class StockCellRenderer extends DefaultTableCellRenderer {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        // Obtener el valor de la columna "Stock"
+        int stock = (int) value;
+
+        // Cambiar el color de fondo de la celda según diferentes umbrales de stock
+        if (stock <= 5) {
+            c.setBackground(new Color(205, 97, 85));
+            c.setForeground(Color.BLACK);
+        } else if (stock <= 10) {
+            c.setBackground(new Color(249, 231, 159 ));
+            c.setForeground(Color.BLACK);
+        } else {
+            c.setBackground(new Color(130, 224, 170 ));
+            c.setForeground(Color.BLACK);
+        }
+
+        return c;
+    }
+}
 
 }
