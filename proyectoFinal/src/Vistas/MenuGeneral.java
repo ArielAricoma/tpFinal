@@ -3005,7 +3005,14 @@ public class MenuGeneral extends javax.swing.JFrame {
       
       // ------- Metodos para Seleccion (cambia de color al pasar el mouse) -----------------
     
-   
+    private void seleccion(JPanel panel){
+        panel.setBackground(new Color(0,157,113));        
+    }
+    
+    private void sinSeleccionar(JPanel panel){
+        panel.setBackground(new Color(2,104,66));
+    }
+    
     //MEOTOD SUPER AUXILIAR
     
     //------------- auxiliar para activar o desactivar botones PROVEEDOR  -------------------
